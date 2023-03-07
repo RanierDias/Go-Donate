@@ -20,9 +20,12 @@ const Main = styled.main`
     }
 
     aside {
+      position: sticky;
+      top: 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: max-content;
 
       > div:first-child {
         margin-bottom: 75px;
