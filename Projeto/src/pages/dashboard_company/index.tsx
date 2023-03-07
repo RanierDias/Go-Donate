@@ -5,6 +5,7 @@ import Navbar from "../../components/Header";
 import Select from "../../components/Select";
 import Main from "./style";
 
+
 const PageCompany = () => {
   const filterCampaign = (value: string) => {
     switch (value) {
