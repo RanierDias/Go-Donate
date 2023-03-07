@@ -17,6 +17,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         const res = await api.get('/post')
 
         setPosts(res.data)
+
+        console.log(posts)
+        
       } catch (error) {
         console.log(error)
       }

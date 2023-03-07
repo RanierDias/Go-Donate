@@ -21,7 +21,7 @@ export const SectionContainer = styled.section`
   gap: 1rem;
 
   h3 {
-    font-size: .9rem;
+    font-size: 1.1rem;
   }
 
   input {
@@ -39,6 +39,10 @@ export const SectionContainer = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    h3 {
+      font-size: 1.4rem;
+    }
   }
 `
 
@@ -46,6 +50,16 @@ export const DonateSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  h4 {
+    font-size: .9rem;
+  }
+
+  @media (min-width: 700px) {
+    h4 {
+      font-size: 1rem;
+    }
+  }
 `
 
 export const ListCardContainer = styled.ul`
