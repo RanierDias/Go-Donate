@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import PageCompany from "./pages/dashboard_company";
-import PagePublic from "./pages/public";
+import PageCompany from "./pages/Dashboard_Company";
+import PagePublic from "./pages/PagePublic";
 
 const MainRoutes = () => {
   return (
