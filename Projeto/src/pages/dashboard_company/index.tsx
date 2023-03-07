@@ -1,11 +1,17 @@
-import { useForm } from "react-hook-form";
+import { isAxiosError } from "axios";
+import { useEffect, useState } from "react";
 import CardPerfil from "../../components/Cards/Perfil";
+import CardPostsCompany from "../../components/Cards/PostCompany";
 
 import Navbar from "../../components/Header";
 import Select from "../../components/Select";
+import { api } from "../../services/api";
 import Main from "./style";
+import { iPosts } from "./types";
 
 const PageCompany = () => {
+  const [posts, setPosts] = useState([] as iPosts[]);
+
   const filterCampaign = (value: string) => {
     switch (value) {
       case "1":
@@ -17,6 +23,23 @@ const PageCompany = () => {
     }
   };
 
+  useEffect(() => {
+    async function getListPosts() {
+      try {
+        const response = await api.get<iPosts[]>("/post");
+        setPosts(response.data);
+      } catch (error) {
+        if (isAxiosError(error)) {
+          console.log(error.message);
+        }
+
+        console.log(error);
+      }
+    }
+
+    getListPosts()
+  }, []);
+
   return (
     <>
       <Navbar mode="private" />
@@ -24,7 +47,7 @@ const PageCompany = () => {
         <h1>Campanhas em andamento</h1>
         <div>
           <section>
-            <ul></ul>
+            <ul>{posts.map(post => <CardPostsCompany key={post.id} post={post} />)}</ul>
           </section>
           <aside>
             <Select name="campaign" callback={filterCampaign}>

@@ -18,7 +18,7 @@ const Reset = createGlobalStyle`
     border: none;
   }
 
-  input {
+  input, select {
     outline: none;
   }
 
