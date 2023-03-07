@@ -8,7 +8,7 @@ const Main = styled.main`
   > div {
     display: flex;
     flex-direction: column-reverse;
-    gap: 100px;
+    gap: 25px;
     margin-top: 45px;
 
     section {
