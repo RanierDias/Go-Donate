@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Div = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 250px;
@@ -60,6 +60,10 @@ const Div = styled.div`
       align-self: flex-end;
       translate: 0 -20px;
     }
+  }
+
+  @media(min-width: 900px) {
+    display: flex;
   }
 `;
 
