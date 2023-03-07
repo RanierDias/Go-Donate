@@ -14,8 +14,18 @@ const Header = styled.header`
     gap: 30px;
   }
 
+  img {
+    width: 100px;
+  }
+
+  font-size: .8rem;
+
   @media(min-width: 720px) {
     padding: 0 8vw;
+
+    img {
+      width: 150px;
+    }
   }
 
   @media(min-width: 1024px) {
