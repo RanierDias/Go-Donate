@@ -1,10 +1,15 @@
-function App() {
+import MainRoutes from "./routes";
+import GlobalStyle from "./styles/globalStyles";
+import Reset from "./styles/reset";
 
+function App() {
   return (
-    <div className="App">
-      
-    </div>
-  )
+    <>
+      <Reset />
+      <GlobalStyle />
+      <MainRoutes />
+    </>
+  );
 }
 
-export default App
+export default App;
