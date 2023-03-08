@@ -1,4 +1,5 @@
 import Navbar from "../../components/Header";
+import Select from "../../components/Select";
 import { CardPublic, DateContainer, DonateSection, InfoEvent, ListCardContainer, MainContainer, SectionContainer, UserContainer } from "./style";
 
 const PagePublic = () => {
@@ -11,12 +12,19 @@ const PagePublic = () => {
           <div>
             <h3>Principais Campanhas</h3>
             <DateContainer>
-              <span>Hoje</span>
-              <span>Dia 06</span>
+              <span>Hoje |</span>
+              <span>Dia 06 |</span>
               <span>Segunda-feira</span>
             </DateContainer>
           </div>
-          <input type="text" placeholder="Selecione Estado" />
+          {/* <input type="text" placeholder="Selecione Estado" /> */}
+          {/* <Select>
+            <option value="">Selecione o estado</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Maranhão">Maranhão</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <option value="Paraná">Paraná</option>
+          </Select> */}
         </SectionContainer>
         <DonateSection>
           <h4>Pontos de doações</h4>

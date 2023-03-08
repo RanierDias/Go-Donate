@@ -3,6 +3,7 @@ import PageCompany from "./pages/Dashboard_Company";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
 import PageUser from "./pages/Dashboard_User";
 import PagePublic from "./pages/PagePublic";
+import { UserContext } from "./providers/UserContext";
 
 const MainRoutes = () => {
   return (

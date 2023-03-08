@@ -15,8 +15,6 @@ border-radius: 8px;
  
   transition: 0.4s;
 
- 
-
   input {
     width: 100%;
    
