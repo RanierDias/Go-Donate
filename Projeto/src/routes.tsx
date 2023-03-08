@@ -7,6 +7,7 @@ import PagePublic from "./pages/PagePublic";
 const MainRoutes = () => {
   return (
     <Routes>
+      <Route path="/login" element={<h1>AQUI E LOGINPAGE</h1>} />
       <Route path="/" element={<PagePublic />} />
       <Route path="/user" element={<PageUser />} />
       <Route path="/company" element={<PageCompany />} />
