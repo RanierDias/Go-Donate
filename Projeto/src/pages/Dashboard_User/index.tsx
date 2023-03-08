@@ -1,11 +1,11 @@
 import CardPerfil from "../../components/Cards/Perfil";
-import Navbar from "../../components/Header";
-import SearchForm from "../../components/Search";
 import { iPostsService } from "./types";
 import { useEffect, useState } from "react";
-import { CardPostuser } from "../../components/Cards/PostUser";
-import { api } from "../../services/api";
 import { isAxiosError } from "axios";
+import { api } from "../../services/api";
+import { CardPostuser } from "../../components/Cards/PostUser";
+import SearchForm from "../../components/Search";
+import Navbar from "../../components/Header";
 
 const PageUser = () => {
   const [postsServices, setPostsServices] = useState([] as iPostsService[]);
