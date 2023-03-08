@@ -78,7 +78,7 @@ export const DateContainer = styled.div`
   }
 `
 
-export const CardPublic = styled.div`
+export const CardPublic = styled.li`
   display: flex;
   flex-direction: column;
   gap: 1rem;
