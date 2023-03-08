@@ -46,12 +46,12 @@ const PageUser = () => {
           </div>
 
           <CardPerfil
-            type="company"
+            type="user"
             thumb="src/assets/backgroundUser.jpg"
             photo="src/assets/perfil.jpeg"
             name="Roshelle"
-            list1={2}
-            list2={6}
+            list1={{ number: 1, link: "/" }}
+            list2={{ number: 1, link: "/" }}
           />
         </aside>
       </main>

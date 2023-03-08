@@ -8,7 +8,6 @@ const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<PagePublic />} />
-
       <Route path="/user" element={<PageUser />} />
       <Route path="/company" element={<PageCompany />} />
       <Route path="/company/fundraising" element={<PageFundraising />} />
