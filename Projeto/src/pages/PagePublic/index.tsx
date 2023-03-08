@@ -1,8 +1,52 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Header";
 import Select from "../../components/Select";
+import { api } from "../../services/api";
 import { CardPublic, DateContainer, DonateSection, InfoEvent, ListCardContainer, MainContainer, SectionContainer, UserContainer } from "./style";
 
+interface IPost {
+  id: number
+  companyId: number
+  name: string
+  description: string
+  date: string
+  time: string
+  city: string
+  state: string
+  image: string
+  type: string
+}
+
 const PagePublic = () => {
+  const [post, setPost] = useState<IPost[]>([])
+  const [search, setSearch] = useState('')
+  const [filteredPost, setFilteredPost] = useState<IPost[]>([])
+
+  const test = (value: string) => {
+    setSearch(value)
+  }
+
+  useEffect(() => {
+    setFilteredPost(post.filter(item => item.state.toLowerCase().includes(search.toLowerCase())))
+  }, [post, search])
+
+  useEffect(() => {
+    const getCompanies = async () => {
+      try {
+        const res = await api.get('/post')
+
+        // console.log(res.data)
+
+        setPost(res.data)
+        
+      } catch (error) {
+
+        console.log(error)
+
+      }
+    }
+    getCompanies()
+  }, [])
 
   return (
     <>
@@ -17,51 +61,60 @@ const PagePublic = () => {
               <span>Segunda-feira</span>
             </DateContainer>
           </div>
-          {/* <input type="text" placeholder="Selecione Estado" /> */}
-          {/* <Select>
+          <Select name='filtro' callback={test}>
             <option value="">Selecione o estado</option>
             <option value="São Paulo">São Paulo</option>
             <option value="Maranhão">Maranhão</option>
             <option value="Rio de Janeiro">Rio de Janeiro</option>
             <option value="Paraná">Paraná</option>
-          </Select> */}
+          </Select>
         </SectionContainer>
         <DonateSection>
           <h4>Pontos de doações</h4>
-          <ListCardContainer>
-            <CardPublic>
-              <UserContainer>
-                <figure>
-                  <img src="https://portalcorreio.com.br/portalcorreio/arquivos/2023/01/fea5fa4cc1fc517cedb0eb0a25aae6fb.png" />
-                </figure>
-                <div>
-                  <h3>Mais Feliz Company</h3>
-                  <span>Sao Luis - Maranhao</span>
-                </div>
-              </UserContainer>
-                <p>Evento ocorrendo na R. Jose do Ribamar, na praca de eventos. Sabado, 8h</p>
-                <InfoEvent>
-                  <span>25/12/2022 - 20:30</span>
-                  <span>Alimentos | Roupas</span>
-                </InfoEvent>
-            </CardPublic>
 
-            <CardPublic>
-              <UserContainer>
-                <figure>
-                  <img src="https://portalcorreio.com.br/portalcorreio/arquivos/2023/01/fea5fa4cc1fc517cedb0eb0a25aae6fb.png" />
-                </figure>
-                <div>
-                  <h3>Mais Feliz Company</h3>
-                  <span>Sao Luis - Maranhao</span>
-                </div>
-              </UserContainer>
-                <p>Evento ocorrendo na R. Jose do Ribamar, na praca de eventos. Sabado, 8h</p>
-                <InfoEvent>
-                  <span>25/12/2022 - 20:30</span>
-                  <span>Alimentos | Roupas</span>
-                </InfoEvent>
-            </CardPublic>
+          <ListCardContainer>
+            { filteredPost.length > 0 ?
+                post.map((item) => (
+                <CardPublic key={item.id}>
+                  <UserContainer>
+                    <figure>
+                      <img src={item.image} />
+                    </figure>
+                    <div>
+                      <h3>{item.name}</h3>
+                      <span>{item.city} - {item.state}</span>
+                    </div>
+                  </UserContainer>
+                  <p>{item.description}</p>
+                    <InfoEvent>
+                    <span>{item.date} - {item.time}</span>
+                      <span>{item.type}</span>
+                    </InfoEvent>
+                </CardPublic>
+                ))
+          
+              :
+              
+              post.map((item) => (
+                <CardPublic key={item.id}>
+                  <UserContainer>
+                    <figure>
+                      <img src={item.image} />
+                    </figure>
+                    <div>
+                      <h3>{item.name}</h3>
+                      <span>{item.city} - {item.state}</span>
+                    </div>
+                  </UserContainer>
+                  <p>{item.description}</p>
+                    <InfoEvent>
+                    <span>{item.date} - {item.time}</span>
+                      <span>{item.type}</span>
+                    </InfoEvent>
+                </CardPublic>
+              ))
+            }
+
           </ListCardContainer>
         </DonateSection>
       </MainContainer>
