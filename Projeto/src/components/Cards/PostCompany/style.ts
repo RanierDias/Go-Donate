@@ -4,6 +4,7 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   width: 250px;
   padding: 25px 20px;
