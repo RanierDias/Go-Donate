@@ -43,13 +43,6 @@ const Div = styled.div`
   > p {
     color: var(--white);
   }
-
-  > button {
-    padding: 8px 20px;
-    color: var(--white);
-    border-radius: 8px;
-    background-color: var(--primary-color);
-  }
 `;
 
 export default Div;
