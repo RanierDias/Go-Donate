@@ -1,13 +1,13 @@
 import { BiTimeFive } from "react-icons/bi";
-import { IoLocationOutline } from "react-icons/io5";
 import { BsTelephone } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
 
-import Div from "./style";
-import { iCardPostsCompany } from "./types";
-import ButtonMain from "../../../styles/buttonMain";
+import { iCardFundraising } from "./types";
+import Div from "../style";
+import ButtonMain from "../../../../styles/buttonMain";
 
-const CardPostsCompany = ({ post }: iCardPostsCompany) => {
+const CardFundraising = ({ post }: iCardFundraising) => {
   return (
     <Div>
       <h2>{post.name}</h2>
@@ -36,11 +36,10 @@ const CardPostsCompany = ({ post }: iCardPostsCompany) => {
         </div>
       </div>
 
-      <p>Arrecadação</p>
-
+      <ButtonMain color="gray-60" background="white">Participantes</ButtonMain>
       <ButtonMain color="white" background="primary-color">Alterar Evento</ButtonMain>
     </Div>
   );
 };
 
-export default CardPostsCompany;
+export default CardFundraising
