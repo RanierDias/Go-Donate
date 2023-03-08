@@ -65,7 +65,7 @@ const PageCompany = () => {
               thumb="src/assets/backgroundUser.jpg"
               photo="src/assets/perfil.jpeg"
               name="Roshelle"
-              list1={{ number: 2, link: "/company/fundraising" }}
+              list1={{ number: 2, link: "/company /fundraising" }}
               list2={{ number: 5, link: "/home" }}
             />
           </aside>

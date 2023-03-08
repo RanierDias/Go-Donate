@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import PageCompany from "./pages/Dashboard_Company";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
+// import PageUser from "./pages/Dashboard_User";
 import PagePublic from "./pages/PagePublic";
 
 const MainRoutes = () => {
