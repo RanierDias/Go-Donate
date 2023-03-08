@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Div from "./style";
 import { iCardPerfil } from "./types";
 
@@ -15,24 +16,24 @@ const CardPerfil = ({ type, thumb, photo, name, list1, list2 }: iCardPerfil) => 
         <h3>{name}</h3>
       </div>
 
-      <div className="event--perfil">
+      <Link to={list1.link} className="event--perfil">
         <p>{type == "user" ? "Participações" : "Arrecadações"}</p>
-        <span>{list1}</span>
+        <span>{list1.number}</span>
         <p>
           {type == "user"
             ? "Veja suas participações"
             : "Monitore os eventos"}
         </p>
-      </div>
-      <div className="event--perfil">
+      </Link>
+      <Link to={list2.link} className="event--perfil">
         <p>{type == "user" ? "Participações Concluídas" : "Doações"}</p>
-        <span>{list2}</span>
+        <span>{list2.number}</span>
         <p>
           {type == "user"
             ? "Veja suas participações"
             : "Monitore os eventos"}
         </p>
-      </div>
+      </Link>
     </Div>
   );
 };
