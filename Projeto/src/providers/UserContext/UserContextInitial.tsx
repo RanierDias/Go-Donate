@@ -6,9 +6,10 @@ import {
   ILoginFormValues,
   IRegisterFormValues,
   IUser,
+  IUserContext,
 } from "./@Types";
 
-export const UserContext = createContext({});
+export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const [loading, setLoading] = useState(false);

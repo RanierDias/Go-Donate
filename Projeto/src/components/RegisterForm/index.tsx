@@ -7,7 +7,27 @@ import Input from "../Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const schema = yup.object({});
+const schema = yup.object({
+  name: yup.string().required("Nome é obrigatório"),
+
+  email: yup
+    .string()
+    .required("Email obrigatório")
+    .email("O email digitado é invalido"),
+
+  password: yup
+    .string()
+    .matches(/(\d)/, "Deve conter ao menos 1 número")
+    .matches(/.{8,}/, "Deve conter no mínimo 8 caracteres"),
+
+  confirmpassword: yup
+    .string()
+    .required("Campo obrigatório")
+    .oneOf(
+      [yup.ref("password")],
+      "Confirmação de senha deve ser igual a senha"
+    ),
+});
 
 const RegisterForm = () => {
   const { userRegister } = useContext(UserContext);
@@ -25,18 +45,31 @@ const RegisterForm = () => {
   };
 
   return (
-    <form>
-      <Input name="name" type="text" placeholder="Nome" leftIcon={<FiUser />} />
+    <form onSubmit={handleSubmit(handleRegister)}>
       <Input
-        name="email"
+        type="text"
+        placeholder="Nome"
+        {...register("name")}
+        leftIcon={<FiUser />}
+      />
+
+      <Input
         type="email"
         placeholder="Email"
+        {...register("email")}
         leftIcon={<FiMail />}
       />
       <Input
-        name="password"
         type="password"
         placeholder="Senha"
+        {...register("password")}
+        leftIcon={<FiLock />}
+      />
+
+      <Input
+        type="password"
+        placeholder="Senha"
+        {...register("confirmpassword")}
         leftIcon={<FiLock />}
       />
     </form>
