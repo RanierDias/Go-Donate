@@ -6,6 +6,7 @@ import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
 import SearchForm from "../../components/Search";
 import Navbar from "../../components/Header";
+import EventUserContainer from "./style";
 
 const PageUser = () => {
   const [postsServices, setPostsServices] = useState([] as iPostsService[]);
@@ -31,7 +32,7 @@ const PageUser = () => {
 
       <h1>Principais Campanhas</h1>
 
-      <main>
+      <EventUserContainer>
         <section>
           <ul>
             {postsServices.map((post) => (
@@ -54,7 +55,7 @@ const PageUser = () => {
             list2={{ number: 1, link: "/" }}
           />
         </aside>
-      </main>
+      </EventUserContainer>
     </>
   );
 };

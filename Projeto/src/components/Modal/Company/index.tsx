@@ -1,5 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import ButtonMain from "../../../styles/buttonMain";
+import FormFundraising from "../../ModalForm/Fundraising";
 import ModalBackground from "../style";
 import { iModalCompany } from "./types";
 
@@ -13,36 +14,8 @@ const ModalCompany = ({ callback }: iModalCompany) => {
             <IoClose />
           </button>
         </div>
-        <main>
-          <div>
-            <div>
-              <label htmlFor="teste1">Teste 1</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label htmlFor="teste2">Teste 2</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label htmlFor="teste3">Teste 3</label>
-              <input type="text" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor="teste4">Teste 4</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label htmlFor="teste5">Teste 5</label>
-              <input type="text" />
-            </div>
-            <div>
-              <label htmlFor="teste6">Teste 6</label>
-              <input type="text" />
-            </div>
-          </div>
-        </main>
+        
+        <FormFundraising />
 
         <div>
           <ButtonMain color="white" background="button-cancel">
