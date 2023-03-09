@@ -1,11 +1,27 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
 import Form from "../style";
 
+const schema = yup.object({
+  name: yup.string().required("O nome da campanha é obrigatório"),
+});
+
 const FormFundraising = () => {
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver
+  });
+
   return (
     <Form>
       <div>
         <label htmlFor="teste1">Nome</label>
-        <input type="text" placeholder="Digíte o nome da campanha" />
+        <input
+          type="text"
+          placeholder="Digíte o nome da campanha"
+          {...register("name")}
+        />
       </div>
       <div>
         <label htmlFor="teste2">Data de início</label>
