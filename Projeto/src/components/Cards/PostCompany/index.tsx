@@ -44,7 +44,7 @@ const CardPostsCompany = ({ post, type, callback }: iCardPostsCompany) => {
 
       <p>{type == "fundraising" ? "Arrecadação" : "Doação"}</p>
 
-      <ButtonMain color="white" background="primary-color" onClick={callback}>
+      <ButtonMain onClick={callback}>
         Alterar Evento
       </ButtonMain>
     </Div>

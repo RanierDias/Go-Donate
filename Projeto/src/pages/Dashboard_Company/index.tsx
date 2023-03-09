@@ -17,7 +17,7 @@ const PageCompany = () => {
   const [showModal, setShowModal] = useState(false);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODMwOTY5MiwiZXhwIjoxNjc4MzEzMjkyLCJzdWIiOiIyIn0.SRB55qofBDHv9LSZFfCqpdoeWxxIeJeHKzqtLO0H0eE";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODM2MTc4OSwiZXhwIjoxNjc4MzY1Mzg5LCJzdWIiOiIyIn0.PSaGGnVu8a3Ucp0Kgq4cvm1yhRee8byPptWAM7QMWzE";
 
   const filterCampaign = async (value: string) => {
     switch (value) {
@@ -126,7 +126,7 @@ const PageCompany = () => {
                 number: fundraisings.length,
                 link: "/company/fundraising",
               }}
-              list2={{ number: donations.length, link: "/home" }}
+              list2={{ number: donations.length, link: "/company/donation" }}
             />
           </aside>
         </div>

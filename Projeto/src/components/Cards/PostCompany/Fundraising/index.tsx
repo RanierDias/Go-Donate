@@ -37,7 +37,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
       </div>
 
       <ButtonMain color="gray-60" background="white">Participantes</ButtonMain>
-      <ButtonMain color="white" background="primary-color">Alterar Evento</ButtonMain>
+      <ButtonMain>Alterar Evento</ButtonMain>
     </Div>
   );
 };
