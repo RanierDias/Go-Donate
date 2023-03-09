@@ -17,7 +17,7 @@ const PageCompany = () => {
   const [showModal, setShowModal] = useState(false);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODM2MTc4OSwiZXhwIjoxNjc4MzY1Mzg5LCJzdWIiOiIyIn0.PSaGGnVu8a3Ucp0Kgq4cvm1yhRee8byPptWAM7QMWzE";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODM3MDA2MCwiZXhwIjoxNjc4MzczNjYwLCJzdWIiOiIyIn0.7sBEKXM2bt_eOFMaHdPuhoODt4gOu0Rm7OkIjXYVpQc";
 
   const filterCampaign = async (value: string) => {
     switch (value) {

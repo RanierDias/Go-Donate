@@ -40,27 +40,6 @@ const ModalBackground = styled.div`
       }
     }
 
-    > main {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 26px 32px 0 32px;
-      background-color: #FFFFFF;
-
-      > div {
-        > div {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          margin-bottom: 12px;
-
-          > label {
-            font-size: 12px;
-          }
-        }
-      }
-    }
-
     > div:last-child {
       display: flex;
       justify-content: flex-end;
