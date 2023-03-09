@@ -35,8 +35,6 @@ const PagePublic = () => {
       try {
         const res = await api.get('/post')
 
-        // console.log(res.data)
-
         setPost(res.data)
         
       } catch (error) {
@@ -63,10 +61,9 @@ const PagePublic = () => {
           </div>
           <Select name='filtro' callback={test}>
             <option value="">Selecione o estado</option>
-            <option value="São Paulo">São Paulo</option>
-            <option value="Maranhão">Maranhão</option>
-            <option value="Rio de Janeiro">Rio de Janeiro</option>
-            <option value="Paraná">Paraná</option>
+            {post.map((item) => (
+              <option value={item.state}>{item.state}</option>
+            ))}
           </Select>
         </SectionContainer>
         <DonateSection>
