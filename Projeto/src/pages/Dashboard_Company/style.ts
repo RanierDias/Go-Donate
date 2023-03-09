@@ -12,10 +12,15 @@ const Main = styled.main`
     margin-top: 45px;
 
     section {
-      ul {
+      > h2 {
+        margin-bottom: 15px;
+      }
+
+      > ul {
         display: flex;
         flex-wrap: wrap;
         gap: 45px;
+        margin-bottom: 40px;
       }
     }
 

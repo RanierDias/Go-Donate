@@ -1,15 +1,31 @@
 import styled from "styled-components";
 
 interface iButton {
-  background: string;
+  color?: string;
+  background?: string;
+  hover?: {
+    color: string;
+    background: string;
+  };
 }
 
-const ButtonMain = styled.button`
+const ButtonMain = styled.button<iButton>`
   padding: 8px 20px;
-  color: var(--${(props) => props.color});
+  color: var(--${(props) => (props.color ? props.color : "white")});
   border-radius: 8px;
   font-weight: 600;
-  background-color: var(--${(props: iButton) => props.background});
+  background-color: var(
+    --${(props) => (props.background ? props.background : "primary-color")}
+  );
+
+  :hover {
+    color: var(
+      --${(props) => (props.hover?.color ? props.hover.color : "primary-color")}
+    );
+    background-color: var(
+      --${(props) => (props.hover?.background ? props.hover.background : "white")}
+    );
+  }
 `;
 
 export default ButtonMain;

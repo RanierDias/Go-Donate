@@ -7,14 +7,16 @@ import Div from "./style";
 import { iCardPostsCompany } from "./types";
 import ButtonMain from "../../../styles/buttonMain";
 
-const CardPostsCompany = ({ post }: iCardPostsCompany) => {
+const CardPostsCompany = ({ post, type, callback }: iCardPostsCompany) => {
   return (
     <Div>
-      <h2>{post.name}</h2>
+      <h2>{post.title}</h2>
       <div className="description">
         <div>
           <BiTimeFive />
-          <p>{post.date}</p>
+          <p>
+            {post.date} - {type == "donate" ? post.time : post.final_date}
+          </p>
         </div>
         <div>
           <IoLocationOutline />
@@ -22,23 +24,29 @@ const CardPostsCompany = ({ post }: iCardPostsCompany) => {
             {post.city} - {post.state}
           </p>
         </div>
-        <div>
-          <BsTelephone />
-          <p>(72) 98786-7879</p>
-        </div>
-        <div>
-          <MdOutlineHomeWork />
-          <p>Rua magalhães dourado melo</p>
-        </div>
+        {type == "fundraising" && (
+          <div>
+            <BsTelephone />
+            <p>{post.phone}</p>
+          </div>
+        )}
+        {type == "fundraising" && (
+          <div>
+            <MdOutlineHomeWork />
+            <p>{post.address}</p>
+          </div>
+        )}
         <div>
           <MdOutlineDescription />
           <p>{post.description}</p>
         </div>
       </div>
 
-      <p>Arrecadação</p>
+      <p>{type == "fundraising" ? "Arrecadação" : "Doação"}</p>
 
-      <ButtonMain color="white" background="primary-color">Alterar Evento</ButtonMain>
+      <ButtonMain onClick={callback}>
+        Alterar Evento
+      </ButtonMain>
     </Div>
   );
 };
