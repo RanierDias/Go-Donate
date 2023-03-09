@@ -1,22 +1,27 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Navbar from '../../../components/Header'
-import DonationModal from '../../../components/Modal/Donation'
+import ModalCompany from '../../../components/Modal/Company'
 import { UserContext } from '../../../providers/UserContext'
 import { DonateInputSearch, DonationCart, DonationList, MainDonationContainer } from './style'
 
 const Donation = () => {
-  const { modal, setModal, setTypeModal } = useContext(UserContext)
+  const { setTypeModal } = useContext(UserContext)
+  const [modal, setModal] = useState(false)
+
+  const handleModal = () => {
+    setModal(!modal)
+  }
 
   return (
     <>
+      { modal && <ModalCompany callback={handleModal}/> }
       <Navbar mode="public" />
       <MainDonationContainer>
         <DonateInputSearch>
           <h2>Campanhas de doações</h2>
           <div>
             <input type="text" placeholder='Pesquisar participantes'/>
-            <button onClick={() => { setModal(!modal); setTypeModal('createModal')}}>Adicionar evento</button>
-            { modal && <h1>MODAL</h1> }
+            <button onClick={() => {setModal(!modal); setTypeModal('createModal')}}>Adicionar evento</button>
           </div>
         </DonateInputSearch>
 
