@@ -7,7 +7,7 @@ import { iCardFundraising } from "./types";
 import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 
-const CardFundraising = ({ post }: iCardFundraising) => {
+const CardFundraising = ({ post, callback }: iCardFundraising) => {
   return (
     <Div>
       <h2>{post.name}</h2>
@@ -36,10 +36,16 @@ const CardFundraising = ({ post }: iCardFundraising) => {
         </div>
       </div>
 
-      <ButtonMain color="gray-60" background="white">Participantes</ButtonMain>
-      <ButtonMain color="white" background="primary-color">Alterar Evento</ButtonMain>
+      <ButtonMain
+        color="gray-60"
+        background="white"
+        hover={{ color: "white", background: "gray-60" }}
+      >
+        Participantes
+      </ButtonMain>
+      <ButtonMain onClick={callback}>Alterar Evento</ButtonMain>
     </Div>
   );
 };
 
-export default CardFundraising
+export default CardFundraising;

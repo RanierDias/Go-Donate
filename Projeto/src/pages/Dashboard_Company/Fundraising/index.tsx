@@ -8,9 +8,15 @@ import Navbar from "../../../components/Header";
 import ButtonSmall from "../../../styles/buttonSmall";
 import Main from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
+import ModalCompany from "../../../components/Modal/Company";
 
 const PageFundraising = () => {
   const [posts, setPosts] = useState([] as iPosts[]);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
 
   useEffect(() => {
     async function getListPosts() {
@@ -48,11 +54,13 @@ const PageFundraising = () => {
         <section>
           <ul>
             {posts.map((post) => (
-              <CardFundraising key={post.id} post={post} />
+              <CardFundraising key={post.id} post={post} callback={handleModal} />
             ))}
           </ul>
         </section>
       </Main>
+
+      {showModal && <ModalCompany callback={handleModal} />}
     </>
   );
 };
