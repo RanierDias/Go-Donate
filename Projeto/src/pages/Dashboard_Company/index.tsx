@@ -11,15 +11,15 @@ import Main from "./style";
 import { iFundraising, iPosts } from "./types";
 import { iPostCompany } from "../../components/Cards/PostCompany/types";
 
+export const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODQ1MTIzOSwiZXhwIjoxNjc4NDU0ODM5LCJzdWIiOiIyIn0.F3PNsYUG4royCPxfhnbfE5Ftq5qZRq365tRr96048LA";
+
 const PageCompany = () => {
   const [fundraisings, setFundraisings] = useState([] as iFundraising[]);
   const [donations, setDonations] = useState([] as iPosts[]);
   const [filter, setFilter] = useState<boolean | string>(true);
   const [showModal, setShowModal] = useState<null | string>(null);
   const [selectedPost, setSelectedPost] = useState({} as iPostCompany);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODQxMDM5OSwiZXhwIjoxNjc4NDEzOTk5LCJzdWIiOiIyIn0.Jnhs6SZPPZekqe54Luj9Jn33pCfUe8VX-FJz0fchKec";
 
   const filterCampaign = async (value: string) => {
     switch (value) {

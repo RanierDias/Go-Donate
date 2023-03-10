@@ -9,14 +9,12 @@ import ButtonSmall from "../../../styles/buttonSmall";
 import Main from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
 import ModalCompany from "../../../components/Modal/Company";
+import { token } from "..";
 
 const PageFundraising = () => {
   const [posts, setPosts] = useState([] as iFundraising[]);
   const [showModal, setShowModal] = useState<null | string>(null);
   const [selectedPost, setSelectedPost] = useState({} as iFundraising);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODQxMDM5OSwiZXhwIjoxNjc4NDEzOTk5LCJzdWIiOiIyIn0.Jnhs6SZPPZekqe54Luj9Jn33pCfUe8VX-FJz0fchKec";
 
   useEffect(() => {
     async function getListPosts() {
