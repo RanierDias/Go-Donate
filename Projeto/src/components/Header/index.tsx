@@ -4,9 +4,14 @@ import { FiLogOut } from "react-icons/fi";
 import { iNavBar } from "./types";
 
 import Header from "./style";
-import { Link } from "react-router-dom";
+import ButtonSmall from "../../styles/buttonSmall";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
 const Navbar = ({ mode }: iNavBar) => {
+  const { userLogout, navigate } = useContext(UserContext);
+  const currentLocation = window.location.href;
+
   return (
     <Header>
       <img
@@ -15,21 +20,27 @@ const Navbar = ({ mode }: iNavBar) => {
       />
       {mode === "private" ? (
         <div>
-          <Link to="homepage">
+          <ButtonSmall
+            onClick={() =>
+              navigate(currentLocation.includes("company") ? "company" : "user")
+            }
+          >
             <FaHome />
-          </Link>
-          <Link to="/">
+          </ButtonSmall>
+          <ButtonSmall onClick={() => userLogout()}>
             <FiLogOut />
-          </Link>
+          </ButtonSmall>
         </div>
       ) : (
         <div>
-          <Link to="http://localhost:5173/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <ButtonSmall onClick={() => navigate("/login")}>Login</ButtonSmall>
+          <ButtonSmall onClick={() => navigate("/register")}>
+            Register
+          </ButtonSmall>
         </div>
       )}
     </Header>
   );
 };
 
-export default Navbar
+export default Navbar;

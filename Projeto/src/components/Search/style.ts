@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledSearch = styled.form`
+const FormSearch = styled.form`
 
 width: 100%;
 max-width: 280px;
@@ -30,3 +30,4 @@ border-radius: 8px;
     
   }
 `
+export default FormSearch

@@ -1,3 +1,5 @@
+import { NavigateFunction } from "react-router-dom";
+
 export interface IDefaultProviderProps {
   children: React.ReactNode;
 }
@@ -33,4 +35,5 @@ export interface IUserContext {
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginFormValues) => Promise<void>;
   userLogout: () => void;
+  navigate: NavigateFunction;
 }

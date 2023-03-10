@@ -1,3 +1,4 @@
+import { isAxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -39,14 +40,24 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       setLoading(true);
 
       const response = await api.post("login", formData);
+      const { isCompany } = response.data.user;
       setUser(response.data.user);
+
       localStorage.setItem("@TOKEN", response.data.accessToken);
       localStorage.setItem("@UserId", response.data.user.id);
       toast.success("Login realizado com sucesso");
-      navigate("/user");
+
+      isCompany ? navigate("/company") : navigate("/user");
     } catch (error) {
-      console.log(error);
-      toast.error("Ops! Algo deu errado");
+      if (isAxiosError(error)) {
+        error.status === 401
+          ? toast.error("Senha ou email errados")
+          : error.status === 400
+          ? toast.error(error.response?.data)
+          : toast.error(error.response?.data);
+      } else {
+        toast.error("Ops! Algo deu errado");
+      }
     }
   };
 
@@ -57,13 +68,16 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     const id: string | null = localStorage.getItem("@UserId");
     if (token) {
       try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        const response = await api.get(`user/${id}`);
+        const response = await api.get(`user/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setUser(response.data);
         navigate("/user");
       } catch (error) {
         console.log(error);
-        localStorage.removeItem("@TOKEN");
+        localStorage.clear()
         navigate("/login");
       }
     }
@@ -75,8 +89,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
   const userLogout = () => {
     setUser(null);
-    localStorage.removeItem("@TOKEN");
-    navigate("/");
+    localStorage.clear();
+    navigate("/homepage");
   };
 
   return (
@@ -88,6 +102,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         userRegister,
         userLogin,
         userLogout,
+        navigate,
       }}
     >
       {children}

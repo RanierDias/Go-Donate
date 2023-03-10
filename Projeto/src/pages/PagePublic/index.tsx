@@ -1,41 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Header";
 import Select from "../../components/Select";
+import { iPosts } from "../../providers/@types";
+import { CompanyContext } from "../../providers/CompanyContext";
 import { api } from "../../services/api";
 import { CardPublic, DateContainer, DonateSection, InfoEvent, ListCardContainer, MainContainer, SectionContainer, UserContainer } from "./style";
 
-interface IPost {
-  id: number
-  companyId: number
-  name: string
-  description: string
-  date: string
-  time: string
-  city: string
-  state: string
-  image: string
-  type: string
-}
-
 const PagePublic = () => {
-  const [post, setPost] = useState<IPost[]>([])
-  const [search, setSearch] = useState('')
-  const [filteredPost, setFilteredPost] = useState<IPost[]>([])
+  const [filteredPost, setFilteredPost] = useState<iPosts[]>([])
+  const {posts, setPosts, search, setSearch} = useContext(CompanyContext)
 
   const test = (value: string) => {
-    setSearch(value)
+    const postFiltered = posts.filter(post => post.state === value)
+    setFilteredPost(postFiltered)
   }
 
-  useEffect(() => {
-    setFilteredPost(post.filter(item => item.state.toLowerCase().includes(search.toLowerCase())))
-  }, [post, search])
+  // useEffect(() => {
+  //   setFilteredPost(posts.filter(item => item.state.toLowerCase().includes(search.toLowerCase())))
+  // }, [posts, search])
 
   useEffect(() => {
     const getCompanies = async () => {
       try {
         const res = await api.get('/post')
 
-        setPost(res.data)
+        setPosts(res.data)
         
       } catch (error) {
 
@@ -61,7 +50,7 @@ const PagePublic = () => {
           </div>
           <Select name='filtro' callback={test}>
             <option value="">Selecione o estado</option>
-            {post.map((item) => (
+            {posts.map((item) => (
               <option value={item.state}>{item.state}</option>
             ))}
           </Select>
@@ -71,7 +60,7 @@ const PagePublic = () => {
 
           <ListCardContainer>
             { filteredPost.length > 0 ?
-                post.map((item) => (
+                filteredPost.map((item) => (
                 <CardPublic key={item.id}>
                   <UserContainer>
                     <figure>
@@ -92,7 +81,7 @@ const PagePublic = () => {
           
               :
               
-              post.map((item) => (
+              posts.map((item) => (
                 <CardPublic key={item.id}>
                   <UserContainer>
                     <figure>
