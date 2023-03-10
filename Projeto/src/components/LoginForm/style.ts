@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const MainContainerRegister = styled.div`
+export const MainContainerLogin = styled.div`
   background-color: var(--secondary-color);
   height: 100vh;
   overflow: auto;
@@ -39,28 +40,21 @@ export const ContainerSideForm = styled.div`
     color: white;
     font-size: 26px;
   }
-`;
 
-export const FormRegister = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  select {
-    background-color: var(--inputs-color);
-    border: none;
-    flex: 1;
-    padding: 0px 18px;
-    font-size: 18px;
-    color: white;
-    padding: 16px;
-    border-radius: 8px;
-    option {
-      color: var(--gray-30);
-    }
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
-export const ButtonCadastrar = styled.button`
+export const FormLogin = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const ButtonLogin = styled.button`
   background-color: var(--button-initial);
   padding: 16px 0;
   border-radius: 8px;
@@ -69,4 +63,10 @@ export const ButtonCadastrar = styled.button`
   font-family: "Roboto Slab";
   font-weight: 500;
   font-size: 16px;
+`;
+
+export const LinkCreateAccount = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
