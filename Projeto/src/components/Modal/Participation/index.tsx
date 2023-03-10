@@ -1,10 +1,11 @@
 import { IoClose } from "react-icons/io5";
 import ButtonMain from "../../../styles/buttonMain";
 import FormParticipation from "../../ModalForm/Participation";
-import ModalBackground from "../style";
-import { iModalUser } from "./types";
 
-const ModalUser = ({ callback, selectedPost }: iModalUser) => {
+import ModalBackground from "../style";
+import { iModalUser } from "./type";
+
+const ModalUser = ({ callback, selectedCard }: iModalUser) => {
   return (
     <ModalBackground>
       <div>
@@ -15,7 +16,7 @@ const ModalUser = ({ callback, selectedPost }: iModalUser) => {
           </button>
         </div>
 
-        <FormParticipation post={selectedPost} />
+        <FormParticipation post={selectedCard} />
       </div>
     </ModalBackground>
   );

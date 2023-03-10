@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import {
   IDefaultProviderProps,
@@ -23,10 +24,11 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       const response = await api.post("register", formData);
       console.log(response);
       localStorage.setItem("@TOKEN", response.data.accessToken);
-      console.log("Cadastro Realizado com sucesso!");
+      toast.success("Cadastro Realizado com sucesso!");
       navigate("/login");
     } catch (error) {
-      console.log("Ops! Algo deu errado");
+      console.log(error);
+      toast.error("Ops! Algo deu errado");
     } finally {
       setLoading(false);
     }
@@ -40,9 +42,12 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
       localStorage.setItem("@UserId", response.data.user.id);
-      console.log("Login realizado com sucesso");
+      toast.success("Login realizado com sucesso");
       navigate("/user");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      toast.error("Ops! Algo deu errado");
+    }
   };
 
   type AutoLoginFunc = () => void;
