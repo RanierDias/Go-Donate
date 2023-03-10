@@ -7,7 +7,7 @@ import Div from "./style";
 import { iCardPostsCompany } from "./types";
 import ButtonMain from "../../../styles/buttonMain";
 
-const CardPostsCompany = ({ post, type, callback }: iCardPostsCompany) => {
+const CardPostsCompany = ({ post, type, callback, setSelectedPost }: iCardPostsCompany) => {
   return (
     <Div>
       <h2>{post.title}</h2>
@@ -44,7 +44,10 @@ const CardPostsCompany = ({ post, type, callback }: iCardPostsCompany) => {
 
       <p>{type == "fundraising" ? "Arrecadação" : "Doação"}</p>
 
-      <ButtonMain onClick={callback}>
+      <ButtonMain onClick={() => {
+        setSelectedPost(post)
+        callback(type)
+      }}>
         Alterar Evento
       </ButtonMain>
     </Div>
