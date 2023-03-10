@@ -12,7 +12,7 @@ import RegisterPage from "./pages/Register_User";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<h1>AQUI E LOGINPAGE</h1>} />
+      <Route path="/login" element={<LoginForm />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<PagePublic />} />
       <Route path="*" element={<Home />} />
@@ -20,8 +20,8 @@ const MainRoutes = () => {
       <Route path="/user" element={<PageUser />} />
 
       <Route path="*" element={<PagePublic />} />
-      <Route path="/user" element={<LoginForm />} />
       <Route element={<ProtectRoute />}>
+        <Route path="/user" element={<PageUser />} />
         <Route path="/company" element={<PageCompany />} />
         <Route path="/company/fundraising" element={<PageFundraising />} />
         <Route path="/company/donation" element={<Donation />} />
