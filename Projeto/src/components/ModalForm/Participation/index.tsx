@@ -1,10 +1,9 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import * as yup from "yup";
 
 import Form from "../style";
-import { iFormFundraising } from "./type";
+import { iFormParticipation } from "./type";
 import ButtonMain from "../../../styles/buttonMain";
 
 const schema = yup.object({
@@ -18,7 +17,7 @@ const schema = yup.object({
   description: yup.string().required("A descrição é um campo obrigatório"),
 });
 
-const FormFundraising = ({ post }: iFormFundraising) => {
+const FormParticipation = ({ post }: iFormParticipation) => {
   const {
     register,
     handleSubmit,
@@ -121,4 +120,4 @@ const FormFundraising = ({ post }: iFormFundraising) => {
   );
 };
 
-export default FormFundraising;
+export default FormParticipation;

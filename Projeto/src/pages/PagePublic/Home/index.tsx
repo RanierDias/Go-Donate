@@ -10,7 +10,6 @@ const Home = () => {
       <header>
         <ButtonHome><Link to='/login'>Go.Donate <FaFingerprint /></Link></ButtonHome>
       </header>
-
       <section>
         <div>
           <aside>
@@ -23,8 +22,7 @@ const Home = () => {
           <img src={Charity} />
         </figure>
       </section>
-      
-        <ButtonHome><Link to='/'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
+      <ButtonHome><Link to='/'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
     </MainContainerHome>
   )
 }
