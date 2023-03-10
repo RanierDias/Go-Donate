@@ -9,23 +9,64 @@ import PageParticipations from "./pages/Dashboard_User/Participation";
 import PagePublic from "./pages/PagePublic";
 import Home from "./pages/PagePublic/Home";
 import RegisterPage from "./pages/Register_User";
+import { CompanyProvider } from "./providers/CompanyContext";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginForm />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/" element={<PagePublic />} />
+      <Route
+        path="/"
+        element={
+          <CompanyProvider>
+            <PagePublic />
+          </CompanyProvider>
+        }
+      />
       <Route path="*" element={<Home />} />
       <Route path="/homepage" element={<Home />} />
-      <Route path="/user" element={<PageUser />} />
-      <Route path="/user/participation" element={<PageParticipations />} />
-      <Route path="*" element={<PagePublic />} />
       <Route element={<ProtectRoute />}>
-        <Route path="/user" element={<PageUser />} />
-        <Route path="/company" element={<PageCompany />} />
-        <Route path="/company/fundraising" element={<PageFundraising />} />
-        <Route path="/company/donation" element={<Donation />} />
+        <Route
+          path="/user"
+          element={
+            <CompanyProvider>
+              <PageUser />
+            </CompanyProvider>
+          }
+        />
+        <Route
+          path="/user/participation"
+          element={
+            <CompanyProvider>
+              <PageParticipations />
+            </CompanyProvider>
+          }
+        />
+        <Route
+          path="/company"
+          element={
+            <CompanyProvider>
+              <PageCompany />
+            </CompanyProvider>
+          }
+        />
+        <Route
+          path="/company/fundraising"
+          element={
+            <CompanyProvider>
+              <PageFundraising />
+            </CompanyProvider>
+          }
+        />
+        <Route
+          path="/company/donation"
+          element={
+            <CompanyProvider>
+              <Donation />
+            </CompanyProvider>
+          }
+        />
       </Route>
     </Routes>
   );

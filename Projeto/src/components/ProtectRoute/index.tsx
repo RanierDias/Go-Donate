@@ -4,7 +4,9 @@ import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
 const ProtectRoute = () => {
   const { user } = useContext(UserContext);
-  if (!user) {
+  console.log(user)
+
+  if (user == null) {
     return <Navigate to="/" />;
   }
   return user ? <Outlet /> : null;

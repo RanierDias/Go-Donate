@@ -8,6 +8,8 @@ export interface iPosts {
   time: string;
   city: string;
   state: string;
+  type: string;
+  image: string;
 }
 
 export interface iFundraising {

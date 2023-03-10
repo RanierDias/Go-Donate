@@ -23,13 +23,6 @@ const LoginForm = () => {
         <h2>Login</h2>
         <S.FormLogin onSubmit={handleSubmit(userLogin)}>
           <Input
-            type="text"
-            placeholder="Nome"
-            {...register("name")}
-            leftIcon={<FiUser />}
-          />
-
-          <Input
             type="email"
             placeholder="Email"
             {...register("email")}

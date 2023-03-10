@@ -1,21 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-
-export interface iPostCompany {
-  id: number;
-  companyId: number;
-  title: string;
-  name: string;
-  description: string;
-  date: string;
-  final_date?: string;
-  time?: string;
-  open_time?: string;
-  closed_time?: string;
-  address?: string;
-  phone?: string;
-  city: string;
-  state: string;
-}
+import { iPostCompany } from "../../../providers/@types";
 
 export interface iCardPostsCompany {
   post: iPostCompany;

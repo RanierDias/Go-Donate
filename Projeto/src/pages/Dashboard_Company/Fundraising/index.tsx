@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { BsSearch } from "react-icons/bs";
 
@@ -10,11 +10,10 @@ import Main from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
 import ModalCompany from "../../../components/Modal/Company";
 import { token } from "..";
+import { CompanyContext } from "../../../providers/CompanyContext";
 
 const PageFundraising = () => {
-  const [posts, setPosts] = useState([] as iFundraising[]);
-  const [showModal, setShowModal] = useState<null | string>(null);
-  const [selectedPost, setSelectedPost] = useState({} as iFundraising);
+  const { fundraising, setFundraising, showModal, setShowModal, selectedCard, setSelectedCard } = useContext(CompanyContext);
 
   useEffect(() => {
     async function getListPosts() {
@@ -24,7 +23,7 @@ const PageFundraising = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setPosts(response.data);
+        setFundraising(response.data);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error.message);
@@ -55,12 +54,12 @@ const PageFundraising = () => {
 
         <section>
           <ul>
-            {posts.map((post) => (
+            {fundraising.map((post) => (
               <CardFundraising
                 key={post.id}
                 post={post}
                 callback={setShowModal}
-                setSelectedPost={setSelectedPost}
+                setSelectedPost={setSelectedCard}
               />
             ))}
           </ul>
@@ -68,7 +67,7 @@ const PageFundraising = () => {
       </Main>
 
       {showModal && (
-        <ModalCompany callback={setShowModal} selectedPost={selectedPost} />
+        <ModalCompany callback={setShowModal} selectedPost={selectedCard} />
       )}
     </>
   );

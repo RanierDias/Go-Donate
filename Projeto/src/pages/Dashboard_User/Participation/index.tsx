@@ -1,16 +1,15 @@
 import { isAxiosError } from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CardParticipation from "../../../components/Cards/PostUser/Participation";
 import { api } from "../../../services/api";
-import { iParticipation } from "../types";
 import Navbar from "../../../components/Header";
 import ModalCompany from "../../../components/Modal/Company";
 import ModalUser from "../../../components/Modal/Participation";
+import { iFundraising } from "../../Dashboard_Company/types";
+import { CompanyContext } from "../../../providers/CompanyContext";
 
 const PageParticipations = () => {
-  const [cards, setCards] = useState([] as iParticipation[]);
-  const [selectedCard, setSelectedCard] = useState({} as iParticipation);
-  const [showModal, setShowModal] = useState<null | string>(null);
+  const { fundraising, setFundraising, selectedCard, setSelectedCard, showModal, setShowModal } = useContext(CompanyContext);
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvemV6ZUBtYWlsLmNvbSIsImlhdCI6MTY3ODQ2MDQyMiwiZXhwIjoxNjc4NDY0MDIyLCJzdWIiOiIzIn0.EwUNWNobuHAFFqgSbr1b6ocvQiqt8wimLP_ff6PB6H4";
@@ -18,13 +17,13 @@ const PageParticipations = () => {
   useEffect(() => {
     async function getListCards() {
       try {
-        const response = await api.get<iParticipation[]>("/participation", {
+        const response = await api.get<iFundraising[]>("/participation", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        setCards(response.data);
+        setFundraising(response.data);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error.message);
@@ -36,7 +35,7 @@ const PageParticipations = () => {
     getListCards();
   }, []);
 
-  const handleCardClick = (card: iParticipation) => {
+  const handleCardClick = (card: iFundraising) => {
     setSelectedCard(card);
     setShowModal("close");
   };
@@ -51,7 +50,7 @@ const PageParticipations = () => {
 
         <section>
           <ul>
-            {cards.map((card) => (
+            {fundraising.map((card) => (
               <CardParticipation
                 key={card.id}
                 post={card}
@@ -64,7 +63,7 @@ const PageParticipations = () => {
       </main>
 
       {showModal == "open" && (
-        <ModalUser callback={setShowModal} selectedCard={selectedCard} />
+        <ModalUser callback={setShowModal} selectedCard={selectedCard} /> //refatorar tirando essas props do modal e usando o useContext!
       )}
     </>
   );
