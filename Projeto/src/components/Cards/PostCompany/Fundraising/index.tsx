@@ -7,14 +7,14 @@ import { iCardFundraising } from "./types";
 import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 
-const CardFundraising = ({ post, callback }: iCardFundraising) => {
+const CardFundraising = ({ post, callback, setSelectedPost }: iCardFundraising) => {
   return (
     <Div>
-      <h2>{post.name}</h2>
+      <h2>{post.title}</h2>
       <div className="description">
         <div>
           <BiTimeFive />
-          <p>{post.date}</p>
+          <p>{post.date} - {post.final_date}</p>
         </div>
         <div>
           <IoLocationOutline />
@@ -24,11 +24,11 @@ const CardFundraising = ({ post, callback }: iCardFundraising) => {
         </div>
         <div>
           <BsTelephone />
-          <p>(72) 98786-7879</p>
+          <p>{post.phone}</p>
         </div>
         <div>
           <MdOutlineHomeWork />
-          <p>Rua magalhães dourado melo</p>
+          <p>{post.address}</p>
         </div>
         <div>
           <MdOutlineDescription />
@@ -43,7 +43,10 @@ const CardFundraising = ({ post, callback }: iCardFundraising) => {
       >
         Participantes
       </ButtonMain>
-      <ButtonMain onClick={callback}>Alterar Evento</ButtonMain>
+      <ButtonMain onClick={() => {
+        callback("fundraising")
+        setSelectedPost(post)
+      }}>Alterar Evento</ButtonMain>
     </Div>
   );
 };

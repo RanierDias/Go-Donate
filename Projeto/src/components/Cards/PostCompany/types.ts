@@ -1,4 +1,6 @@
-interface iPostCompany {
+import { Dispatch, SetStateAction } from "react";
+
+export interface iPostCompany {
   id: number;
   companyId: number;
   title: string;
@@ -18,5 +20,6 @@ interface iPostCompany {
 export interface iCardPostsCompany {
   post: iPostCompany;
   type: "donate" | "fundraising";
-  callback: () => void;
+  callback: Dispatch<SetStateAction<null | string>>;
+  setSelectedPost: React.Dispatch<React.SetStateAction<iPostCompany>>;
 }

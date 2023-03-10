@@ -1,6 +1,8 @@
-import { iPosts } from "../../../../pages/Dashboard_Company/types";
+import { Dispatch, SetStateAction } from "react";
+import { iFundraising } from "../../../../pages/Dashboard_Company/types";
 
 export interface iCardFundraising {
-  post: iPosts;
-  callback: () => void;
+  post: iFundraising;
+  callback: Dispatch<SetStateAction<null | string>>;
+  setSelectedPost: React.Dispatch<React.SetStateAction<iFundraising>>;
 }

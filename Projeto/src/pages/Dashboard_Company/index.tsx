@@ -6,18 +6,20 @@ import CardPostsCompany from "../../components/Cards/PostCompany";
 import Navbar from "../../components/Header";
 import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
-import { api } from "../../services/api";
+import { api, dev } from "../../services/api";
 import Main from "./style";
 import { iFundraising, iPosts } from "./types";
+import { iPostCompany } from "../../components/Cards/PostCompany/types";
 
 const PageCompany = () => {
   const [fundraisings, setFundraisings] = useState([] as iFundraising[]);
   const [donations, setDonations] = useState([] as iPosts[]);
   const [filter, setFilter] = useState<boolean | string>(true);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<null | string>(null);
+  const [selectedPost, setSelectedPost] = useState({} as iPostCompany);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODM3MDA2MCwiZXhwIjoxNjc4MzczNjYwLCJzdWIiOiIyIn0.7sBEKXM2bt_eOFMaHdPuhoODt4gOu0Rm7OkIjXYVpQc";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODQxMDM5OSwiZXhwIjoxNjc4NDEzOTk5LCJzdWIiOiIyIn0.Jnhs6SZPPZekqe54Luj9Jn33pCfUe8VX-FJz0fchKec";
 
   const filterCampaign = async (value: string) => {
     switch (value) {
@@ -34,19 +36,15 @@ const PageCompany = () => {
     }
   };
 
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
   useEffect(() => {
     async function getListPosts() {
       try {
-        const response = await api.get<iFundraising[]>("/fundraising", {
+        const response = await dev.get<iFundraising[]>("/fundraising", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const responsePost = await api.get<iPosts[]>("/post", {
+        const responsePost = await dev.get<iPosts[]>("/post", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,7 +81,8 @@ const PageCompany = () => {
                       key={post.id}
                       post={post}
                       type={"donate"}
-                      callback={handleModal}
+                      callback={setShowModal}
+                      setSelectedPost={setSelectedPost}
                     />
                   ))}
                 </ul>
@@ -101,7 +100,8 @@ const PageCompany = () => {
                       key={post.id}
                       post={post}
                       type={"fundraising"}
-                      callback={handleModal}
+                      callback={setShowModal}
+                      setSelectedPost={setSelectedPost}
                     />
                   ))}
                 </ul>
@@ -132,7 +132,13 @@ const PageCompany = () => {
         </div>
       </Main>
 
-      {showModal && <ModalCompany callback={handleModal} />}
+      {showModal == "fundraising" ? (
+        <ModalCompany callback={setShowModal} selectedPost={selectedPost} />
+      ) : showModal == "donate" ? (
+        <h1>Eu sou um modal</h1>
+      ) : (
+        false
+      )}
     </>
   );
 };
