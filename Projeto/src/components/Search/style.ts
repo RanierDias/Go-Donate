@@ -29,5 +29,4 @@ border-radius: 8px;
     border-color:red;
     
   }
-
 `
