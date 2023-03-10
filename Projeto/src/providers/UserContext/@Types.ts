@@ -13,7 +13,13 @@ export interface IRegisterFormValues {
   email: string;
   password: string;
   confirmpassword: string;
+  city: string;
+  state: string;
+  isCompany: string;
+  image: string;
+  background: string;
 }
+
 export interface ILoginFormValues {
   name: string;
   email: string;
