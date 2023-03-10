@@ -6,6 +6,7 @@ import Donation from "./pages/Dashboard_Company/Donation";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
 import PageUser from "./pages/Dashboard_User";
 import PagePublic from "./pages/PagePublic";
+import Home from "./pages/PagePublic/Home";
 import RegisterPage from "./pages/Register_User";
 
 const MainRoutes = () => {
@@ -14,6 +15,10 @@ const MainRoutes = () => {
       <Route path="/login" element={<h1>AQUI E LOGINPAGE</h1>} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<PagePublic />} />
+      <Route path="*" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/user" element={<PageUser />} />
+
       <Route path="*" element={<PagePublic />} />
       <Route path="/user" element={<LoginForm />} />
       <Route element={<ProtectRoute />}>
@@ -21,6 +26,7 @@ const MainRoutes = () => {
         <Route path="/company/fundraising" element={<PageFundraising />} />
         <Route path="/company/donation" element={<Donation />} />
       </Route>
+
     </Routes>
   );
 };
