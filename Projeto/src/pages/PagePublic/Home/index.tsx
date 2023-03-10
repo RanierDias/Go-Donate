@@ -1,7 +1,7 @@
 import { FaFingerprint, FaLeaf } from 'react-icons/fa'
 import Charity from '../../../assets/Charity.gif'
 import { ButtonHome, MainContainerHome } from './style'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const Home = () => {
 
