@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
 import ProtectRoute from "./components/ProtectRoute";
 import PageCompany from "./pages/Dashboard_Company";
 import Donation from "./pages/Dashboard_Company/Donation";
@@ -14,8 +15,8 @@ const MainRoutes = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<PagePublic />} />
       <Route path="*" element={<PagePublic />} />
+      <Route path="/user" element={<LoginForm />} />
       <Route element={<ProtectRoute />}>
-        <Route path="/user" element={<PageUser />} />
         <Route path="/company" element={<PageCompany />} />
         <Route path="/company/fundraising" element={<PageFundraising />} />
         <Route path="/company/donation" element={<Donation />} />
