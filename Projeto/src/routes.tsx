@@ -16,7 +16,7 @@ const MainRoutes = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<PagePublic />} />
       <Route path="*" element={<Home />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/homepage" element={<Home />} />
       <Route path="/user" element={<PageUser />} />
 
       <Route path="*" element={<PagePublic />} />

@@ -1,5 +1,4 @@
 import ButtonMain from "../../../styles/buttonMain";
-import ButtonSmall from "../../../styles/buttonSmall";
 import StyleCardUser from "./style";
 import { iCardPostsUser } from "./types";
 
@@ -8,7 +7,7 @@ export const CardPostuser = ({ post }: iCardPostsUser) => {
     <>
       <StyleCardUser>
         <div>
-          <img src="./src/img/userflat.svg" alt="" />
+          <img src={post.image} />
         </div>
 
         <div className="content">
@@ -20,7 +19,7 @@ export const CardPostuser = ({ post }: iCardPostsUser) => {
         </div>
 
         <div>
-          <h2>{post.description}</h2>
+          <p>{post.description}</p>
         </div>
 
         <ButtonMain color="white" background="primary-color">
