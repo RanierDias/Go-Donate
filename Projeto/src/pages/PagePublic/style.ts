@@ -98,6 +98,10 @@ export const CardPublic = styled.li`
       font-size: .77rem;
     }
   }
+
+  :hover {
+    background-color: var(--gray-60);
+  }
 `
 
 export const UserContainer = styled.div`
