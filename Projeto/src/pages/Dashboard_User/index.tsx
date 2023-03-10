@@ -6,7 +6,7 @@ import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
 import SearchForm from "../../components/Search";
 import Navbar from "../../components/Header";
-import EventUserContainer from "./style";
+import EventUserContainer, { SearchContainerUser } from "./style";
 
 const PageUser = () => {
   const [postsServices, setPostsServices] = useState([] as iPostsService[]);
@@ -30,9 +30,13 @@ const PageUser = () => {
     <>
       <Navbar mode="private" />
 
-      <h1>Principais Campanhas</h1>
+      <SearchContainerUser>
+        <h1>Principais Campanhas</h1>
+        <SearchForm />
+      </SearchContainerUser>
 
       <EventUserContainer>
+        
         <section>
           <ul>
             {postsServices.map((post) => (
@@ -42,10 +46,6 @@ const PageUser = () => {
         </section>
 
         <aside>
-          <div>
-            <SearchForm />
-          </div>
-
           <CardPerfil
             type="user"
             thumb="src/assets/backgroundUser.jpg"

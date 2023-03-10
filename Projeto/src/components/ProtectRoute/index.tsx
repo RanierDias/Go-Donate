@@ -7,7 +7,7 @@ const ProtectRoute = () => {
   if (!user) {
     return <Navigate to="/" />;
   }
-  return <Outlet />;
+  return user ? <Outlet /> : null;
 };
 
 export default ProtectRoute;

@@ -7,4 +7,5 @@ export interface iPostsService {
   state: string;
   time: string;
   date: string;
+  image: string;
 }

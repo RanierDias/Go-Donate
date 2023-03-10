@@ -43,7 +43,7 @@ const LoginForm = () => {
             leftIcon={<FiLock />}
           />
 
-          <S.ButtonLogin type="submit">Cadastrar</S.ButtonLogin>
+          <S.ButtonLogin type="submit">Login</S.ButtonLogin>
 
           <S.LinkCreateAccount to="/register">Criar Conta</S.LinkCreateAccount>
         </S.FormLogin>
