@@ -39,14 +39,6 @@ const ModalBackground = styled.div`
         }
       }
     }
-
-    > div:last-child {
-      display: flex;
-      justify-content: flex-end;
-      gap: 16px;
-      padding: 8px 32px 20px 32px;
-      background-color: #FFFFFF;
-    }
   }
 `;
 

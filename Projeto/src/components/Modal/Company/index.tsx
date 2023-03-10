@@ -4,27 +4,18 @@ import FormFundraising from "../../ModalForm/Fundraising";
 import ModalBackground from "../style";
 import { iModalCompany } from "./types";
 
-const ModalCompany = ({ callback }: iModalCompany) => {
+const ModalCompany = ({ callback, selectedPost }: iModalCompany) => {
   return (
     <ModalBackground>
       <div>
         <div>
           <h1>Teste</h1>
-          <button onClick={callback}>
+          <button onClick={() => callback(null)}>
             <IoClose />
           </button>
         </div>
         
-        <FormFundraising />
-
-        <div>
-          <ButtonMain color="white" background="button-cancel">
-            Cancelar Evento
-          </ButtonMain>
-          <ButtonMain color="white" background="primary-color">
-            Alterar evento
-          </ButtonMain>
-        </div>
+        <FormFundraising post={selectedPost}/>
       </div>
     </ModalBackground>
   );
