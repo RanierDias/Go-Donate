@@ -21,8 +21,10 @@ const GlobalStyle = createGlobalStyle`
     --font-desktop: 1rem;
     --font-mobile: 0.875rem;
   }
+ 
 
   body {
+
     h1 {
     font-size: var(--title-1);
     font-weight: 700;
@@ -36,10 +38,21 @@ const GlobalStyle = createGlobalStyle`
       font-weight: 500;
     }
     
+ 
     font-size: var(--font-desktop);
     font-family: var(--font-family);
-    background-color: #FFFFFF;
+    
+
+    min-height: max-content;
+    
+
+  
+
+    
   }
+
+
+  
 `;
 
-export default GlobalStyle
+export default GlobalStyle;

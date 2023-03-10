@@ -26,7 +26,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       console.log("Cadastro Realizado com sucesso!");
       navigate("/login");
     } catch (error) {
-      console.log("Ops! Algo deu errado");
+      console.log(error);
     } finally {
       setLoading(false);
     }
