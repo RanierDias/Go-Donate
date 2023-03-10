@@ -15,7 +15,7 @@ const Navbar = ({ mode }: iNavBar) => {
       />
       {mode === "private" ? (
         <div>
-          <Link to="home">
+          <Link to="homepage">
             <FaHome />
           </Link>
           <Link to="/">
