@@ -63,6 +63,10 @@ export const DonateInputSearch = styled.div`
     div {
       flex-direction: row;
     }
+
+    h2 {
+        font-size: 1.4rem;
+      }
   }
 `
 export const DonationList = styled.ul`
@@ -83,8 +87,6 @@ export const DonationCart = styled.li`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  border: 1px solid green;
 
   flex-shrink: 0;
 
@@ -107,8 +109,8 @@ export const DonationCart = styled.li`
     border-radius: 10px;
     padding: .6rem 1.8rem;
 
-
     background-color: var(--primary-color);
+
     color: var(--white);
     font-size: .7rem;
 
@@ -116,7 +118,18 @@ export const DonationCart = styled.li`
 
     :hover {
       background-color: var(--button-initial);
+
+      width: 80%;
     }
+  }
+
+  transition: .1s ease;
+
+  :hover {
+    background-color: var(--gray-60);
+    color: var(--white);
+
+    width: 310px;
   }
 
   @media (min-width: 700px) { 
@@ -126,6 +139,8 @@ export const DonationCart = styled.li`
     button {
       margin: 0 auto;
       width: 170px;
+
+      font-size: .8rem;
     }
   }
 `
