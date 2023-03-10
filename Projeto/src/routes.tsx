@@ -5,6 +5,7 @@ import PageCompany from "./pages/Dashboard_Company";
 import Donation from "./pages/Dashboard_Company/Donation";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
 import PageUser from "./pages/Dashboard_User";
+import PageParticipations from "./pages/Dashboard_User/Participation";
 import PagePublic from "./pages/PagePublic";
 import Home from "./pages/PagePublic/Home";
 import RegisterPage from "./pages/Register_User";
@@ -18,7 +19,7 @@ const MainRoutes = () => {
       <Route path="*" element={<Home />} />
       <Route path="/homepage" element={<Home />} />
       <Route path="/user" element={<PageUser />} />
-
+      <Route path="/user/participation" element={<PageParticipations />} />
       <Route path="*" element={<PagePublic />} />
       <Route element={<ProtectRoute />}>
         <Route path="/user" element={<PageUser />} />
@@ -26,7 +27,6 @@ const MainRoutes = () => {
         <Route path="/company/fundraising" element={<PageFundraising />} />
         <Route path="/company/donation" element={<Donation />} />
       </Route>
-
     </Routes>
   );
 };
