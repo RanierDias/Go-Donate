@@ -93,7 +93,7 @@ export const MainContainerHome = styled.main`
 `
 
 export const ButtonHome = styled.button`
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   color: var(--white);
 
   display: flex;
@@ -107,9 +107,12 @@ export const ButtonHome = styled.button`
   cursor: pointer;
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: rgb(18,135,110);
+  background: linear-gradient(339deg, rgba(18,135,110,1) 20%, rgba(53,117,56,1) 80%);
 
   :hover {
-    background-color: var(--button-initial);
+    background-color: white;
+    /* border: 2px solid linear-gradient(339deg, rgba(18,135,110,1) 20%, rgba(53,117,56,1) 80%)ç */
   }
 
   @media (min-width: 769px) {

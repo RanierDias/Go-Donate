@@ -8,8 +8,7 @@ const Home = () => {
   return (
     <MainContainerHome>
       <header>
-        
-        <ButtonHome><Link to='/'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
+        <ButtonHome><Link to='/login'>Go.Donate <FaFingerprint /></Link></ButtonHome>
       </header>
 
       <section>
@@ -25,7 +24,7 @@ const Home = () => {
         </figure>
       </section>
       
-      <ButtonHome><Link to='/login'>Go.Donate <FaFingerprint /></Link></ButtonHome>
+        <ButtonHome><Link to='/'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
     </MainContainerHome>
   )
 }
