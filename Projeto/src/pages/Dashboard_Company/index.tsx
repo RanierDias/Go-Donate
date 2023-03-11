@@ -73,7 +73,7 @@ const PageCompany = () => {
       <Navbar mode="private" />
 
       <Main>
-        <h1>Campanhas em andamento</h1>
+        <h1>Campanhas em andamento teste 1</h1>
         <div>
           <section>
             {filter == "donate" || filter == true ? (

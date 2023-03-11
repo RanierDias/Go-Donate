@@ -10,7 +10,7 @@ import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
 const Navbar = ({ mode }: iNavBar) => {
   const { userLogout, navigate } = useContext(UserContext);
-  const currentLocation = window.location.href;
+  const currentLocation = window.location.pathname;
 
   return (
     <Header>
@@ -22,7 +22,7 @@ const Navbar = ({ mode }: iNavBar) => {
         <div>
           <ButtonSmall
             onClick={() =>
-              navigate(currentLocation.includes("company") ? "company" : "user")
+              navigate(currentLocation.includes("company") ? "/company" : "/user")
             }
           >
             <FaHome />
