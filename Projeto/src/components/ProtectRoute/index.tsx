@@ -1,15 +1,17 @@
+import { isAxiosError } from "axios";
 import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
+import { api } from "../../services/api";
 
 const ProtectRoute = () => {
-  const { user } = useContext(UserContext);
-  console.log(user)
+  const token = localStorage.getItem('@TOKEN')
 
-  if (user == null) {
+  if (!token) {
     return <Navigate to="/" />;
   }
-  return user ? <Outlet /> : null;
+  
+  return <Outlet />
 };
 
 export default ProtectRoute;

@@ -6,8 +6,14 @@ export interface IDefaultProviderProps {
 
 export interface IUser {
   id: string;
+  uuid: string;
   name: string;
   email: string;
+  city: string;
+  state: string;
+  isCompany: boolean;
+  image: string;
+  background: string;
 }
 
 export interface IRegisterFormValues {
@@ -32,6 +38,7 @@ export interface IUserContext {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | null;
+  setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginFormValues) => Promise<void>;
   userLogout: () => void;

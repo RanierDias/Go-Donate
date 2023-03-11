@@ -1,4 +1,4 @@
-import { isAxiosError } from "axios";
+import { AxiosBasicCredentials, isAxiosError } from "axios";
 import { useContext, useEffect, useState } from "react";
 import CardPerfil from "../../components/Cards/Perfil";
 import CardPostsCompany from "../../components/Cards/PostCompany";
@@ -6,13 +6,11 @@ import CardPostsCompany from "../../components/Cards/PostCompany";
 import Navbar from "../../components/Header";
 import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
-import { api, dev } from "../../services/api";
+import { api } from "../../services/api";
 import Main from "./style";
 import { iFundraising, iPosts } from "./types";
 import { CompanyContext } from "../../providers/CompanyContext";
-
-export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmllckBtYWlsLmNvbSIsImlhdCI6MTY3ODQ1MTIzOSwiZXhwIjoxNjc4NDU0ODM5LCJzdWIiOiIyIn0.F3PNsYUG4royCPxfhnbfE5Ftq5qZRq365tRr96048LA";
+import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
 const PageCompany = () => {
   const {
@@ -25,8 +23,10 @@ const PageCompany = () => {
     filter,
     setFilter,
     selectedCard,
-    setSelectedCard
+    setSelectedCard,
   } = useContext(CompanyContext);
+
+  const { user } = useContext(UserContext);
 
   const filterCampaign = async (value: string) => {
     switch (value) {
@@ -35,7 +35,6 @@ const PageCompany = () => {
         break;
       case "1":
         setFilter("fundraising");
-        console.log(filter);
         break;
       case "2":
         setFilter("donate");
@@ -46,16 +45,14 @@ const PageCompany = () => {
   useEffect(() => {
     async function getListPosts() {
       try {
-        const response = await dev.get<iFundraising[]>("/fundraising", {
+        const token = localStorage.getItem("@TOKEN");
+
+        const response = await api.get<iFundraising[]>("/fundraising", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const responsePost = await dev.get<iPosts[]>("/post", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const responsePost = await api.get<iPosts[]>("/post");
 
         setFundraising(response.data);
         setPosts(responsePost.data);
@@ -124,17 +121,19 @@ const PageCompany = () => {
               <option value="2">Doação</option>
             </Select>
 
-            <CardPerfil
-              type="company"
-              thumb="src/assets/backgroundUser.jpg"
-              photo="src/assets/perfil.jpeg"
-              name="Roshelle"
-              list1={{
-                number: fundraising.length,
-                link: "/company/fundraising",
-              }}
-              list2={{ number: posts.length, link: "/company/donation" }}
-            />
+            {user && (
+              <CardPerfil
+                type="company"
+                thumb={user?.background}
+                photo={user?.image}
+                name={user?.name}
+                list1={{
+                  number: fundraising.length,
+                  link: "/company/fundraising",
+                }}
+                list2={{ number: posts.length, link: "/company/donation" }}
+              />
+            )}
           </aside>
         </div>
       </Main>

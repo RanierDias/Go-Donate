@@ -10,6 +10,7 @@ import PagePublic from "./pages/PagePublic";
 import Home from "./pages/PagePublic/Home";
 import RegisterPage from "./pages/Register_User";
 import { CompanyProvider } from "./providers/CompanyContext";
+import { UserProvider } from "./providers/UserContext/UserContextInitial";
 
 const MainRoutes = () => {
   return (
@@ -47,7 +48,9 @@ const MainRoutes = () => {
           path="/company"
           element={
             <CompanyProvider>
-              <PageCompany />
+              <UserProvider>
+                <PageCompany />
+              </UserProvider>
             </CompanyProvider>
           }
         />
@@ -55,7 +58,9 @@ const MainRoutes = () => {
           path="/company/fundraising"
           element={
             <CompanyProvider>
-              <PageFundraising />
+              <UserProvider>
+                <PageFundraising />
+              </UserProvider>
             </CompanyProvider>
           }
         />

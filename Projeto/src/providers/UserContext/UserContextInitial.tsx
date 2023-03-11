@@ -66,19 +66,36 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userAutoLogin: AutoLoginFunc = async () => {
     const token: string | null = localStorage.getItem("@TOKEN");
     const id: string | null = localStorage.getItem("@UserId");
+    const userLocation = window.location.pathname;
+
     if (token) {
       try {
-        const response = await api.get(`user/${id}`, {
+        const response = await api.get(`users/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
+
+        if (response.data.isCompany) {
+          userLocation.includes("company")
+            ? navigate(userLocation)
+            : navigate("/company");
+        }
+
+        if (!response.data.isCompany) {
+          userLocation.includes("user")
+            ? navigate(userLocation)
+            : navigate("/user");
+        }
+
         setUser(response.data);
-        navigate("/user");
       } catch (error) {
+        if (isAxiosError(error)) {
+          localStorage.clear();
+          navigate("/login");
+        }
+
         console.log(error);
-        localStorage.clear()
-        navigate("/login");
       }
     }
   };
@@ -99,6 +116,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         loading,
         setLoading,
         user,
+        setUser,
         userRegister,
         userLogin,
         userLogout,

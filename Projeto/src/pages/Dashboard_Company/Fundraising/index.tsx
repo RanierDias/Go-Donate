@@ -9,20 +9,29 @@ import ButtonSmall from "../../../styles/buttonSmall";
 import Main from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
 import ModalCompany from "../../../components/Modal/Company";
-import { token } from "..";
 import { CompanyContext } from "../../../providers/CompanyContext";
 
 const PageFundraising = () => {
-  const { fundraising, setFundraising, showModal, setShowModal, selectedCard, setSelectedCard } = useContext(CompanyContext);
+  const {
+    fundraising,
+    setFundraising,
+    showModal,
+    setShowModal,
+    selectedCard,
+    setSelectedCard,
+  } = useContext(CompanyContext);
 
   useEffect(() => {
     async function getListPosts() {
       try {
+        const token = localStorage.getItem("@TOKEN");
+
         const response = await api.get<iFundraising[]>("/fundraising", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        
         setFundraising(response.data);
       } catch (error) {
         if (isAxiosError(error)) {
