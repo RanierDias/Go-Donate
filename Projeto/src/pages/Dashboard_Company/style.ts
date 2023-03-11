@@ -1,53 +1,83 @@
 import styled from "styled-components";
 
 const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1rem;
+
   h1 {
-    margin-top: 45px;
+    font-size: 1.2rem;
+    color: var(--gray-80);
   }
 
   > div {
     display: flex;
     flex-direction: column-reverse;
-    gap: 25px;
-    margin-top: 45px;
 
     section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
       > h2 {
-        margin-bottom: 15px;
+        font-size: 1.1rem;
+        color: var(--gray-30);
       }
 
       > ul {
+        overflow-y: auto;
+
         display: flex;
-        flex-wrap: wrap;
-        gap: 45px;
-        margin-bottom: 40px;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
     }
 
     aside {
-      position: sticky;
-      top: 25px;
       display: flex;
       flex-direction: column;
+
       align-items: center;
       height: max-content;
 
       > div:first-child {
-        margin-bottom: 75px;
+        margin-bottom: 1rem;
       }
     }
   }
 
-  @media (min-width: 1024px) {
-    margin: 0 160px;
+  @media (min-width: 769px) {
+    margin: 0 3rem;
+
+    section {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
 
     > div {
       flex-direction: row;
 
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
       aside {
         align-items: flex-end;
+
+        position: sticky;
+        top: 1rem;
+
+        margin-left: 1rem;
       }
     }
+  }
+
+  @media (min-width: 796px) {
+    margin: 0 8.5rem;
   }
 `;
 

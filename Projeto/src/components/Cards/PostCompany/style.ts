@@ -13,6 +13,7 @@ const Div = styled.div`
 
   > h2 {
     color: var(--white);
+    font-size: 1rem;
   }
 
   .description {
@@ -20,6 +21,8 @@ const Div = styled.div`
     flex-direction: column;
     gap: 8px;
     width: 100%;
+
+    font-size: .9rem;
 
     > div {
       display: flex;
@@ -43,6 +46,17 @@ const Div = styled.div`
 
   > p {
     color: var(--white);
+  }
+
+  @media (min-width: 769px) {
+      h2 {
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: .94rem;
+    }
   }
 `;
 

@@ -12,7 +12,7 @@ export const EventUserContainer = styled.main`
     flex-direction: column;
   }
 
-  aside{
+  aside {
     display: flex;
     flex-direction: column;
     gap: 70px;
