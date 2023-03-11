@@ -32,6 +32,7 @@ export const Container = styled.fieldset`
     padding: 0px 18px;
     font-size: 16px;
     color: white;
+    border-radius: inherit;
   }
 
   > input::placeholder {
