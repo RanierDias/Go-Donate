@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FiLock, FiMail, FiUser } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { ILoginFormValues } from "../../providers/UserContext/@Types";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import Input from "../Input";
@@ -15,11 +14,11 @@ const LoginForm = () => {
   return (
     <S.MainContainerLogin>
       <section>
-        <img src="/src/assets/imgregister.svg" alt="" />
+        <img src="/src/assets/imgregister.svg"/>
       </section>
 
       <S.ContainerSideForm>
-        <img src="/src/assets/Logo.svg" alt="" />
+        <img src="/src/assets/Logo.svg"/>
         <h2>Login</h2>
         <S.FormLogin onSubmit={handleSubmit(userLogin)}>
           <Input
