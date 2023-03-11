@@ -12,6 +12,8 @@ const Div = styled.div`
   overflow: hidden;
   background-color: var(--gray-80);
 
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
   .perfil {
     position: relative;
     display: flex;
@@ -62,7 +64,7 @@ const Div = styled.div`
     }
   }
 
-  @media(min-width: 900px) {
+  @media(min-width: 769px) {
     display: flex;
   }
 `;
