@@ -27,28 +27,11 @@ export interface iFundraising {
   date: string;
   final_date: string;
   open_time: string;
-  closed_time: string;
+  close_time: string;
   address: string;
   city: string;
   state: string;
   phone: string;
-}
-
-export interface iPostCompany {
-  id: number;
-  companyId: number;
-  title: string;
-  name: string;
-  description: string;
-  date: string;
-  final_date?: string;
-  time?: string;
-  open_time?: string;
-  closed_time?: string;
-  address?: string;
-  phone?: string;
-  city: string;
-  state: string;
 }
 
 export interface IDonate {
@@ -65,10 +48,10 @@ export interface IDonateContext {
   setPosts: Dispatch<SetStateAction<iPosts[]>>;
   fundraising: iFundraising[];
   setFundraising: Dispatch<SetStateAction<iFundraising[]>>;
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
+  search: any;
+  setSearch: Dispatch<SetStateAction<any>>;
   donations: IDonate[];
-  selectedCard: iPostCompany;
+  selectedCard: any;
   setSelectedCard: Dispatch<SetStateAction<any>>;
   showModal: null | string;
   setShowModal: Dispatch<SetStateAction<null | string>>;

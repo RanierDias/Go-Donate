@@ -11,6 +11,7 @@ import ModalCompany from "../../../components/Modal/Company";
 import { CompanyContext } from "../../../providers/CompanyContext";
 import { iResponseFundraising } from "../types";
 import Search from "../../../components/Search";
+import { iFundraising } from "../../../providers/@types";
 
 const PageFundraising = () => {
   const {
@@ -19,6 +20,8 @@ const PageFundraising = () => {
     showModal,
     setShowModal,
     setSelectedCard,
+    search,
+    setSearch,
   } = useContext(CompanyContext);
 
   const openModalCreateFundraising = () => {
@@ -26,6 +29,8 @@ const PageFundraising = () => {
       title: "Criar novo evento",
       date: new Date().toJSON(),
       final_date: new Date().toJSON(),
+      open_time: "08:00",
+      close_time: "17:00",
       phone: "",
       city: "",
       state: "",
@@ -35,6 +40,14 @@ const PageFundraising = () => {
 
     setSelectedCard(formFundrainsigValue);
     setShowModal("newFundraising");
+  };
+
+  const searchPost = (search: string) => {
+    const postFound = fundraising.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    search === "" ? setSearch([]) : setSearch(postFound);
   };
 
   useEffect(() => {
@@ -73,7 +86,7 @@ const PageFundraising = () => {
           <h1>Campanhas de arrecadações</h1>
 
           <div>
-            <Search callback={({ search }) => console.log(search)} />
+            <Search callback={({ search }) => searchPost(search)} />
 
             <ButtonSmall onClick={openModalCreateFundraising}>
               Adcionar evento
@@ -83,9 +96,13 @@ const PageFundraising = () => {
 
         <section>
           <ul>
-            {fundraising.map((post) => (
-              <CardFundraising key={post.id} post={post} />
-            ))}
+            {search.length > 0
+              ? search.map((post: iFundraising) => (
+                  <CardFundraising key={post.id} post={post} />
+                ))
+              : fundraising.map((post) => (
+                  <CardFundraising key={post.id} post={post} />
+                ))}
           </ul>
         </section>
       </Main>

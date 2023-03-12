@@ -10,11 +10,16 @@ import { CompanyContext } from "../../../providers/CompanyContext";
 import { api } from "../../../services/api";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
+import { iFundraising } from "../../../providers/@types";
 
 const schema = yup.object({
   title: yup.string().required("O nome da campanha é um campo obrigatório"),
   date: yup.date().required("A data é um campo obrigatório"),
   final_date: yup.date().required("A data final é um campo obrigatório"),
+  open_time: yup.string().required("A hora de abertura é um campo obrigatório"),
+  close_time: yup
+    .string()
+    .required("A hora de fechamento é um campo obrigatório"),
   phone: yup.string().required("O telefone é um campo obrigatório"),
   city: yup.string().required("A cidade é um campo obrigatório"),
   state: yup.string().required("O estado é um campo obrigatório"),
@@ -23,8 +28,14 @@ const schema = yup.object({
 });
 
 const FormFundraising = () => {
-  const { selectedCard, fundraising, setFundraising, setShowModal } =
-    useContext(CompanyContext);
+  const {
+    selectedCard,
+    fundraising,
+    setFundraising,
+    setShowModal,
+    search,
+    setSearch,
+  } = useContext(CompanyContext);
   const regExDate = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
 
   const {
@@ -37,6 +48,8 @@ const FormFundraising = () => {
       title: selectedCard?.title,
       date: selectedCard.date.match(regExDate),
       final_date: selectedCard.final_date?.match(regExDate),
+      open_time: selectedCard.open_time,
+      close_time: selectedCard.close_time,
       phone: selectedCard?.phone,
       city: selectedCard?.city,
       state: selectedCard?.state,
@@ -54,7 +67,7 @@ const FormFundraising = () => {
         final_date: data.final_date.toJSON(),
       };
 
-      const response = await api.patch(
+      const response = await api.patch<iFundraising>(
         `fundraisings/${selectedCard.id}`,
         newData,
         {
@@ -66,7 +79,11 @@ const FormFundraising = () => {
       const newFundraisings = fundraising.filter(
         (post) => post.id != response.data.id
       );
+      const newSearch = search.filter(
+        (post: iFundraising) => post.id != response.data.id
+      );
 
+      setSearch([...newSearch, response.data]);
       setFundraising([...newFundraisings, response.data]);
       toast.success("Evento atualizado!");
       setShowModal(null);
@@ -92,9 +109,13 @@ const FormFundraising = () => {
       const newFundraising = fundraising.filter(
         (post) => post.id != selectedCard.id
       );
+      const newSearch = search.filter(
+        (post: iFundraising) => post.id != selectedCard.id
+      );
 
+      setSearch(newSearch);
       setFundraising(newFundraising);
-      toast.success("Evento deletado");
+      toast.success("Evento deletado!");
       setShowModal(null);
     } catch (error) {
       if (isAxiosError(error)) {
@@ -110,11 +131,13 @@ const FormFundraising = () => {
       const token = localStorage.getItem("@TOKEN");
       const id = localStorage.getItem("@UserId");
       const newData = {
+        userId: Number(id),
         ...data,
         date: data.date.toJSON(),
         final_date: data.final_date.toJSON(),
-        userId: id,
       };
+
+      console.log(newData)
 
       const response = await api.post("fundraisings", newData, {
         headers: {
@@ -144,7 +167,7 @@ const FormFundraising = () => {
     >
       <div>
         <label htmlFor="title">Nome</label>
-        <small>{errors.title?.message}</small>
+        <small>{errors.title?.message?.toString()}</small>
         <input
           type="text"
           placeholder="Digíte o nome da campanha"
@@ -153,17 +176,27 @@ const FormFundraising = () => {
       </div>
       <div>
         <label htmlFor="date">Data de início</label>
-        <small>{errors.date?.message}</small>
+        <small>{errors.date?.message?.toString()}</small>
         <input type="date" {...register("date")} />
       </div>
       <div>
         <label htmlFor="date_final">Data de fechamento</label>
-        <small>{errors.final_date?.message}</small>
+        <small>{errors.final_date?.message?.toString()}</small>
         <input type="date" {...register("final_date")} />
       </div>
       <div>
+        <label htmlFor="open_time">Hora de aberturar</label>
+        <small>{errors.open_time?.message?.toString()}</small>
+        <input type="time" {...register("open_time")} />
+      </div>
+      <div>
+        <label htmlFor="close_time">Hora de fechamento</label>
+        <small>{errors.close_time?.message?.toString()}</small>
+        <input type="time" {...register("close_time")} />
+      </div>
+      <div>
         <label htmlFor="phone">Número de Contato</label>
-        <small>{errors.phone?.message}</small>
+        <small>{errors.phone?.message?.toString()}</small>
         <input
           type="tel"
           placeholder="Digíte o telefone principal"
@@ -172,7 +205,7 @@ const FormFundraising = () => {
       </div>
       <div>
         <label htmlFor="city">Cidade</label>
-        <small>{errors.city?.message}</small>
+        <small>{errors.city?.message?.toString()}</small>
         <input
           type="text"
           placeholder="Digíte o nome da cidade"
@@ -181,7 +214,7 @@ const FormFundraising = () => {
       </div>
       <div>
         <label htmlFor="state">Estado</label>
-        <small>{errors.state?.message}</small>
+        <small>{errors.state?.message?.toString()}</small>
         <input
           type="text"
           placeholder="Digíte o nome do estado"
@@ -190,7 +223,7 @@ const FormFundraising = () => {
       </div>
       <div>
         <label htmlFor="address">Endereço</label>
-        <small>{errors.address?.message}</small>
+        <small>{errors.address?.message?.toString()}</small>
         <input
           type="text"
           placeholder="Digíte a rua e número"
@@ -200,7 +233,7 @@ const FormFundraising = () => {
 
       <div>
         <label htmlFor="description">Descrição</label>
-        <small>{errors.description?.message}</small>
+        <small>{errors.description?.message?.toString()}</small>
         <textarea
           placeholder="Descreva mais o evento aqui"
           {...register("description")}
