@@ -8,7 +8,6 @@ import {
   iPosts,
 } from "./@types";
 import { IUser } from "./UserContext/@Types";
-import { UserContext } from "./UserContext/UserContextInitial";
 
 export const CompanyContext = createContext({} as IDonateContext);
 
@@ -20,7 +19,6 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
   const [selectedCard, setSelectedCard] = useState({} as any);
   const [showModal, setShowModal] = useState<null | string>(null);
   const [filter, setFilter] = useState<boolean | string>(true);
-  const [listUsers, setListUsers] = useState<IUser[]>([])
 
   return (
     <CompanyContext.Provider

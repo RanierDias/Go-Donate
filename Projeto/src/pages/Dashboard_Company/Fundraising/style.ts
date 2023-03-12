@@ -19,8 +19,9 @@ const Main = styled.main`
     > ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 45px;
+      /* flex-direction: row; */
+      justify-content: flex-start;
+      gap: 1rem;
     }
   }
   
