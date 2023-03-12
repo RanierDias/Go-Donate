@@ -7,9 +7,11 @@ import Header from "./style";
 import ButtonSmall from "../../styles/buttonSmall";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
+import { CompanyContext } from "../../providers/CompanyContext";
 
 const Navbar = ({ mode }: iNavBar) => {
   const { userLogout, navigate } = useContext(UserContext);
+  const { setSearch } = useContext(CompanyContext);
   const currentLocation = window.location.pathname;
 
   return (
@@ -21,9 +23,12 @@ const Navbar = ({ mode }: iNavBar) => {
       {mode === "private" ? (
         <div>
           <ButtonSmall
-            onClick={() =>
-              navigate(currentLocation.includes("company") ? "/company" : "/user")
-            }
+            onClick={() => {
+              navigate(
+                currentLocation.includes("company") ? "/company" : "/user"
+              );
+              setSearch([]);
+            }}
           >
             <FaHome />
           </ButtonSmall>
