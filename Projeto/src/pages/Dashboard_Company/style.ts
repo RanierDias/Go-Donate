@@ -59,6 +59,7 @@ const Main = styled.main`
 
     > div {
       flex-direction: row;
+      justify-content: space-between;
 
     ul {
       display: flex;

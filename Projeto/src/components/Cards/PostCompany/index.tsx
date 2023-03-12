@@ -6,8 +6,16 @@ import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
 import Div from "./style";
 import { iCardPostsCompany } from "./types";
 import ButtonMain from "../../../styles/buttonMain";
+import { useContext, useEffect } from "react";
+import { CompanyContext } from "../../../providers/CompanyContext";
 
-const CardPostsCompany = ({ post, type, callback, setSelectedPost }: iCardPostsCompany) => {
+const CardPostsCompany = ({ post, type }: iCardPostsCompany) => {
+  const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
+  const date = post.date.replaceAll("-", "/").match(regExDate);
+  const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
+
+  const { setSelectedCard, setShowModal } = useContext(CompanyContext);
+
   return (
     <Div>
       <h2>{post.title}</h2>
@@ -15,7 +23,7 @@ const CardPostsCompany = ({ post, type, callback, setSelectedPost }: iCardPostsC
         <div>
           <BiTimeFive />
           <p>
-            {post.date} - {type == "donate" ? post.time : post.final_date}
+            {date} - {type == "donate" ? post.time : dateFinal}
           </p>
         </div>
         <div>
@@ -44,10 +52,12 @@ const CardPostsCompany = ({ post, type, callback, setSelectedPost }: iCardPostsC
 
       <p>{type == "fundraising" ? "Arrecadação" : "Doação"}</p>
 
-      <ButtonMain onClick={() => {
-        setSelectedPost(post)
-        callback(type)
-      }}>
+      <ButtonMain
+        onClick={() => {
+          setSelectedCard(post);
+          setShowModal(type);
+        }}
+      >
         Alterar Evento
       </ButtonMain>
     </Div>

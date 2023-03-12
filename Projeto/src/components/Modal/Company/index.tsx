@@ -1,21 +1,24 @@
+import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
+import { CompanyContext } from "../../../providers/CompanyContext";
 import ButtonMain from "../../../styles/buttonMain";
 import FormFundraising from "../../ModalForm/Fundraising";
 import ModalBackground from "../style";
-import { iModalCompany } from "./types";
 
-const ModalCompany = ({ callback, selectedPost }: iModalCompany) => {
+const ModalCompany = () => {
+  const { setShowModal, selectedCard } = useContext(CompanyContext);
+
   return (
     <ModalBackground>
       <div>
         <div>
-          <h1>Teste</h1>
-          <button onClick={() => callback(null)}>
+          <h1>{selectedCard.title}</h1>
+          <button onClick={() => setShowModal(null)}>
             <IoClose />
           </button>
         </div>
-        
-        <FormFundraising post={selectedPost}/>
+
+        <FormFundraising />
       </div>
     </ModalBackground>
   );

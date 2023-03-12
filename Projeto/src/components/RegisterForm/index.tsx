@@ -8,7 +8,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./style";
 import { Link } from "react-router-dom";
-import GIF from '../../assets/Charity (2).gif'
 import Charity from '../../assets/Charity-rafiki.svg'
 
 const schema = yup.object({
@@ -72,21 +71,20 @@ const RegisterForm = () => {
     <S.MainContainerRegister>
       <section>
         <img src="/src/assets/Logo.svg" />
-        {/* <img src={GIF} /> */}
         <img src={Charity} />
       </section>
       <S.ContainerSideForm>
         <h2>Cadastro</h2>
         <S.FormRegister onSubmit={handleSubmit(handleRegister)}>
-          <span>{errors ? errors.name?.message + `*` : null}</span>
+          <span>{errors.name?.message}</span>
           <Input
             type="text"
             placeholder="Nome"
             {...register("name")}
             leftIcon={<FiUser />}
-          />
+            />
 
-          <span>{errors ? errors.email?.message + `*` : null}</span>
+          <span>{errors ? errors.email?.message : null}</span>
           <Input
             type="email"
             placeholder="Email"
@@ -94,7 +92,7 @@ const RegisterForm = () => {
             leftIcon={<FiMail />}
           />
 
-          <span>{errors.password?.message + `*`}</span>
+          <span>{errors.password?.message}</span>
           <Input
             type="password"
             placeholder="Senha"
@@ -102,7 +100,7 @@ const RegisterForm = () => {
             leftIcon={<FiLock />}
           />
 
-          <span>{errors.confirmpassword?.message + `*`}</span>
+          <span>{errors.confirmpassword?.message}</span>
           <Input
             type="password"
             placeholder="Confirme sua Senha"
@@ -110,7 +108,7 @@ const RegisterForm = () => {
             leftIcon={<FiLock />}
           />
 
-          <span>{errors.city?.message + `*`}</span>
+          <span>{errors.city?.message}</span>
           <Input
             type="text"
             placeholder="Cidade"
@@ -118,7 +116,7 @@ const RegisterForm = () => {
             leftIcon={<FiMapPin />}
           />
 
-          <span>{errors.state?.message + `*`}</span>
+          <span>{errors.state?.message}</span>
           <Input
             type="text"
             placeholder="Estado"
@@ -126,14 +124,14 @@ const RegisterForm = () => {
             leftIcon={<FiMapPin />}
           />
 
-          <span>{errors.isCompany?.message + `*`}</span>
+          <span>{errors.isCompany?.message}</span>
           <select {...register("isCompany")}>
             <option value="">Selecionar</option>
             <option value="false">Usuário</option>
             <option value="true">Empresa</option>
           </select>
 
-          <span>{errors.image?.message + `*`}</span>
+          <span>{errors.image?.message}</span>
           <Input
             type="url"
             placeholder="Imagem de Perfil"
@@ -141,7 +139,7 @@ const RegisterForm = () => {
             leftIcon={<FiImage />}
           />
 
-          <span>{errors.background?.message + `*`}</span>
+          <span>{errors.background?.message}</span>
           <Input
             type="url"
             placeholder="Thumb do Perfil"

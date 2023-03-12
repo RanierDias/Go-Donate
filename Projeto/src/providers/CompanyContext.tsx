@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { api } from "../services/api";
 import {
   IDefaultProviderProps,
@@ -7,6 +7,7 @@ import {
   iFundraising,
   iPosts,
 } from "./@types";
+import { UserContext } from "./UserContext/UserContextInitial";
 
 export const CompanyContext = createContext({} as IDonateContext);
 
@@ -19,41 +20,43 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
   const [showModal, setShowModal] = useState<null | string>(null);
   const [filter, setFilter] = useState<boolean | string>(true);
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const res = await api.get("/post");
+  const { user } = useContext(UserContext);
 
-        setPosts(res.data);
+  // useEffect(() => {
+  //   const loadProducts = async () => {
+  //     try {
+  //       const res = await api.get("/post");
 
-        console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    loadProducts();
-  }, []);
+  //       setPosts(res.data);
 
-  useEffect(() => {
-    const token = localStorage.getItem("@userToken");
+  //       console.log(posts);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   loadProducts();
+  // }, []);
 
-    const getDonations = async () => {
-      try {
-        const res = await api.get("/donation", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  // useEffect(() => {
+  //   const token = localStorage.getItem("@userToken");
 
-        setDonations(res.data);
-        console.log(res.data);
-        console.log(donations);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDonations();
-  }, []);
+  //   const getDonations = async () => {
+  //     try {
+  //       const res = await api.get("/donation", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       setDonations(res.data);
+  //       console.log(res.data);
+  //       console.log(donations);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getDonations();
+  // }, []);
 
   return (
     <CompanyContext.Provider

@@ -4,13 +4,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import Form from "../style";
-import { iFormFundraising } from "./type";
 import ButtonMain from "../../../styles/buttonMain";
+import { useContext } from "react";
+import { CompanyContext } from "../../../providers/CompanyContext";
+import { api } from "../../../services/api";
+import { isAxiosError } from "axios";
+import { toast } from "react-toastify";
 
 const schema = yup.object({
-  name: yup.string().required("O nome da campanha é um campo obrigatório"),
+  title: yup.string().required("O nome da campanha é um campo obrigatório"),
   date: yup.date().required("A data é um campo obrigatório"),
-  date_final: yup.date().required("A data final é um campo obrigatório"),
+  final_date: yup.date().required("A data final é um campo obrigatório"),
   phone: yup.string().required("O telefone é um campo obrigatório"),
   city: yup.string().required("A cidade é um campo obrigatório"),
   state: yup.string().required("O estado é um campo obrigatório"),
@@ -18,52 +22,148 @@ const schema = yup.object({
   description: yup.string().required("A descrição é um campo obrigatório"),
 });
 
-const FormFundraising = ({ post }: iFormFundraising) => {
+const FormFundraising = () => {
+  const { selectedCard, fundraising, setFundraising, setShowModal } =
+    useContext(CompanyContext);
+  const regExDate = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+
   const {
     register,
     handleSubmit,
-    formState: { isDirty },
+    formState: { isDirty, errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: post?.title,
-      date: "2022-12-01",
-      date_final: "2022-12-02",
-      phone: post?.phone,
-      city: post?.city,
-      state: post?.state,
-      address: post?.address,
-      description: post?.description,
+      title: selectedCard?.title,
+      date: selectedCard.date.match(regExDate),
+      final_date: selectedCard.final_date?.match(regExDate),
+      phone: selectedCard?.phone,
+      city: selectedCard?.city,
+      state: selectedCard?.state,
+      address: selectedCard?.address,
+      description: selectedCard?.description,
     },
   });
 
-  const uptadePost: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    console.log(data.date_final.toJSON());
+  const uptadePost: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const token = localStorage.getItem("@TOKEN");
+      const newData = {
+        ...data,
+        date: data.date.toJSON(),
+        final_date: data.final_date.toJSON(),
+      };
+
+      const response = await api.patch(
+        `fundraisings/${selectedCard.id}`,
+        newData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const newFundraisings = fundraising.filter(
+        (post) => post.id != response.data.id
+      );
+
+      setFundraising([...newFundraisings, response.data]);
+      toast.success("Evento atualizado!");
+      setShowModal(null);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        console.log(error);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  const deletePost = async () => {
+    try {
+      const token = localStorage.getItem("@TOKEN");
+
+      api.delete(`fundraisings/${selectedCard.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const newFundraising = fundraising.filter(
+        (post) => post.id != selectedCard.id
+      );
+
+      setFundraising(newFundraising);
+      toast.success("Evento deletado");
+      setShowModal(null);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        console.log(error.status);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  const createPost: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const token = localStorage.getItem("@TOKEN");
+      const id = localStorage.getItem("@UserId");
+      const newData = {
+        ...data,
+        date: data.date.toJSON(),
+        final_date: data.final_date.toJSON(),
+        userId: id,
+      };
+
+      const response = await api.post("fundraisings", newData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setFundraising([...fundraising, response.data]);
+      toast.success("Evento criado com sucesso");
+      setShowModal(null);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        console.log(error);
+      } else {
+        console.log(error);
+      }
+    }
   };
 
   return (
     <Form
-      onSubmit={isDirty ? handleSubmit(uptadePost) : (e) => e.preventDefault()}
+      onSubmit={
+        isDirty && selectedCard.title != "Criar novo evento"
+          ? handleSubmit(uptadePost)
+          : handleSubmit(createPost)
+      }
     >
       <div>
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="title">Nome</label>
+        <small>{errors.title?.message}</small>
         <input
           type="text"
           placeholder="Digíte o nome da campanha"
-          {...register("name")}
+          {...register("title")}
         />
       </div>
       <div>
-        <label htmlFor="date_initial">Data de início</label>
+        <label htmlFor="date">Data de início</label>
+        <small>{errors.date?.message}</small>
         <input type="date" {...register("date")} />
       </div>
       <div>
         <label htmlFor="date_final">Data de fechamento</label>
-        <input type="date" {...register("date_final")} />
+        <small>{errors.final_date?.message}</small>
+        <input type="date" {...register("final_date")} />
       </div>
       <div>
         <label htmlFor="phone">Número de Contato</label>
+        <small>{errors.phone?.message}</small>
         <input
           type="tel"
           placeholder="Digíte o telefone principal"
@@ -72,6 +172,7 @@ const FormFundraising = ({ post }: iFormFundraising) => {
       </div>
       <div>
         <label htmlFor="city">Cidade</label>
+        <small>{errors.city?.message}</small>
         <input
           type="text"
           placeholder="Digíte o nome da cidade"
@@ -80,6 +181,7 @@ const FormFundraising = ({ post }: iFormFundraising) => {
       </div>
       <div>
         <label htmlFor="state">Estado</label>
+        <small>{errors.state?.message}</small>
         <input
           type="text"
           placeholder="Digíte o nome do estado"
@@ -88,6 +190,7 @@ const FormFundraising = ({ post }: iFormFundraising) => {
       </div>
       <div>
         <label htmlFor="address">Endereço</label>
+        <small>{errors.address?.message}</small>
         <input
           type="text"
           placeholder="Digíte a rua e número"
@@ -97,6 +200,7 @@ const FormFundraising = ({ post }: iFormFundraising) => {
 
       <div>
         <label htmlFor="description">Descrição</label>
+        <small>{errors.description?.message}</small>
         <textarea
           placeholder="Descreva mais o evento aqui"
           {...register("description")}
@@ -104,18 +208,40 @@ const FormFundraising = ({ post }: iFormFundraising) => {
       </div>
 
       <div>
-        <ButtonMain color="white" background="button-cancel">
-          Cancelar Evento
-        </ButtonMain>
-        <ButtonMain
-          color="white"
-          background="primary-color"
-          onSubmit={
-            isDirty ? handleSubmit(uptadePost) : (e) => e.preventDefault()
-          }
-        >
-          Alterar evento
-        </ButtonMain>
+        {selectedCard.title != "Criar novo evento" ? (
+          <>
+            <ButtonMain
+              color="white"
+              background="button-cancel"
+              onClick={deletePost}
+            >
+              Cancelar Evento
+            </ButtonMain>
+            <ButtonMain
+              color="white"
+              background="primary-color"
+              onSubmit={
+                isDirty ? handleSubmit(uptadePost) : (e) => e.preventDefault()
+              }
+              type="submit"
+            >
+              Alterar evento
+            </ButtonMain>
+          </>
+        ) : (
+          <>
+            <ButtonMain
+              color="white"
+              background="button-cancel"
+              onClick={() => setShowModal(null)}
+            >
+              Cancelar
+            </ButtonMain>
+            <ButtonMain onSubmit={handleSubmit(createPost)}>
+              Criar evento
+            </ButtonMain>
+          </>
+        )}
       </div>
     </Form>
   );

@@ -16,6 +16,7 @@ const ButtonSmall = styled.button<iButton>`
   background-color: var(
     --${(props) => (props.background ? props.background : "primary-color")}
   );
+  white-space: nowrap;
 
   :hover {
     color: var(
