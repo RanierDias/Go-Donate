@@ -109,7 +109,11 @@ const FormFundraising = () => {
       const newFundraising = fundraising.filter(
         (post) => post.id != selectedCard.id
       );
+      const newSearch = search.filter(
+        (post: iFundraising) => post.id != selectedCard.id
+      );
 
+      setSearch(newSearch);
       setFundraising(newFundraising);
       toast.success("Evento deletado!");
       setShowModal(null);
@@ -127,11 +131,13 @@ const FormFundraising = () => {
       const token = localStorage.getItem("@TOKEN");
       const id = localStorage.getItem("@UserId");
       const newData = {
+        userId: Number(id),
         ...data,
         date: data.date.toJSON(),
         final_date: data.final_date.toJSON(),
-        userId: id,
       };
+
+      console.log(newData)
 
       const response = await api.post("fundraisings", newData, {
         headers: {
