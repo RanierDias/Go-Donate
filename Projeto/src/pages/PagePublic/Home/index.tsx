@@ -22,7 +22,7 @@ const Home = () => {
           <img src={Charity} />
         </figure>
       </section>
-      <ButtonHome><Link to='/'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
+      <ButtonHome><Link to='/public'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
     </MainContainerHome>
   )
 }
