@@ -8,9 +8,9 @@ import { CardPublic, DateContainer, DonateSection, InfoEvent, ListCardContainer,
 
 const PagePublic = () => {
   const [filteredPost, setFilteredPost] = useState<iPosts[]>([])
-  const {posts, setPosts, search, setSearch} = useContext(CompanyContext)
-
-  const test = (value: string) => {
+  const { posts, setPosts, search, setSearch } = useContext(CompanyContext)
+  
+  const filterState = (value: string) => {
     const postFiltered = posts.filter(post => post.state === value)
     setFilteredPost(postFiltered)
   }
@@ -35,6 +35,37 @@ const PagePublic = () => {
     getCompanies()
   }, [])
 
+  const states = [
+    { name: 'Acre', sigla: 'AC' },
+    { name: 'Alagoas', sigla: 'AL' },
+    { name: 'Amapá', sigla: 'AP' },
+    { name: 'Amazonas', sigla: 'AM' },
+    { name: 'Bahia', sigla: 'BA' },
+    { name: 'Ceará', sigla: 'CE' },
+    { name: 'Distrito Federal', sigla: 'DF' },
+    { name: 'Espírito Santo', sigla: 'ES' },
+    { name: 'Goiás', sigla: 'GO' },
+    { name: 'Maranhão', sigla: 'MA' },
+    { name: 'Mato Grosso', sigla: 'MT' },
+    { name: 'Mato Grosso do Sul', sigla: 'MS' },
+    { name: 'Minas Gerais', sigla: 'MG' },
+    { name: 'Pará', sigla: 'PA' },
+    { name: 'Paraíba', sigla: 'PB' },
+    { name: 'Paraná', sigla: 'PR' },
+    { name: 'Pernambuco', sigla: 'PE' },
+    { name: 'Piauí', sigla: 'PI' },
+    { name: 'Rio de Janeiro', sigla: 'RJ' },
+    { name: 'Rio Grande do Norte', sigla: 'RN' },
+    { name: 'Rio Grande do Sul', sigla: 'RS' },
+    { name: 'Rondônia', sigla: 'RO' },
+    { name: 'Roraima', sigla: 'RR' },
+    { name: 'Santa Catarina', sigla: 'SC' },
+    { name: 'São Paulo', sigla: 'SP' },
+    { name: 'Sergipe', sigla: 'SE' },
+    { name: 'Tocantins', sigla: 'TO' }
+  ];
+  
+
   return (
     <>
       <Navbar mode="public"/>
@@ -48,7 +79,7 @@ const PagePublic = () => {
               <span>Segunda-feira</span>
             </DateContainer>
           </div>
-          <Select name='filtro' callback={test}>
+          <Select name='filtro' callback={filterState}>
             <option value="">Selecione o estado</option>
             {posts.map((item) => (
               <option value={item.state}>{item.state}</option>

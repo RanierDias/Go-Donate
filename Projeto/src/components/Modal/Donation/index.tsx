@@ -1,36 +1,26 @@
+import { useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
-import ButtonMain from '../../../styles/buttonMain'
+import { CompanyContext } from '../../../providers/CompanyContext'
 import DonationForm from '../../ModalForm/DonationForm'
-import FormFundraising from '../../ModalForm/Fundraising'
-import { iModalCompany } from '../Company/types'
+import ModalBackground from '../style'
 
-function DonationModal({ callback }: iModalCompany) {
-  // const { setTypeModal } = useContext(UserContext)
+function DonationModal() {
+  const { setShowModal, selectedCard } = useContext(CompanyContext);
 
   return (
-      <section>
+    <ModalBackground>
+      <div>
         <div>
-          <div>
-            <h1>Teste</h1>
-            <button onClick={callback}>
-              <IoClose />
-            </button>
-          </div>
-          
-        {/* <FormFundraising /> */}
-        <DonationForm />
-
-          <div>
-            <ButtonMain color="white" background="button-cancel">
-              Cancelar Evento
-            </ButtonMain>
-            <ButtonMain color="white" background="primary-color">
-              Alterar evento
-            </ButtonMain>
-          </div>
+          <h1>{selectedCard.title}</h1>
+          <button onClick={() => setShowModal(null)}>
+            <IoClose />
+          </button>
         </div>
-      </section>
-    )
+
+        <DonationForm />
+      </div>
+    </ModalBackground>
+  )
 }
 
 export default DonationModal

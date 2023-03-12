@@ -30,6 +30,7 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
         fundraising,
         setFundraising,
         donations,
+        setDonations,
         search,
         setSearch,
         selectedCard,

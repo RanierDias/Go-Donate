@@ -27,3 +27,5 @@ export interface iResponsePost {
   image: string;
   post: iPosts[];
 }
+
+export type { iPosts };

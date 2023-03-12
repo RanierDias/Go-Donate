@@ -107,7 +107,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userLogout = () => {
     setUser(null);
     localStorage.clear();
-    navigate("/homepage");
+    navigate("/");
   };
 
   return (
