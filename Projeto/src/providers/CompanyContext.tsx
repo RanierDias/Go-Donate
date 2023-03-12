@@ -1,14 +1,12 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 import {
   IDefaultProviderProps,
   IDonate,
   IDonateContext,
   iFundraising,
-  iPostCompany,
   iPosts,
 } from "./@types";
-import { UserContext } from "./UserContext/UserContextInitial";
 
 export const CompanyContext = createContext({} as IDonateContext);
 
@@ -20,8 +18,6 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
   const [selectedCard, setSelectedCard] = useState({} as any);
   const [showModal, setShowModal] = useState<null | string>(null);
   const [filter, setFilter] = useState<boolean | string>(true);
-
-  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const loadProducts = async () => {

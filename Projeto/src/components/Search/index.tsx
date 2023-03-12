@@ -8,12 +8,12 @@ const Search = ({ callback }: iSearchForm) => {
   const { register, handleSubmit, formState: {isDirty}} = useForm()
 
   return (
-  <FormSearch>
-    <input type="text" placeholder="Pesquisar participante" {...register('search')}/>
-    <button onSubmit={() => handleSubmit(callback)}>
-      <BsSearch />
-    </button>
-  </FormSearch>
+    <FormSearch>
+      <input type="text" placeholder="Pesquisar participante" {...register('search')}/>
+      <button onSubmit={() => handleSubmit(callback)}>
+        <BsSearch />
+      </button>
+    </FormSearch>
 );
 }
 
