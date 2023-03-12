@@ -23,41 +23,41 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
 
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const res = await api.get("/post");
+  // useEffect(() => {
+  //   const loadProducts = async () => {
+  //     try {
+  //       const res = await api.get("/post");
 
-        setPosts(res.data);
+  //       setPosts(res.data);
 
-        console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    loadProducts();
-  }, []);
+  //       console.log(posts);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   loadProducts();
+  // }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("@userToken");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("@userToken");
 
-    const getDonations = async () => {
-      try {
-        const res = await api.get("/donation", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  //   const getDonations = async () => {
+  //     try {
+  //       const res = await api.get("/donation", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
 
-        setDonations(res.data);
-        console.log(res.data);
-        console.log(donations);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDonations();
-  }, []);
+  //       setDonations(res.data);
+  //       console.log(res.data);
+  //       console.log(donations);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getDonations();
+  // }, []);
 
   return (
     <CompanyContext.Provider

@@ -8,9 +8,10 @@ import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
 import { api } from "../../services/api";
 import Main from "./style";
-import { iFundraising, iPosts } from "./types";
 import { CompanyContext } from "../../providers/CompanyContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
+import { iFundraising, iPosts } from "../../providers/@types";
+import { iResponseFundraising, iResponsePost } from "./types";
 
 const PageCompany = () => {
   const {
@@ -19,11 +20,8 @@ const PageCompany = () => {
     posts,
     setPosts,
     showModal,
-    setShowModal,
     filter,
     setFilter,
-    selectedCard,
-    setSelectedCard,
   } = useContext(CompanyContext);
 
   const { user } = useContext(UserContext);
@@ -46,22 +44,33 @@ const PageCompany = () => {
     async function getListPosts() {
       try {
         const token = localStorage.getItem("@TOKEN");
+        const id = localStorage.getItem("@UserId");
 
-        const response = await api.get<iFundraising[]>("/fundraising", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const responsePost = await api.get<iPosts[]>("/post");
+        const response = await api.get<iResponseFundraising>(
+          `users/${id}?_embed=fundraisings`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const responsePost = await api.get<iResponsePost>(
+          `users/${id}?_embed=post`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        setFundraising(response.data);
-        setPosts(responsePost.data);
+        setFundraising(response.data.fundraisings);
+        setPosts(responsePost.data.post);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error.message);
+        } else {
+          console.log(error);
         }
-
-        console.log(error);
       }
     }
 
@@ -73,22 +82,24 @@ const PageCompany = () => {
       <Navbar mode="private" />
 
       <Main>
-        <h1>Campanhas em andamento teste 1</h1>
+        <h1>Campanhas em andamento</h1>
         <div>
           <section>
             {filter == "donate" || filter == true ? (
               <>
                 <h2>Doações</h2>
                 <ul>
-                  {posts.map((post) => (
-                    <CardPostsCompany
-                      key={post.id}
-                      post={post}
-                      type={"donate"}
-                      callback={setShowModal}
-                      setSelectedPost={setSelectedCard}
-                    />
-                  ))}
+                  {posts.length > 0 ? (
+                    posts.map((post) => (
+                      <CardPostsCompany
+                        key={post.id}
+                        post={post}
+                        type={"donate"}
+                      />
+                    ))
+                  ) : (
+                    <p>Sem posts de doação</p>
+                  )}
                 </ul>
               </>
             ) : (
@@ -99,15 +110,17 @@ const PageCompany = () => {
               <>
                 <h2>Arrecadações</h2>
                 <ul>
-                  {fundraising.map((post) => (
-                    <CardPostsCompany
-                      key={post.id}
-                      post={post}
-                      type={"fundraising"}
-                      callback={setShowModal}
-                      setSelectedPost={setSelectedCard}
-                    />
-                  ))}
+                  {fundraising.length > 0 ? (
+                    fundraising.map((post) => (
+                      <CardPostsCompany
+                        key={post.id}
+                        post={post}
+                        type={"fundraising"}
+                      />
+                    ))
+                  ) : (
+                    <p>Sem posts de arrecadação</p>
+                  )}
                 </ul>
               </>
             ) : (
@@ -139,7 +152,7 @@ const PageCompany = () => {
       </Main>
 
       {showModal == "fundraising" ? (
-        <ModalCompany callback={setShowModal} selectedPost={selectedCard} />
+        <ModalCompany />
       ) : showModal == "donate" ? (
         <h1>Eu sou um modal</h1>
       ) : (

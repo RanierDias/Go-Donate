@@ -6,15 +6,25 @@ import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
 import { iCardFundraising } from "./types";
 import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
+import { useContext } from "react";
+import { CompanyContext } from "../../../../providers/CompanyContext";
 
-const CardFundraising = ({ post, callback, setSelectedPost }: iCardFundraising) => {
+const CardFundraising = ({ post }: iCardFundraising) => {
+  const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
+  const date = post.date.replaceAll("-", "/").match(regExDate);
+  const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
+
+  const { setSelectedCard, setShowModal } = useContext(CompanyContext);
+
   return (
     <Div>
       <h2>{post.title}</h2>
       <div className="description">
         <div>
           <BiTimeFive />
-          <p>{post.date} - {post.final_date}</p>
+          <p>
+            {date} - {dateFinal}
+          </p>
         </div>
         <div>
           <IoLocationOutline />
@@ -43,10 +53,14 @@ const CardFundraising = ({ post, callback, setSelectedPost }: iCardFundraising) 
       >
         Participantes
       </ButtonMain>
-      <ButtonMain onClick={() => {
-        callback("fundraising")
-        setSelectedPost(post)
-      }}>Alterar Evento</ButtonMain>
+      <ButtonMain
+        onClick={() => {
+          setShowModal("fundraising");
+          setSelectedCard(post);
+        }}
+      >
+        Alterar Evento
+      </ButtonMain>
     </Div>
   );
 };
