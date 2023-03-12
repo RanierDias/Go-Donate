@@ -29,7 +29,12 @@ const Form = styled.form`
     margin-bottom: 12px;
 
     > label {
+      font-size: 14px;
+    }
+
+    > small {
       font-size: 12px;
+      color: var(--button-cancel);
     }
 
     > input {

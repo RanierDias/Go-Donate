@@ -68,7 +68,7 @@ export interface IDonateContext {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   donations: IDonate[];
-  selectedCard: iPostCompany | iFundraising | iPosts;
+  selectedCard: iPostCompany;
   setSelectedCard: Dispatch<SetStateAction<any>>;
   showModal: null | string;
   setShowModal: Dispatch<SetStateAction<null | string>>;
