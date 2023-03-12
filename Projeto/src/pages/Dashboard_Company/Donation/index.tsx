@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../../components/Header";
-import ModalCompany from "../../../components/Modal/Company";
-import { IDonate } from "../../../providers/@types";
+import DonationModal from "../../../components/Modal/Donation";
 import { CompanyContext } from "../../../providers/CompanyContext";
 import { api } from "../../../services/api";
-import { iPosts } from "../types";
 import {
   DonateInputSearch,
   DonationCart,
@@ -13,59 +11,66 @@ import {
 } from "./style";
 
 const Donation = () => {
-  const { showModal, setShowModal } = useContext(CompanyContext);
+  const { showModal, setShowModal, posts, setPosts, donations, setDonations, setSelectedCard } = useContext(CompanyContext);
   const [search, setSearch] = useState('')
+  const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
   // const [filteredDonations, setFilteredDonations] = useState<>([])
-  // const [posts, setPosts] = useState<iPosts[]>([]);
-  // const [donations, setDonations] = useState<IDonate[]>([]);
   
-  // useEffect(() => {
-  //   const loadProducts = async () => {
-  //     try {
-  //       const res = await api.get("/post");
+  
+  useEffect(() => {
+      const loadDonations = async () => {
+      const id = localStorage.getItem('@UserId')
+      const token = localStorage.getItem('@TOKEN')
+      
+      try {
+        const res = await api.get(`/users/${id}?_embed=post`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
-  //       setPosts(res.data);
+        setPosts(res.data.post);
 
-  //       console.log(posts);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   loadProducts();
-  // }, []);
+        console.log(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadDonations();
+  }, []);
 
-  //   useEffect(() => {
-  //   const token = localStorage.getItem("@userToken");
+    useEffect(() => {
+    const token = localStorage.getItem("@userToken");
 
-  //   const getDonations = async () => {
-  //     try {
-  //       const res = await api.get("/donation", {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
+    const getDonations = async () => {
+      try {
+        const res = await api.get("/donation", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  //       setDonations(res.data);
-  //       console.log(res.data);
-  //       console.log(donations);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getDonations();
-  // }, []);
+        // setDonations(res.data);
+        console.log(res.data);
+        console.log(donations);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDonations();
+  }, []);
 
   // useEffect(() => {
   //   setFilteredDonations(donations.filter(item => item.name.toLowerCase().includes(search.toLowerCase())))
   // }, [donations, search])
 
   const handleModal = () => {
-    showModal == "open" ? setShowModal("false") : setShowModal("open");
-  };
+    showModal == "open" ? setShowModal("false") : setShowModal("open")
+  }
 
   return (
     <>
-      {showModal == "open" && <ModalCompany callback={handleModal} selectedPost={undefined} />}
+      {showModal == "open" && <DonationModal />}
       <Navbar mode="private" />
       <MainDonationContainer>
         <DonateInputSearch>
@@ -74,6 +79,17 @@ const Donation = () => {
             <input type="text" placeholder="Pesquisar participantes" onChange={e => setSearch(e.target.value)}/>
             <button
               onClick={() => {
+                const cardValue = {
+                  title: "Criar novo evento",
+                  date: new Date().toJSON(),
+                  time: "08:00",
+                  city: "",
+                  state: "",
+                  description: "",
+                }
+
+                setSelectedCard(cardValue)
+
                 handleModal()
               }}
             >
@@ -83,47 +99,19 @@ const Donation = () => {
         </DonateInputSearch>
 
         <DonationList>
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button onClick={() => handleModal()}>Alterar Evento</button>
-          </DonationCart>
+          {posts.map((donation) => (
+            <DonationCart key={donation.id}>
+              <h3>{donation.title}</h3>
+              <span>{donation.date.replaceAll("-", "/").match(regExDate)} - {donation.time}</span>
+              <p>{donation.description}</p>
+              <button onClick={() => {
 
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button>Alterar Evento</button>
-          </DonationCart>
-
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button>Alterar Evento</button>
-          </DonationCart>
-
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button>Alterar Evento</button>
-          </DonationCart>
-
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button>Alterar Evento</button>
-          </DonationCart>
-
-          <DonationCart>
-            <h3>Natal para todos</h3>
-            <span>25/12/2022 - 20:30</span>
-            <p>Some description here. Location there, and bla bla bla</p>
-            <button>Alterar Evento</button>
-          </DonationCart>
+                  setSelectedCard(donation)
+                  handleModal()
+                }
+              }>Alterar Evento</button>
+            </DonationCart>
+          ))}
         </DonationList>
       </MainDonationContainer>
     </>

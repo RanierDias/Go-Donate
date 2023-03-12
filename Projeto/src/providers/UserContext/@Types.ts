@@ -1,4 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
+import { IDonate } from "../@types";
 
 export interface IDefaultProviderProps {
   children: React.ReactNode;
