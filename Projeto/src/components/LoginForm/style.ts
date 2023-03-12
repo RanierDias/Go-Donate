@@ -63,10 +63,22 @@ export const ButtonLogin = styled.button`
   font-family: "Roboto Slab";
   font-weight: 500;
   font-size: 16px;
+
+  transition: .4s ease;
+
+  :hover {
+    background-color: var(--primary-color);
+  }
 `;
 
 export const LinkCreateAccount = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transition: .4s ease;
+
+  :hover {
+    color: var(--gray-20);
+  }
 `;

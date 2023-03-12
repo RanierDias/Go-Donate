@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-export const MainContainerRegister = styled.div`
+export const MainContainerRegister = styled.main`
   background-color: var(--secondary-color);
+
   height: 100vh;
   overflow: auto;
+
+  span {
+    color: var(--white);
+    font-size: .6rem;
+  }
 
   section {
     img {
@@ -13,11 +19,17 @@ export const MainContainerRegister = styled.div`
 
   @media (min-width: 1024px) {
     display: flex;
+    padding: 2rem 3rem;
 
     section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      
       img {
         display: block;
-        height: 100%;
+        width: 60%;
+        margin: 0 auto;
       }
 
       width: 60%;
@@ -33,27 +45,29 @@ export const ContainerSideForm = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin: auto auto;
+  /* margin: auto auto; */
 
   > h2 {
     color: white;
-    font-size: 26px;
+    font-size: 1.3rem;
   }
 `;
 
 export const FormRegister = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: .7rem;
+
   select {
     background-color: var(--inputs-color);
     border: none;
     flex: 1;
     padding: 0px 18px;
     font-size: 18px;
-    color: white;
+    color: var(--gray-30);
     padding: 16px;
     border-radius: 8px;
+
     option {
       color: var(--gray-30);
     }
@@ -69,4 +83,10 @@ export const ButtonCadastrar = styled.button`
   font-family: "Roboto Slab";
   font-weight: 500;
   font-size: 16px;
+
+  transition: .3s ease;
+
+  :hover {
+    background-color: var(--primary-color);
+  }
 `;

@@ -1,8 +1,7 @@
-import { AxiosBasicCredentials, isAxiosError } from "axios";
-import { useContext, useEffect, useState } from "react";
+import { isAxiosError } from "axios";
+import { useContext, useEffect } from "react";
 import CardPerfil from "../../components/Cards/Perfil";
 import CardPostsCompany from "../../components/Cards/PostCompany";
-
 import Navbar from "../../components/Header";
 import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";

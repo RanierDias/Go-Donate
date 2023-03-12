@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./style";
 import { Link } from "react-router-dom";
+import GIF from '../../assets/Charity (2).gif'
+import Charity from '../../assets/Charity-rafiki.svg'
 
 const schema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
@@ -29,7 +31,11 @@ const schema = yup.object({
     .oneOf(
       [yup.ref("password")],
       "Confirmação de senha deve ser igual a senha"
-    ),
+  ),
+  
+  city: yup.string().required("Sua cidade"),
+
+  state: yup.string().required("Seu estado"),
 
   isCompany: yup.string().required("Selecione uma opção"),
 
@@ -50,8 +56,7 @@ const RegisterForm = () => {
   });
 
   const handleRegister: SubmitHandler<IRegisterFormValues> = async (data) => {
-    // console.log(data);
-    // await userRegister(data);
+
     if (data.isCompany == "false") {
       const newData = { ...data, isCompany: false };
       console.log(newData);
@@ -66,13 +71,14 @@ const RegisterForm = () => {
   return (
     <S.MainContainerRegister>
       <section>
-        <img src="/src/assets/imgregister.svg" alt="" />
+        <img src="/src/assets/Logo.svg" />
+        {/* <img src={GIF} /> */}
+        <img src={Charity} />
       </section>
       <S.ContainerSideForm>
-        <img src="/src/assets/Logo.svg" alt="" />
         <h2>Cadastro</h2>
         <S.FormRegister onSubmit={handleSubmit(handleRegister)}>
-          <span>{errors.name?.message}</span>
+          <span>{errors ? errors.name?.message + `*` : null}</span>
           <Input
             type="text"
             placeholder="Nome"
@@ -80,7 +86,7 @@ const RegisterForm = () => {
             leftIcon={<FiUser />}
           />
 
-          <span>{errors.email?.message}</span>
+          <span>{errors ? errors.email?.message + `*` : null}</span>
           <Input
             type="email"
             placeholder="Email"
@@ -88,7 +94,7 @@ const RegisterForm = () => {
             leftIcon={<FiMail />}
           />
 
-          <span>{errors.password?.message}</span>
+          <span>{errors.password?.message + `*`}</span>
           <Input
             type="password"
             placeholder="Senha"
@@ -96,7 +102,7 @@ const RegisterForm = () => {
             leftIcon={<FiLock />}
           />
 
-          <span>{errors.confirmpassword?.message}</span>
+          <span>{errors.confirmpassword?.message + `*`}</span>
           <Input
             type="password"
             placeholder="Confirme sua Senha"
@@ -104,6 +110,7 @@ const RegisterForm = () => {
             leftIcon={<FiLock />}
           />
 
+          <span>{errors.city?.message + `*`}</span>
           <Input
             type="text"
             placeholder="Cidade"
@@ -111,6 +118,7 @@ const RegisterForm = () => {
             leftIcon={<FiMapPin />}
           />
 
+          <span>{errors.state?.message + `*`}</span>
           <Input
             type="text"
             placeholder="Estado"
@@ -118,12 +126,14 @@ const RegisterForm = () => {
             leftIcon={<FiMapPin />}
           />
 
+          <span>{errors.isCompany?.message + `*`}</span>
           <select {...register("isCompany")}>
             <option value="">Selecionar</option>
             <option value="false">Usuário</option>
             <option value="true">Empresa</option>
           </select>
 
+          <span>{errors.image?.message + `*`}</span>
           <Input
             type="url"
             placeholder="Imagem de Perfil"
@@ -131,6 +141,7 @@ const RegisterForm = () => {
             leftIcon={<FiImage />}
           />
 
+          <span>{errors.background?.message + `*`}</span>
           <Input
             type="url"
             placeholder="Thumb do Perfil"
