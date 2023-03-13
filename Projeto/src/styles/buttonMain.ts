@@ -18,6 +18,8 @@ const ButtonMain = styled.button<iButton>`
     --${(props) => (props.background ? props.background : "primary-color")}
   );
 
+  transition: .4s ease;
+
   :hover {
     color: var(
       --${(props) => (props.hover?.color ? props.hover.color : "primary-color")}

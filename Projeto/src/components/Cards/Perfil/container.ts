@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const ContainerMobile = styled.div`
   width: max-content;
   margin: 0 auto;
 
@@ -9,4 +9,12 @@ const Container = styled.div`
   }
 `;
 
-export default Container;
+export const ContainerMain = styled.div`
+  display: none;
+  width: max-content;
+  margin: 0 auto;
+
+  @media (min-width: 769px) {
+    display: block;
+  }
+`;

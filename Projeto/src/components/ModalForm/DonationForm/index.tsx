@@ -1,14 +1,14 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { isAxiosError } from "axios";
-import { useContext } from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { toast } from "react-toastify";
-import { iFundraising, iPosts } from "../../../providers/@types";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { yupResolver } from "@hookform/resolvers/yup"
+import { isAxiosError } from "axios"
+import { useContext } from "react"
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form"
+import { toast } from "react-toastify"
+import { iFundraising, iPosts } from "../../../providers/@types"
+import { CompanyContext } from "../../../providers/CompanyContext"
 import { api } from "../../../services/api";
 import ButtonMain from "../../../styles/buttonMain"
 import * as yup from 'yup'
-import Form from "../style";
+import Form from "../style"
 
 const schema = yup.object({
   title: yup.string().required("O nome da campanha é um campo obrigatório"),
@@ -17,7 +17,7 @@ const schema = yup.object({
   city: yup.string().required("A cidade é um campo obrigatório"),
   state: yup.string().required("O estado é um campo obrigatório"),
   description: yup.string().required("A descrição é um campo obrigatório"),
-});
+})
 
 const DonationForm = () => {
   const {
@@ -28,7 +28,7 @@ const DonationForm = () => {
     search,
     setSearch,
   } = useContext(CompanyContext);
-  const regExDate = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+  const regExDate = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
 
   const {
     register,
@@ -44,7 +44,7 @@ const DonationForm = () => {
       state: selectedCard?.state,
       description: selectedCard?.description,
     },
-  });
+  })
 
   const uptadePost: SubmitHandler<FieldValues> = async (data) => {
     try {
@@ -77,24 +77,24 @@ const DonationForm = () => {
         console.log(error);
       }
     }
-  };
+  }
 
   const deletePost = async () => {
     try {
-      const token = localStorage.getItem("@TOKEN");
+      const token = localStorage.getItem("@TOKEN")
 
-      api.delete(`fundraisings/${selectedCard.id}`, {
+      api.delete(`post/${selectedCard.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      })
 
       const newPost = posts.filter(
         (post) => post.id != selectedCard.id
-      );
+      )
       const newSearch = search.filter(
         (post: iPosts) => post.id != selectedCard.id
-      );
+      )
 
       setSearch(newSearch);
       setPosts(newPost);
@@ -107,7 +107,7 @@ const DonationForm = () => {
         console.log(error);
       }
     }
-  };
+  }
 
   const createPost: SubmitHandler<FieldValues> = async (data) => {
     try {
@@ -125,7 +125,7 @@ const DonationForm = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      })
 
       setPosts([...posts, response.data])
       toast.success("Evento criado com sucesso")
@@ -137,7 +137,7 @@ const DonationForm = () => {
         console.log(error)
       }
     }
-  };
+  }
 
   return (
     <Form
@@ -231,7 +231,7 @@ const DonationForm = () => {
         )}
       </div>
     </Form>
-  );
-};
+  )
+}
 
 export default DonationForm

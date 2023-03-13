@@ -7,15 +7,15 @@ import {
 } from "../../../../pages/Dashboard_Company/style";
 import { CompanyContext } from "../../../../providers/CompanyContext";
 import { UserContext } from "../../../../providers/UserContext/UserContextInitial";
-import Container from "../container";
-import Div from "./style";
+import {ContainerMobile} from "../container";
+import Div, { ContainerMobileCard } from "./style";
 
 const CardPerfilMobile = () => {
   const { user } = useContext(UserContext);
   const { fundraising, posts } = useContext(CompanyContext);
 
   return (
-    <>
+    <ContainerMobileCard>
       <Div>
         <div>
           <img src={user?.image} />
@@ -27,7 +27,7 @@ const CardPerfilMobile = () => {
         </div>
       </Div>
 
-      <Container>
+      <ContainerMobile>
         <ContainerButtonCounter>
           <Badge badgeContent={fundraising.length} color="secondary">
             <ButtonToSee to="/company/fundraising">Arrecadações</ButtonToSee>
@@ -36,8 +36,8 @@ const CardPerfilMobile = () => {
             <ButtonToSee to="/company/donation">Doacões</ButtonToSee>
           </Badge>
         </ContainerButtonCounter>
-      </Container>
-    </>
+      </ContainerMobile>
+    </ContainerMobileCard>
   );
 };
 
