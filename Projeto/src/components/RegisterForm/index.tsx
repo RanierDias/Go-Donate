@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./style";
 import { Link } from "react-router-dom";
-import Charity from '../../assets/Charity-rafiki.svg'
+import Charity from "../../assets/Charity-rafiki.svg";
 
 const schema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
@@ -30,8 +30,8 @@ const schema = yup.object({
     .oneOf(
       [yup.ref("password")],
       "Confirmação de senha deve ser igual a senha"
-  ),
-  
+    ),
+
   city: yup.string().required("Sua cidade"),
 
   state: yup.string().required("Seu estado"),
@@ -55,7 +55,6 @@ const RegisterForm = () => {
   });
 
   const handleRegister: SubmitHandler<IRegisterFormValues> = async (data) => {
-
     if (data.isCompany == "false") {
       const newData = { ...data, isCompany: false };
       console.log(newData);
@@ -82,7 +81,7 @@ const RegisterForm = () => {
             placeholder="Nome"
             {...register("name")}
             leftIcon={<FiUser />}
-            />
+          />
 
           <span>{errors ? errors.email?.message : null}</span>
           <Input
