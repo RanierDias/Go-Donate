@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainContainerHome = styled.main`
@@ -92,32 +93,36 @@ export const MainContainerHome = styled.main`
   }
 `
 
-export const ButtonHome = styled.button`
-  /* background-color: var(--primary-color); */
+export const ButtonLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+
   color: var(--white);
 
-  display: flex;
-  gap: .8rem;
-  align-items: center;
+  max-width: 212px;
 
   padding: .7rem 1rem;
 
   border-radius: 18px;
 
   cursor: pointer;
+  transition: .2s ease;
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background: rgb(18,135,110);
   background: linear-gradient(339deg, rgba(18,135,110,1) 20%, rgba(53,117,56,1) 80%);
 
-  :hover {
-    background-color: white;
-    /* border: 2px solid linear-gradient(339deg, rgba(18,135,110,1) 20%, rgba(53,117,56,1) 80%)ç */
-  }
-
   @media (min-width: 769px) {
     padding: .9rem 1.6rem;
 
     font-size: 1.1rem;
+
+    :hover {
+      color: var(--primary-color);
+
+      background: rgb(170,214,172);
+      background: linear-gradient(298deg, rgba(170,214,172,1) 0%, rgba(255,255,255,1) 85%);
+    }
   }
 `

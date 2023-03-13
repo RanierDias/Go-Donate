@@ -61,4 +61,6 @@ export interface IDonateContext {
   filter: string | boolean;
   setFilter: Dispatch<SetStateAction<string | boolean>>;
   setDonations: React.Dispatch<React.SetStateAction<IDonate[]>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
