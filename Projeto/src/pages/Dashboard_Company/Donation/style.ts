@@ -55,7 +55,9 @@ export const DonateInputSearch = styled.div`
       color: var(--white);
 
       :hover {
-        background-color: var(--button-initial);
+        background-color: var(--white);
+
+        color: var(--primary-color);
       }
     }
   }
@@ -125,9 +127,9 @@ export const DonationCart = styled.li`
     transition: .2s ease;
 
     :hover {
-      background-color: var(--button-initial);
+      background-color: var(--white);
 
-      width: 80%;
+      color: var(--primary-color);
     }
   }
 

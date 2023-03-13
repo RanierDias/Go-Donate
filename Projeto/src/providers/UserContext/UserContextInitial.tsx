@@ -22,14 +22,16 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
       setLoading(true);
-      const response = await api.post("register", formData);
+      const response = await toast.promise(api.post("register", formData), {
+        pending: "Carregando...",
+        success: "Cadastro realizado",
+        error: "Ops! algo deu errado!",
+      });
       console.log(response);
       localStorage.setItem("@TOKEN", response.data.accessToken);
-      toast.success("Cadastro Realizado com sucesso!");
       navigate("/login");
     } catch (error) {
       console.log(error);
-      toast.error("Ops! Algo deu errado");
     } finally {
       setLoading(false);
     }
@@ -38,25 +40,23 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userLogin = async (formData: ILoginFormValues) => {
     try {
       setLoading(true);
-
-      const response = await api.post("login", formData);
+      const response = await toast.promise(api.post("login", formData), {
+        pending: "Carregando...",
+        success: "Login realizado com sucesso",
+      });
       const { isCompany } = response.data.user;
       setUser(response.data.user);
 
       localStorage.setItem("@TOKEN", response.data.accessToken);
       localStorage.setItem("@UserId", response.data.user.id);
-      toast.success("Login realizado com sucesso");
 
       isCompany ? navigate("/company") : navigate("/user");
     } catch (error) {
+      console.log(error);
       if (isAxiosError(error)) {
-        error.status === 401
-          ? toast.error("Senha ou email errados")
-          : error.status === 400
-          ? toast.error(error.response?.data)
-          : toast.error(error.response?.data);
-      } else {
-        toast.error("Ops! Algo deu errado");
+        error.response?.data == "Incorrect password"
+          ? toast.error("Senha ou email inválidos")
+          : toast.error("Ops! Algo deu errado");
       }
     }
   };
