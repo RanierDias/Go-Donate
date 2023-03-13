@@ -14,11 +14,11 @@ const LoginForm = () => {
   return (
     <S.MainContainerLogin>
       <section>
-        <img src="/src/assets/imgregister.svg"/>
+        <img src="/src/assets/imgregister.svg" />
       </section>
 
       <S.ContainerSideForm>
-        <img src="/src/assets/Logo.svg"/>
+        <img src="/src/assets/Logo.svg" />
         <h2>Login</h2>
         <S.FormLogin onSubmit={handleSubmit(userLogin)}>
           <Input
