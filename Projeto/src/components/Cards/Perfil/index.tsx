@@ -1,5 +1,6 @@
 import { Badge } from "@material-ui/core";
 import { useContext } from "react";
+import { BsFillBoxSeamFill } from "react-icons/bs";
 import {
   ContainerButtonCounter,
   ButtonToSee,
@@ -34,10 +35,10 @@ const CardPerfil = ({ type }: { type: string }) => {
       <ContainerMain>
         <ContainerButtonCounter>
           <Badge badgeContent={fundraising.length} color="secondary">
-            <ButtonToSee to="/company/fundraising">Arrecadações</ButtonToSee>
+            <ButtonToSee to="/company/fundraising">Arrecadações <BsFillBoxSeamFill/></ButtonToSee>
           </Badge>
           <Badge badgeContent={posts.length} color="primary">
-            <ButtonToSee to="/company/donation">Doações</ButtonToSee>
+            <ButtonToSee to="/company/donation">Doações <BsFillBoxSeamFill/></ButtonToSee>
           </Badge>
         </ContainerButtonCounter>
       </ContainerMain>

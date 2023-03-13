@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { api } from "../services/api";
+import { createContext, useState } from "react";
 import {
   IDefaultProviderProps,
   IDonate,
@@ -7,7 +6,6 @@ import {
   iFundraising,
   iPosts,
 } from "./@types";
-import { IUser } from "./UserContext/@Types";
 
 export const CompanyContext = createContext({} as IDonateContext);
 
@@ -19,10 +17,13 @@ export const CompanyProvider = ({ children }: IDefaultProviderProps) => {
   const [selectedCard, setSelectedCard] = useState({} as any);
   const [showModal, setShowModal] = useState<null | string>(null);
   const [filter, setFilter] = useState<boolean | string>(true);
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <CompanyContext.Provider
       value={{
+        isLoading,
+        setIsLoading,
         posts,
         setPosts,
         fundraising,

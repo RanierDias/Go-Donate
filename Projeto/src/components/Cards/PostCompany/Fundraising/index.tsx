@@ -8,6 +8,7 @@ import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 import { useContext } from "react";
 import { CompanyContext } from "../../../../providers/CompanyContext";
+import { VscEdit } from "react-icons/vsc";
 
 const CardFundraising = ({ post }: iCardFundraising) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
@@ -59,6 +60,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
           setSelectedCard(post);
         }}
       >
+        <VscEdit />
         Alterar Evento
       </ButtonMain>
     </Div>
