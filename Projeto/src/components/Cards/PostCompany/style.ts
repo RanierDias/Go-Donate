@@ -6,7 +6,7 @@ const Div = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  width: 250px;
+  width: 235px;
   padding: 25px 20px;
   border-radius: 12px;
   background-color: var(--gray-80);

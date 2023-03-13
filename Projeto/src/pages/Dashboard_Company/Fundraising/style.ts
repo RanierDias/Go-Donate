@@ -9,7 +9,6 @@ const Main = styled.main`
     margin: 45px 0;
 
     h1 {
-      width: 90%;
       text-align: center;
     }
 
@@ -38,6 +37,10 @@ const Main = styled.main`
 
     > div:first-child {
       flex-direction: row;
+
+      h1 {
+        text-align: start;
+      }
 
       > div {
         flex-direction: row;
