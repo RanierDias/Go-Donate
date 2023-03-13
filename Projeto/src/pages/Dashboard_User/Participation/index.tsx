@@ -3,42 +3,43 @@ import { useContext, useEffect, useState } from "react";
 import CardParticipation from "../../../components/Cards/PostUser/Participation";
 import { api } from "../../../services/api";
 import Navbar from "../../../components/Header";
-import ModalCompany from "../../../components/Modal/Company";
-import ModalUser from "../../../components/Modal/Participation";
-import { iFundraising } from "../../Dashboard_Company/types";
 import { CompanyContext } from "../../../providers/CompanyContext";
+import { UserContext } from "../../../providers/UserContext/UserContextInitial";
+import ModalUser from "../../../components/Modal/Participation";
 
 const PageParticipations = () => {
-  const { fundraising, setFundraising, selectedCard, setSelectedCard, showModal, setShowModal } = useContext(CompanyContext);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvemV6ZUBtYWlsLmNvbSIsImlhdCI6MTY3ODQ2MDQyMiwiZXhwIjoxNjc4NDY0MDIyLCJzdWIiOiIzIn0.EwUNWNobuHAFFqgSbr1b6ocvQiqt8wimLP_ff6PB6H4";
+  const {
+    donations,
+    setDonations,
+    selectedCard,
+    setSelectedCard,
+    showModal,
+    setShowModal,
+  } = useContext(CompanyContext);
 
   useEffect(() => {
-    async function getListCards() {
+    async function getCardParticipants() {
       try {
-        const response = await api.get<iFundraising[]>("/participation", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        const token = localStorage.getItem("@TOKEN");
+        const userId = localStorage.getItem("@UserId");
+        const response = await api.get(`users/${userId}?_embed=donation`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
-
-        setFundraising(response.data);
+        setDonations(response.data.donation);
       } catch (error) {
         if (isAxiosError(error)) {
-          console.log(error.message);
+          console.log(error);
         }
-
         console.log(error);
       }
     }
-    getListCards();
+    getCardParticipants();
   }, []);
 
-  const handleCardClick = (card: iFundraising) => {
-    setSelectedCard(card);
-    setShowModal("close");
-  };
+  // const handleCardClick = (card) => {
+  //   setSelectedCard(card);
+  //   setShowModal("close");
+  // };
 
   return (
     <>
@@ -50,10 +51,10 @@ const PageParticipations = () => {
 
         <section>
           <ul>
-            {fundraising.map((card) => (
+            {donations.map((card) => (
               <CardParticipation
                 key={card.id}
-                post={card}
+                post={card.post}
                 callback={setShowModal}
                 setSelectedCard={setSelectedCard}
               />

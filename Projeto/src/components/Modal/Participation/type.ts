@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { iFundraising } from "../../../pages/Dashboard_Company/types";
+import { iFundraising } from "../../../providers/@types";
+
 
 export interface iModalUser {
   callback: Dispatch<SetStateAction<null | string>>;

@@ -8,15 +8,34 @@ import Navbar from "../../components/Header";
 import EventUserContainer, { SearchContainerUser } from "./style";
 import { iPosts } from "../Dashboard_Company/types";
 import { CompanyContext } from "../../providers/CompanyContext";
+import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
 const PageUser = () => {
-  const { posts, setPosts } = useContext(CompanyContext);
+  const { fundraising, setFundraising, setDonations } =
+    useContext(CompanyContext);
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     async function getListPostsService() {
       try {
-        const response = await api.get<iPosts[]>("/fundraising");
-        setPosts(response.data);
+        const token = localStorage.getItem("@TOKEN");
+        const userId = localStorage.getItem("@UserId");
+
+        const response = await api.get(`fundraisings`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const responseDonation = await api.get(
+          `users/${userId}?_embed=donation`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        setDonations(responseDonation.data.donation);
+        setFundraising(response.data);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error.message);
@@ -41,21 +60,14 @@ const PageUser = () => {
       <EventUserContainer>
         <section>
           <ul>
-            {posts.map((post) => {
+            {fundraising.map((post) => {
               return <CardPostuser key={post.id} post={post} />;
             })}
           </ul>
         </section>
 
         <aside>
-          <CardPerfil
-            type="user"
-            thumb="src/assets/backgroundUser.jpg"
-            photo="src/assets/perfil.jpeg"
-            name="Roshelle"
-            list1={{ number: 1, link: "/" }}
-            list2={{ number: 1, link: "/" }}
-          />
+          <CardPerfil type="user" />
         </aside>
       </EventUserContainer>
     </>
