@@ -11,6 +11,7 @@ import { CompanyContext } from "../../providers/CompanyContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import { iFundraising, iPosts } from "../../providers/@types";
 import { iResponseFundraising, iResponsePost } from "./types";
+import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
 
 const PageCompany = () => {
   const {
@@ -79,6 +80,8 @@ const PageCompany = () => {
   return (
     <>
       <Navbar mode="private" />
+      
+      <CardPerfilMobile />
 
       <Main>
         <h1>Campanhas em andamento</h1>
