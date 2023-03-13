@@ -118,7 +118,9 @@ export const ButtonToSee = styled(Link)`
   transition: .4s ease;
 
   :hover {
-    background-color: var(--button-initial);
+    background-color: var(--white);
+
+    color: var(--primary-color)
   }
 `
 
