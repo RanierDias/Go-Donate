@@ -82,7 +82,7 @@ const Main = styled.main`
     margin: 0 8.5rem;
 
     h1 {
-      text-align: start;
+      text-align: left;
     }
   }
 `;

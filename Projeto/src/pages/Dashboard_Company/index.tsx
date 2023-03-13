@@ -12,6 +12,7 @@ import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import { iFundraising, iPosts } from "../../providers/@types";
 import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
+import DonationModal from "../../components/Modal/Donation";
 
 const PageCompany = () => {
   const {
@@ -156,7 +157,7 @@ const PageCompany = () => {
       {showModal == "fundraising" ? (
         <ModalCompany />
       ) : showModal == "donate" ? (
-        <h1>Eu sou um modal</h1>
+        <DonationModal />
       ) : (
         false
       )}

@@ -20,7 +20,6 @@ const Div = styled.div`
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--gray-30);
 
     img {
       width: 100%;
@@ -43,24 +42,6 @@ const Div = styled.div`
       width: 100px;
       border-radius: 50%;
       overflow: hidden;
-    }
-  }
-
-  .event--perfil {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 6px 12px;
-    margin-top: 16px;
-
-    :hover {
-      cursor: pointer;
-      background-color: var(--gray-60);
-    }
-
-    span {
-      align-self: flex-end;
-      translate: 0 -20px;
     }
   }
 

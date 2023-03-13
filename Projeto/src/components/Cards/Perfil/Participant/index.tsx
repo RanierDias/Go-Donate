@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { UserContext } from "../../../providers/UserContext/UserContextInitial";
-import Div from "./style";
+import { IUser } from "../../../../providers/UserContext/@Types";
+import ButtonMain from "../../../../styles/buttonMain";
+import Div from "../style";
 
-const CardPerfil = () => {
-  const { user } = useContext(UserContext);
-
+const CardPerfilParticipant = ({ user }: { user: IUser }) => {
   return (
     <Div>
       <div className="perfil">
@@ -18,8 +17,10 @@ const CardPerfil = () => {
         <h3>{user?.name}</h3>
         <p>{user?.email}</p>
       </div>
+
+      <ButtonMain>Confirmar Participação</ButtonMain>
     </Div>
   );
 };
 
-export default CardPerfil;
+export default CardPerfilParticipant;

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import CardPerfil from "../../../components/Cards/Perfil";
+import CardPerfilParticipant from "../../../components/Cards/Perfil/Participant";
 import Navbar from "../../../components/Header";
 import Search from "../../../components/Search";
 import { iFundraising } from "../../../providers/@types";
@@ -34,19 +35,21 @@ const PageParticipants = () => {
         <section>
           <ul>
             {search.length > 0
-              ? search.map((post: IUser) => <CardPerfil />)
-              : donations.map((post) => <CardPerfil />)}
+              ? search.map((user: IUser) => <CardPerfilParticipant user={user} />)
+              : donations.map((user) => <CardPerfilParticipant user={user.user}/>)}
           </ul>
         </section>
       </Main>
 
-      {showModal === "fundraising" ? (
+      {/* {showModal === "fundraising" ? (
         <ModalCompany />
       ) : showModal === "newFundraising" ? (
         <ModalCompany />
       ) : (
         false
-      )}
+      )} */}
     </>
   );
 };
+
+export default PageParticipants
