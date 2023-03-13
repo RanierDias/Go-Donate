@@ -1,18 +1,57 @@
 import styled from "styled-components";
 
 const Main = styled.main`
-  padding: 1rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-
-  @media (min-width: 1024px) {
-    padding: 1.7rem 12vw;
+  > div:first-child {
+    display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
+    margin: 45px 0;
+
+    h1 {
+      width: 90%;
+      text-align: center;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+  }
+
+  > section {
+    > ul {
+      display: flex;
+      gap: 45px;
+      width: 90%;
+      margin: 0 auto;
+      overflow-x: scroll;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 0 12vw;
+
+    > div:first-child {
+      flex-direction: row;
+
+      > div {
+        flex-direction: row;
+        gap: 24px;
+      }
+    }
+
+    > section {
+      > ul {
+        width: 100%;
+        flex-wrap: wrap;
+        overflow-x: hidden;
+      }
+    }
   }
 `
 export const ContainerSearchAndButton = styled.div`

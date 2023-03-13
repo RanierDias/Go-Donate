@@ -14,6 +14,11 @@ const Div = styled.div`
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
+  h3 {
+    color: var(--gray-20);
+    font-size: .9rem;
+  }
+
   .perfil {
     position: relative;
     display: flex;
@@ -43,6 +48,8 @@ const Div = styled.div`
       width: 100px;
       border-radius: 50%;
       overflow: hidden;
+
+      border: 3.7px solid var(--white);
     }
   }
 
@@ -58,9 +65,15 @@ const Div = styled.div`
       background-color: var(--gray-60);
     }
 
+    p {
+      color: var(--gray-20);
+    }
+
     span {
       align-self: flex-end;
       translate: 0 -20px;
+
+      color: var(--white);
     }
   }
 
