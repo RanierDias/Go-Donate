@@ -8,14 +8,14 @@ import {
 import { CompanyContext } from "../../../../providers/CompanyContext";
 import { UserContext } from "../../../../providers/UserContext/UserContextInitial";
 import {ContainerMobile} from "../container";
-import Div from "./style";
+import Div, { ContainerMobileCard } from "./style";
 
 const CardPerfilMobile = () => {
   const { user } = useContext(UserContext);
   const { fundraising, posts } = useContext(CompanyContext);
 
   return (
-    <>
+    <ContainerMobileCard>
       <Div>
         <div>
           <img src={user?.image} />
@@ -37,7 +37,7 @@ const CardPerfilMobile = () => {
           </Badge>
         </ContainerButtonCounter>
       </ContainerMobile>
-    </>
+    </ContainerMobileCard>
   );
 };
 

@@ -36,7 +36,7 @@ const Main = styled.main`
         margin-bottom: 1rem;
 
         @media (min-width: 769px) {
-          gap: 4rem;
+          gap: 1.7rem;
         }
       }
     }
@@ -107,8 +107,9 @@ export const ButtonToSee = styled(Link)`
   background-color: var(--primary-color);
 
   color: var(--white);
+  font-size: .9rem;
 
-  padding: .7rem 1.1rem;
+  padding: .7rem 1.3rem;
 
   border-radius: 10px;
 

@@ -51,13 +51,13 @@ const Div = styled.div`
   @media (min-width: 769px) {
       h2 {
       color: var(--white);
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     p {
-      font-size: .94rem;
+      font-size: .8rem;
     }
   }
-`;
+`
 
 export default Div;

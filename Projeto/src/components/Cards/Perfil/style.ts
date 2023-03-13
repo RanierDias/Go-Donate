@@ -26,11 +26,6 @@ const Div = styled.div`
       width: 100%;
     }
 
-    > h3 {
-      color: var(--gray-20);
-      font-size: 0.9rem;
-    }
-
     > small {
       font-size: 12px;
     }
@@ -55,11 +50,30 @@ const Div = styled.div`
 
       border: 3.7px solid var(--white);
     }
+
+    @media (min-width: 769px) {
+      > small {
+        font-size: .7rem;
+      }
+    }
   }
 
   @media (min-width: 769px) {
     display: flex;
   }
-`;
+`
+
+export const InfoUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+
+  align-items: center;
+
+  > h3 {
+      color: var(--gray-20);
+      font-size: 1rem;
+  }
+`
 
 export default Div
