@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { isAxiosError } from "axios";
-import { BsSearch } from "react-icons/bs";
+import { VscAdd } from "react-icons/vsc";
 
 import { api } from "../../../services/api";
 import Navbar from "../../../components/Header";
@@ -88,6 +88,7 @@ const PageFundraising = () => {
             <Search callback={({ search }) => searchPost(search)} />
 
             <ButtonSmall onClick={openModalCreateFundraising}>
+            <VscAdd />
               Adcionar evento
             </ButtonSmall>
           </div>

@@ -5,6 +5,7 @@ import * as yup from "yup";
 import Form from "../style";
 import { iFormParticipation } from "./type";
 import ButtonMain from "../../../styles/buttonMain";
+import { VscEdit } from "react-icons/vsc";
 
 const schema = yup.object({
   name: yup.string().required("O nome da campanha é um campo obrigatório"),
@@ -113,6 +114,7 @@ const FormParticipation = ({ post }: iFormParticipation) => {
             isDirty ? handleSubmit(uptadePost) : (e) => e.preventDefault()
           }
         >
+        <VscEdit />
           Alterar evento
         </ButtonMain>
       </div>

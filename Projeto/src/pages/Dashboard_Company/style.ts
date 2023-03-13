@@ -103,13 +103,15 @@ export const ContainerButtonCounter = styled.div`
 `
 
 export const ButtonToSee = styled(Link)`
-
+  display: flex;
+  align-items: center;
+  gap: .2rem;
   background-color: var(--primary-color);
 
   color: var(--white);
   font-size: .9rem;
 
-  padding: .7rem 1.3rem;
+  padding: .8rem;
 
   border-radius: 10px;
 

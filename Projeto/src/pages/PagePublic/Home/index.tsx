@@ -1,14 +1,13 @@
 import { FaFingerprint, FaLeaf } from 'react-icons/fa'
 import Charity from '../../../assets/Charity.gif'
-import { ButtonHome, MainContainerHome } from './style'
-import { Link } from "react-router-dom"
+import { ButtonLink, MainContainerHome } from './style'
 
 const Home = () => {
 
   return (
     <MainContainerHome>
       <header>
-        <ButtonHome><Link to='/login'>Go.Donate <FaFingerprint /></Link></ButtonHome>
+        <ButtonLink to='/login'>Go.Donate <FaFingerprint /></ButtonLink>
       </header>
       <section>
         <div>
@@ -22,7 +21,7 @@ const Home = () => {
           <img src={Charity} />
         </figure>
       </section>
-      <ButtonHome><Link to='/public'>Ver Campanhas <FaLeaf /></Link></ButtonHome>
+      <ButtonLink to='/public'>Ver Campanhas <FaLeaf /></ButtonLink>
     </MainContainerHome>
   )
 }

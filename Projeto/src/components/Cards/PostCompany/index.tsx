@@ -8,6 +8,7 @@ import { iCardPostsCompany } from "./types";
 import ButtonMain from "../../../styles/buttonMain";
 import { useContext, useEffect } from "react";
 import { CompanyContext } from "../../../providers/CompanyContext";
+import { VscEdit } from "react-icons/vsc";
 
 const CardPostsCompany = ({ post, type }: iCardPostsCompany) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
@@ -58,6 +59,7 @@ const CardPostsCompany = ({ post, type }: iCardPostsCompany) => {
           setShowModal(type);
         }}
       >
+        <VscEdit />
         Alterar Evento
       </ButtonMain>
     </Div>
