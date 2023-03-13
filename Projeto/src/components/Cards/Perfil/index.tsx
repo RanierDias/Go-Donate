@@ -7,7 +7,7 @@ import {
 import { CompanyContext } from "../../../providers/CompanyContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import { ContainerMain } from "./container";
-import Div from "./style";
+import Div, { InfoUser } from "./style";
 
 const CardPerfil = ({ type }: { type: string }) => {
   const { user } = useContext(UserContext);
@@ -24,8 +24,10 @@ const CardPerfil = ({ type }: { type: string }) => {
             <img src={user?.image} alt="perfil diferente" />
           </div>
 
-          <h3>{user?.name}</h3>
-          <small>{user?.email}</small>
+          <InfoUser>
+            <h3>{user?.name}</h3>
+            <small>{user?.email}</small>
+          </InfoUser>
         </div>
       </Div>
 
@@ -35,7 +37,7 @@ const CardPerfil = ({ type }: { type: string }) => {
             <ButtonToSee to="/company/fundraising">Arrecadações</ButtonToSee>
           </Badge>
           <Badge badgeContent={posts.length} color="primary">
-            <ButtonToSee to="/company/donation">Doacões</ButtonToSee>
+            <ButtonToSee to="/company/donation">Doações</ButtonToSee>
           </Badge>
         </ContainerButtonCounter>
       </ContainerMain>

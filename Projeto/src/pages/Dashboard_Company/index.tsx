@@ -6,12 +6,11 @@ import Navbar from "../../components/Header";
 import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
 import { api } from "../../services/api";
-import Main, { ButtonToSee, ContainerButtonCounter } from "./style";
+import Main from "./style";
 import { CompanyContext } from "../../providers/CompanyContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
-import { Badge } from "@material-ui/core";
 import DonationModal from "../../components/Modal/Donation";
 
 const PageCompany = () => {
