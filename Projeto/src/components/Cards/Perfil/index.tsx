@@ -6,6 +6,7 @@ import {
 } from "../../../pages/Dashboard_Company/style";
 import { CompanyContext } from "../../../providers/CompanyContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
+import { ContainerMain } from "./container";
 import Div from "./style";
 
 const CardPerfil = ({ type }: { type: string }) => {
@@ -26,7 +27,9 @@ const CardPerfil = ({ type }: { type: string }) => {
           <h3>{user?.name}</h3>
           <small>{user?.email}</small>
         </div>
+      </Div>
 
+      <ContainerMain>
         <ContainerButtonCounter>
           <Badge badgeContent={fundraising.length} color="secondary">
             <ButtonToSee to="/company/fundraising">Arrecadações</ButtonToSee>
@@ -35,7 +38,7 @@ const CardPerfil = ({ type }: { type: string }) => {
             <ButtonToSee to="/company/donation">Doacões</ButtonToSee>
           </Badge>
         </ContainerButtonCounter>
-      </Div>
+      </ContainerMain>
     </>
   );
 };
