@@ -6,6 +6,7 @@ const Div = styled.div`
   align-items: center;
   width: 250px;
   padding-bottom: 12px;
+  margin-bottom: 12px;
   font-size: 0.875rem;
   color: var(--white);
   border-radius: 12px;
@@ -13,11 +14,6 @@ const Div = styled.div`
   background-color: var(--gray-80);
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-  h3 {
-    color: var(--gray-20);
-    font-size: .9rem;
-  }
 
   .perfil {
     position: relative;
@@ -28,6 +24,15 @@ const Div = styled.div`
 
     img {
       width: 100%;
+    }
+
+    > h3 {
+      color: var(--gray-20);
+      font-size: 0.9rem;
+    }
+
+    > small {
+      font-size: 12px;
     }
 
     .perfil__thumb {
@@ -52,7 +57,7 @@ const Div = styled.div`
     }
   }
 
-  @media(min-width: 769px) {
+  @media (min-width: 769px) {
     display: flex;
   }
 `;

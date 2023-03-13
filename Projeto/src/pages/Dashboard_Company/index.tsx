@@ -81,7 +81,7 @@ const PageCompany = () => {
   return (
     <>
       <Navbar mode="private" />
-      
+
       <CardPerfilMobile />
 
       <Main>
@@ -138,18 +138,10 @@ const PageCompany = () => {
             </Select>
 
             {user && (
-              <CardPerfil
-                type="company"
-              />
+              <>
+                <CardPerfil type="company" />
+              </>
             )}
-            <ContainerButtonCounter>
-              <Badge badgeContent={fundraising.length} color="secondary">
-                <ButtonToSee to='/company/fundraising'>Arrecadações</ButtonToSee>
-              </Badge>
-              <Badge badgeContent={posts.length} color="primary">
-                <ButtonToSee to='/company/donation'>Doacões</ButtonToSee>
-              </Badge>
-            </ContainerButtonCounter>
           </aside>
         </div>
       </Main>
