@@ -13,7 +13,6 @@ import { iFundraising, iPosts } from "../../providers/@types";
 import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
 import { Badge } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 const PageCompany = () => {
   const {
