@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { IUser } from "./UserContext/@Types";
 
 export interface IDefaultProviderProps {
   children: React.ReactNode;
@@ -41,6 +42,8 @@ export interface IDonate {
   postId: number;
   role: string;
   participated: string;
+  post: iPosts;
+  user: IUser;
 }
 
 export interface IDonateContext {

@@ -6,6 +6,7 @@ const Div = styled.div`
   align-items: center;
   width: 250px;
   padding-bottom: 12px;
+  margin-bottom: 12px;
   font-size: 0.875rem;
   color: var(--white);
   border-radius: 12px;
@@ -14,21 +15,24 @@ const Div = styled.div`
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-  h3 {
-    color: var(--gray-20);
-    font-size: .9rem;
-  }
-
   .perfil {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--gray-30);
 
     img {
       width: 100%;
+    }
+
+    > h3 {
+      color: var(--gray-20);
+      font-size: 0.9rem;
+    }
+
+    > small {
+      font-size: 12px;
     }
 
     .perfil__thumb {
@@ -53,31 +57,7 @@ const Div = styled.div`
     }
   }
 
-  .event--perfil {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 6px 12px;
-    margin-top: 16px;
-
-    :hover {
-      cursor: pointer;
-      background-color: var(--gray-60);
-    }
-
-    p {
-      color: var(--gray-20);
-    }
-
-    span {
-      align-self: flex-end;
-      translate: 0 -20px;
-
-      color: var(--white);
-    }
-  }
-
-  @media(min-width: 769px) {
+  @media (min-width: 769px) {
     display: flex;
   }
 `;
