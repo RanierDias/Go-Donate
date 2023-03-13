@@ -5,7 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { api } from "../../../services/api";
 import Navbar from "../../../components/Header";
 import ButtonSmall from "../../../styles/buttonSmall";
-import Main from "./style";
+import Main, { ContainerSearchAndButton, ListOfCards, SectionContainer } from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
 import ModalCompany from "../../../components/Modal/Company";
 import { CompanyContext } from "../../../providers/CompanyContext";
@@ -82,9 +82,8 @@ const PageFundraising = () => {
     <>
       <Navbar mode="private" />
       <Main>
-        <div>
+        <ContainerSearchAndButton>
           <h1>Campanhas de arrecadações</h1>
-
           <div>
             <Search callback={({ search }) => searchPost(search)} />
 
@@ -92,10 +91,10 @@ const PageFundraising = () => {
               Adcionar evento
             </ButtonSmall>
           </div>
-        </div>
+        </ContainerSearchAndButton>
 
-        <section>
-          <ul>
+        <SectionContainer>
+          <ListOfCards>
             {search.length > 0
               ? search.map((post: iFundraising) => (
                   <CardFundraising key={post.id} post={post} />
@@ -103,8 +102,8 @@ const PageFundraising = () => {
               : fundraising.map((post) => (
                   <CardFundraising key={post.id} post={post} />
                 ))}
-          </ul>
-        </section>
+          </ListOfCards>
+        </SectionContainer>
       </Main>
 
       {showModal === "fundraising" ? (

@@ -17,21 +17,21 @@ const CardPerfil = ({ type, thumb, photo, name, list1, list2 }: iCardPerfil) => 
       </div>
 
       <Link to={list1.link} className="event--perfil">
-        <p>{type == "user" ? "Participações" : "Arrecadações"}</p>
+        <p>{type == "user" ? "Participações:" : "Arrecadações:"}</p>
         <span>{list1.number}</span>
         <p>
           {type == "user"
             ? "Veja suas participações"
-            : "Monitore os eventos"}
+            : "Monitore os eventos!"}
         </p>
       </Link>
       <Link to={list2.link} className="event--perfil">
-        <p>{type == "user" ? "Participações Concluídas" : "Doações"}</p>
+        <p>{type == "user" ? "Participações Concluídas:" : "Doações:"}</p>
         <span>{list2.number}</span>
         <p>
           {type == "user"
             ? "Veja suas participações"
-            : "Monitore os eventos"}
+            : "Monitore os eventos!"}
         </p>
       </Link>
     </Div>

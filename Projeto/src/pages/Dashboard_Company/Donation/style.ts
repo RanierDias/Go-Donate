@@ -79,7 +79,7 @@ export const DonationList = styled.ul`
 
   @media (min-width: 700px) {
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 2rem;
   }
 `
 
