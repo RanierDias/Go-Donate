@@ -18,7 +18,7 @@ const MainRoutes = () => {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route
-        path="/"
+        path="/public"
         element={
           <CompanyProvider>
             <PagePublic />
@@ -26,7 +26,7 @@ const MainRoutes = () => {
         }
       />
       <Route path="*" element={<Home />} />
-      <Route path="/homepage" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route element={<ProtectRoute />}>
         <Route
           path="/user"

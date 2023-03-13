@@ -57,4 +57,5 @@ export interface IDonateContext {
   setShowModal: Dispatch<SetStateAction<null | string>>;
   filter: string | boolean;
   setFilter: Dispatch<SetStateAction<string | boolean>>;
+  setDonations: React.Dispatch<React.SetStateAction<IDonate[]>>;
 }

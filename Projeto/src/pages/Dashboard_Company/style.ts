@@ -10,6 +10,7 @@ const Main = styled.main`
   h1 {
     font-size: 1.2rem;
     color: var(--gray-80);
+    text-align: center;
   }
 
   > div {
@@ -59,6 +60,7 @@ const Main = styled.main`
 
     > div {
       flex-direction: row;
+      justify-content: space-between;
 
     ul {
       display: flex;
@@ -78,6 +80,10 @@ const Main = styled.main`
 
   @media (min-width: 796px) {
     margin: 0 8.5rem;
+
+    h1 {
+      text-align: start;
+    }
   }
 `;
 
