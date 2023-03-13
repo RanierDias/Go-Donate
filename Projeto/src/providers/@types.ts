@@ -38,6 +38,7 @@ export interface iFundraising {
 export interface IDonate {
   uuidCompany: string;
   uuidUser: string;
+  fundraisingId: number;
   id: number;
   postId: number;
   role: string;
