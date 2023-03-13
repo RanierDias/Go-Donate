@@ -1,33 +1,70 @@
 import styled from "styled-components";
 
 const Main = styled.main`
-  > div:first-child {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 45px 0;
+  padding: 1rem;
 
-    > div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 25px;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 
-  > section {
-    > ul {
-      display: flex;
-      flex-wrap: wrap;
-      /* flex-direction: row; */
-      justify-content: flex-start;
-      gap: 1rem;
-    }
-  }
-  
   @media (min-width: 1024px) {
-    padding: 0 12vw;
+    padding: 1.7rem 12vw;
+    justify-content: space-between;
+    align-items: stretch;
   }
-`;
+`
+export const ContainerSearchAndButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-export default Main;
+  h1 {
+    font-size: .9rem;
+    color: var(--gray-20);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 1.1rem;
+    }
+
+    div {
+      flex-direction: row;
+    }
+  }
+`
+
+export const SectionContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`
+
+export const ListOfCards = styled.ul`
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: .6rem;
+
+  height: 100vh;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    height: max-content;
+  }
+`
+
+export default Main
