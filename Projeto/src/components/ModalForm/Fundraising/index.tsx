@@ -11,6 +11,7 @@ import { api } from "../../../services/api";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
 import { iFundraising } from "../../../providers/@types";
+import { VscEdit } from "react-icons/vsc";
 
 const schema = yup.object({
   title: yup.string().required("O nome da campanha é um campo obrigatório"),
@@ -258,6 +259,7 @@ const FormFundraising = () => {
               }
               type="submit"
             >
+              <VscEdit />
               Alterar evento
             </ButtonMain>
           </>
