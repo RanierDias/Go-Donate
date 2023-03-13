@@ -42,6 +42,10 @@ export const DonateInputSearch = styled.div`
     }
     
     button {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      
       border-radius: 10px;
       padding: .6rem 1rem;
       background-color: var(--primary-color);
@@ -106,6 +110,10 @@ export const DonationCart = styled.li`
   }
 
   button {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    
     border-radius: 10px;
     padding: .6rem 1.8rem;
 

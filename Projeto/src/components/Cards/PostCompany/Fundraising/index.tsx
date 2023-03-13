@@ -8,6 +8,7 @@ import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 import { useContext } from "react";
 import { CompanyContext } from "../../../../providers/CompanyContext";
+import { VscEdit } from "react-icons/vsc";
 import { UserContext } from "../../../../providers/UserContext/UserContextInitial";
 
 const CardFundraising = ({ post }: iCardFundraising) => {
@@ -16,7 +17,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
 
   const { setSelectedCard, setShowModal } = useContext(CompanyContext);
-  const {navigate} = useContext(UserContext)
+  const { navigate } = useContext(UserContext);
 
   return (
     <Div>
@@ -62,6 +63,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
           setSelectedCard(post);
         }}
       >
+        <VscEdit />
         Alterar Evento
       </ButtonMain>
     </Div>

@@ -9,6 +9,7 @@ import { api } from "../../../services/api";
 import ButtonMain from "../../../styles/buttonMain"
 import * as yup from 'yup'
 import Form from "../style"
+import { VscEdit } from "react-icons/vsc"
 
 const schema = yup.object({
   title: yup.string().required("O nome da campanha é um campo obrigatório"),
@@ -212,6 +213,7 @@ const DonationForm = () => {
               }
               type="submit"
             >
+              <VscEdit />
               Alterar evento
             </ButtonMain>
           </>

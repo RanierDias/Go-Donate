@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { VscAdd, VscEdit } from "react-icons/vsc";
 import Navbar from "../../../components/Header";
 import DonationModal from "../../../components/Modal/Donation";
 import { CompanyContext } from "../../../providers/CompanyContext";
@@ -93,6 +94,7 @@ const Donation = () => {
                 handleModal()
               }}
             >
+            <VscAdd />
               Adicionar evento
             </button>
           </div>
@@ -109,7 +111,7 @@ const Donation = () => {
                   setSelectedCard(donation)
                   handleModal()
                 }
-              }>Alterar Evento</button>
+              }><VscEdit />Alterar Evento</button>
             </DonationCart>
           ))}
         </DonationList>

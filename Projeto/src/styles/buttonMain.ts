@@ -10,6 +10,10 @@ interface iButton {
 }
 
 const ButtonMain = styled.button<iButton>`
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  
   padding: 8px 20px;
   color: var(--${(props) => (props.color ? props.color : "white")});
   border-radius: 8px;
