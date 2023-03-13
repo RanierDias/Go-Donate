@@ -36,7 +36,7 @@ const PageParticipants = () => {
           <ul>
             {search.length > 0
               ? search.map((user: IUser) => <CardPerfilParticipant user={user} />)
-              : donations.map((user) => <CardPerfilParticipant user={user.user}/>)}
+              : donations.map((donation) => <CardPerfilParticipant user={donation.user}/>)}
           </ul>
         </section>
       </Main>

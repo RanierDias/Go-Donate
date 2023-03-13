@@ -4,6 +4,7 @@ import ProtectRoute from "./components/ProtectRoute";
 import PageCompany from "./pages/Dashboard_Company";
 import Donation from "./pages/Dashboard_Company/Donation";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
+import PageParticipants from "./pages/Dashboard_Company/Participants";
 import PageUser from "./pages/Dashboard_User";
 import PageParticipations from "./pages/Dashboard_User/Participation";
 import PagePublic from "./pages/PagePublic";
@@ -60,6 +61,16 @@ const MainRoutes = () => {
             <CompanyProvider>
               <UserProvider>
                 <PageFundraising />
+              </UserProvider>
+            </CompanyProvider>
+          }
+        />
+        <Route
+          path="/company/fundraising/participants"
+          element={
+            <CompanyProvider>
+              <UserProvider>
+                <PageParticipants />
               </UserProvider>
             </CompanyProvider>
           }

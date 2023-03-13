@@ -8,6 +8,7 @@ import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 import { useContext } from "react";
 import { CompanyContext } from "../../../../providers/CompanyContext";
+import { UserContext } from "../../../../providers/UserContext/UserContextInitial";
 
 const CardFundraising = ({ post }: iCardFundraising) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
@@ -15,6 +16,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
 
   const { setSelectedCard, setShowModal } = useContext(CompanyContext);
+  const {navigate} = useContext(UserContext)
 
   return (
     <Div>
@@ -50,6 +52,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
         color="gray-60"
         background="white"
         hover={{ color: "white", background: "gray-60" }}
+        onClick={() => navigate("participants")}
       >
         Participantes
       </ButtonMain>
