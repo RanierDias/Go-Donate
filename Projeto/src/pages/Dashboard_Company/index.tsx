@@ -6,12 +6,12 @@ import Navbar from "../../components/Header";
 import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
 import { api } from "../../services/api";
-import Main from "./style";
+import Main, { ButtonToSee, ContainerButtonCounter } from "./style";
 import { CompanyContext } from "../../providers/CompanyContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
-import { iFundraising, iPosts } from "../../providers/@types";
 import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
+import { Badge } from "@material-ui/core";
 import DonationModal from "../../components/Modal/Donation";
 
 const PageCompany = () => {
@@ -140,16 +140,16 @@ const PageCompany = () => {
             {user && (
               <CardPerfil
                 type="company"
-                thumb={user?.background}
-                photo={user?.image}
-                name={user?.name}
-                list1={{
-                  number: fundraising.length,
-                  link: "/company/fundraising",
-                }}
-                list2={{ number: posts.length, link: "/company/donation" }}
               />
             )}
+            <ContainerButtonCounter>
+              <Badge badgeContent={fundraising.length} color="secondary">
+                <ButtonToSee to='/company/fundraising'>Arrecadações</ButtonToSee>
+              </Badge>
+              <Badge badgeContent={posts.length} color="primary">
+                <ButtonToSee to='/company/donation'>Doacões</ButtonToSee>
+              </Badge>
+            </ContainerButtonCounter>
           </aside>
         </div>
       </Main>

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import Div from "./style";
 
-const CardPerfil = () => {
+const CardPerfil = ({ type }: { type: string }) => {
   const { user } = useContext(UserContext);
 
   return (
