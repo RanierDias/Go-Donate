@@ -1,6 +1,8 @@
 import ButtonMain from "../../../../styles/buttonMain";
-import StyleCardParticipation from "./style";
+import StyleCardParticipation, { InfoUser, SectionUserParticipation } from "./style";
 import { iCardParticipation } from "./type";
+import { AiFillCalendar, AiOutlineFieldTime } from 'react-icons/ai'
+import { FaRegAddressCard } from "react-icons/fa";
 
 const CardParticipation = ({
   post,
@@ -14,35 +16,17 @@ const CardParticipation = ({
   return (
     <>
       <StyleCardParticipation>
-        <section>
-          <div>
+        <SectionUserParticipation>
+          <InfoUser>
             <img src={post.image} alt="Imagem Participação" />
-          </div>
-
-          <div>
-            <h2>{post.title}</h2>
-          </div>
-
-          <div>
-            <p>
-              {date} - {dateFinal}
-            </p>
-          </div>
-
-          <div>
-            <h3>
-              {post.open_time} - {post.close_time}
-            </h3>
-          </div>
-
-          <div>
-            <p>{post.phone}</p>
-          </div>
-
-          <div>
-            <p>{post.address}</p>
-          </div>
-
+            <div>
+              <h2>{post.title}</h2>
+              <span>{post.phone}</span>
+            </div>
+          </InfoUser>
+            <p><AiFillCalendar /> {date} - {dateFinal}</p>
+            <span><AiOutlineFieldTime /> {post.open_time} - {post.close_time}</span>
+            <span><FaRegAddressCard /> {post.address}</span>
           <ButtonMain
             onClick={() => {
               callback("participation");
@@ -51,7 +35,7 @@ const CardParticipation = ({
           >
             Mostrar Detalhes
           </ButtonMain>
-        </section>
+        </SectionUserParticipation>
       </StyleCardParticipation>
     </>
   );
