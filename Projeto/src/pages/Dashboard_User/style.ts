@@ -1,15 +1,15 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const EventUserContainer = styled.main`
-   padding: 1rem;
+  padding: 1rem;
 
-   @media (min-width: 769px) {
+  @media (min-width: 769px) {
     display: flex;
     justify-content: space-between;
 
     padding: 1rem 8.4rem;
-   }
-`
+  }
+`;
 
 export const SearchContainerUser = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ export const SearchContainerUser = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`
+`;
 
 export const ListCardsUser = styled.ul`
   display: flex;
@@ -49,6 +49,6 @@ export const ListCardsUser = styled.ul`
 
     gap: 1rem 2rem;
   }
-`
+`;
 
-export default EventUserContainer
+export default EventUserContainer;

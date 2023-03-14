@@ -1,5 +1,5 @@
-import { iFundraising } from "../../../../providers/@types";
+import { IDonate } from "../../../../providers/@types";
 
 export interface iCardParticipation {
-  post: iFundraising;
+  card: IDonate;
 }

@@ -11,8 +11,13 @@ const ModalBackground = styled.div`
   height: 100vh;
   background-color: #21212150;
 
+  img {
+    height: 60px;
+    width: 60px;
+  }
+
   > div {
-    max-width: 900px;
+    max-width: 600px;
     border-radius: 12px;
     overflow: hidden;
 
@@ -32,6 +37,7 @@ const ModalBackground = styled.div`
         right: 12px;
         color: var(--white);
         background-color: transparent;
+        float: right;
 
         > svg {
           height: 20px;
@@ -42,4 +48,4 @@ const ModalBackground = styled.div`
   }
 `;
 
-export default ModalBackground
+export default ModalBackground;
