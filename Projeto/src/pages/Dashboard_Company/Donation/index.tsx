@@ -13,7 +13,7 @@ import {
 } from "./style";
 
 const Donation = () => {
-  const { posts, setPosts, donations, setSearch } = useContext(PostContext);
+  const { posts, setPosts, donations } = useContext(PostContext);
   const { showModal, setShowModal, setSelectedCard } = useContext(ModalContext);
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
 
@@ -50,7 +50,6 @@ const Donation = () => {
           },
         });
 
-        // setDonations(res.data);
         console.log(res.data);
         console.log(donations);
       } catch (error) {
@@ -60,9 +59,6 @@ const Donation = () => {
     getDonations();
   }, []);
 
-  // useEffect(() => {
-  //   setFilteredDonations(donations.filter(item => item.name.toLowerCase().includes(search.toLowerCase())))
-  // }, [donations, search])
 
   const handleModal = () => {
     showModal == "open" ? setShowModal("false") : setShowModal("open");
@@ -76,11 +72,6 @@ const Donation = () => {
         <DonateInputSearch>
           <h2>Campanhas de doações</h2>
           <div>
-            <input
-              type="text"
-              placeholder="Pesquisar participantes"
-              onChange={(e) => setSearch(e.target.value)}
-            />
             <button
               onClick={() => {
                 const cardValue = {

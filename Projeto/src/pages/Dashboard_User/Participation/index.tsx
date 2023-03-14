@@ -11,6 +11,7 @@ import {
   ContainerListParticipation,
   SectionParticipationContainer,
 } from "./style";
+import NothingHere from "../../../components/NothingHere";
 
 const PageParticipations = () => {
   const { donations, setDonations } = useContext(PostContext);
@@ -45,9 +46,9 @@ const PageParticipations = () => {
 
         <section>
           <ContainerListParticipation>
-            {donations.map((card) => (
+            { donations.length > 0 ? donations.map((card) => (
               <CardParticipation key={card.id} card={card} />
-            ))}
+            )) : <NothingHere /> }
           </ContainerListParticipation>
         </section>
       </SectionParticipationContainer>
