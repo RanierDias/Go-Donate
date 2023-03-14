@@ -11,6 +11,27 @@ const ModalParticpation = styled.main`
   width: 100vw;
   height: 100vh;
   background-color: #21212150;
-`;
 
-export default ModalParticpation;
+  > div {
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  > button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: var(--white);
+    background-color: transparent;
+
+    > img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+`;

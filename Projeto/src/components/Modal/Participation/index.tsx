@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
 import { iFundraising } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
+import ButtonMain from "../../../styles/buttonMain";
 import ModalBackground from "../style";
 import ModalParticpation from "./style";
 
@@ -39,6 +40,7 @@ const ModalUser = () => {
           <h3>{selectedCard.description} </h3>
         </ModalParticpation>
       </div>
+      <ButtonMain>Cancelar Participação</ButtonMain>
     </ModalBackground>
   );
 };
