@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { FiLock, FiMail, FiUser } from "react-icons/fi";
+import { FiLock, FiMail } from "react-icons/fi";
 import { ILoginFormValues } from "../../providers/UserContext/@Types";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import Input from "../Input";
 import * as S from "./style";
+import RegisterImg from '../../assets/imgregister.svg'
+import Logo from '../../assets/Logo.svg'
 
 const LoginForm = () => {
   const { userLogin } = useContext(UserContext);
@@ -14,11 +16,11 @@ const LoginForm = () => {
   return (
     <S.MainContainerLogin>
       <section>
-        <img src="/src/assets/imgregister.svg" />
+        <img src={RegisterImg} />
       </section>
 
       <S.ContainerSideForm>
-        <img src="/src/assets/Logo.svg" />
+        <img src={Logo} />
         <h2>Login</h2>
         <S.FormLogin onSubmit={handleSubmit(userLogin)}>
           <Input

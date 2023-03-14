@@ -9,6 +9,7 @@ import * as yup from "yup";
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import Charity from "../../assets/Charity-rafiki.svg";
+import Logo from "../../assets/Logo.svg"
 
 const schema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
@@ -70,7 +71,7 @@ const RegisterForm = () => {
   return (
     <S.MainContainerRegister>
       <section>
-        <img src="/src/assets/Logo.svg" />
+        <img src={Logo} />
         <img src={Charity} />
       </section>
       <S.ContainerSideForm>
