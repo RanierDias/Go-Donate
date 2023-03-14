@@ -10,6 +10,7 @@ import EventUserContainer, {
 } from "./style";
 import { PostContext } from "../../providers/PostContext";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
+import NothingHere from "../../components/NothingHere";
 
 const PageUser = () => {
   const { fundraising, setFundraising, setDonations } = useContext(PostContext);
@@ -59,9 +60,11 @@ const PageUser = () => {
       <EventUserContainer>
         <section>
           <ListCardsUser>
-            {fundraising.map((post) => {
-              return <CardPostuser key={post.id} post={post} />;
-            })}
+            { fundraising.length > 0 ?
+              fundraising.map((post) => {
+                return <CardPostuser key={post.id} post={post} />;
+              }) : <NothingHere />
+            }
           </ListCardsUser>
         </section>
 
