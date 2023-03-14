@@ -17,6 +17,7 @@ import { iResponseFundraising } from "../types";
 import Search from "../../../components/Search";
 import { iFundraising } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
+import NothingHere from "../../../components/NothingHere";
 
 const PageFundraising = () => {
   const { fundraising, setFundraising, search, setSearch } =
@@ -100,9 +101,12 @@ const PageFundraising = () => {
               ? search.map((post: iFundraising) => (
                   <CardFundraising key={post.id} post={post} />
                 ))
-              : fundraising.map((post) => (
+              : fundraising.length > 0 ?
+              fundraising.map((post) => (
                   <CardFundraising key={post.id} post={post} />
-                ))}
+              )) :
+                <NothingHere />
+              }
           </ListOfCards>
         </SectionContainer>
       </Main>

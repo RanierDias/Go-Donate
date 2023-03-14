@@ -24,7 +24,7 @@ export interface IRegisterFormValues {
   confirmpassword: string;
   city: string;
   state: string;
-  isCompany: string;
+  isCompany: boolean | string;
   image: string;
   background: string;
 }

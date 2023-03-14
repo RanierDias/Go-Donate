@@ -55,14 +55,15 @@ const RegisterForm = () => {
   });
 
   const handleRegister: SubmitHandler<IRegisterFormValues> = async (data) => {
-    if (data.isCompany == "false") {
-      const newData = { ...data, isCompany: false };
+    if (data.isCompany == 'company') {
+      const newData = { ...data, isCompany: true }; 
       console.log(newData);
-      await userRegister(data);
+      await userRegister(newData);
     } else {
-      const newData = { ...data, isCompany: true };
+      const newData = { ...data, isCompany: false };
+
       console.log(newData);
-      await userRegister(data);
+      await userRegister(newData);
     }
   };
 
@@ -126,8 +127,8 @@ const RegisterForm = () => {
           <span>{errors.isCompany?.message}</span>
           <select {...register("isCompany")}>
             <option value="">Selecionar</option>
-            <option value="false">Usuário</option>
-            <option value="true">Empresa</option>
+            <option value="user">Usuário</option>
+            <option value="company">Empresa</option>
           </select>
 
           <span>{errors.image?.message}</span>

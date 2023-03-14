@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
-import Donation from "../../../pages/Dashboard_Company/Donation";
-import { IDonate, iFundraising } from "../../../providers/@types";
+import { IDonate } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
 import { PostContext } from "../../../providers/PostContext";
 import { api } from "../../../services/api";
@@ -77,7 +75,7 @@ const ModalUser = () => {
             <p>Contato:</p>
             <span>{selectedCard.post.phone}</span>
           </div>
-          <h3>{selectedCard.post.description} </h3>
+          <p>{selectedCard.post.description} </p>
           <ButtonMain onClick={handleRemoveParticipation}>
             Cancelar Participação
           </ButtonMain>

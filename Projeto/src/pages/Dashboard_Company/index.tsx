@@ -13,6 +13,7 @@ import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
 import DonationModal from "../../components/Modal/Donation";
 import { ModalContext } from "../../providers/ModalContext";
+import NothingHere from "../../components/NothingHere";
 
 const PageCompany = () => {
   const { fundraising, setFundraising, posts, setPosts, filter, setFilter } =
@@ -95,7 +96,7 @@ const PageCompany = () => {
                       />
                     ))
                   ) : (
-                    <p>Sem posts de doação</p>
+                    <NothingHere />
                   )}
                 </ul>
               </>
@@ -116,7 +117,7 @@ const PageCompany = () => {
                       />
                     ))
                   ) : (
-                    <p>Sem posts de arrecadação</p>
+                    <NothingHere />
                   )}
                 </ul>
               </>
