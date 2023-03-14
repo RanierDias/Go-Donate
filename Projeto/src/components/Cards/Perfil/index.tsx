@@ -5,14 +5,14 @@ import {
   ContainerButtonCounter,
   ButtonToSee,
 } from "../../../pages/Dashboard_Company/style";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import { ContainerMain } from "./container";
 import Div, { InfoUser } from "./style";
 
 const CardPerfil = ({ type }: { type: string }) => {
   const { user } = useContext(UserContext);
-  const { fundraising, posts } = useContext(CompanyContext);
+  const { fundraising, posts } = useContext(PostContext);
 
   return (
     <>

@@ -1,17 +1,17 @@
+import { useContext } from "react";
+import { ModalContext } from "../../../../providers/ModalContext";
 import ButtonMain from "../../../../styles/buttonMain";
 import StyleCardParticipation, { InfoUser, SectionUserParticipation } from "./style";
 import { iCardParticipation } from "./type";
 import { AiFillCalendar, AiOutlineFieldTime } from 'react-icons/ai'
 import { FaRegAddressCard } from "react-icons/fa";
 
-const CardParticipation = ({
-  post,
-  callback,
-  setSelectedCard,
-}: iCardParticipation) => {
+const CardParticipation = ({ post }: iCardParticipation) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
   const date = post.date.replaceAll("-", "/").match(regExDate);
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
+
+  const { setShowModal, setSelectedCard } = useContext(ModalContext);
 
   return (
     <>
@@ -29,7 +29,7 @@ const CardParticipation = ({
             <span><FaRegAddressCard /> {post.address}</span>
           <ButtonMain
             onClick={() => {
-              callback("participation");
+              setShowModal("open");
               setSelectedCard(post);
             }}
           >

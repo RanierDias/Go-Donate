@@ -8,6 +8,7 @@ export interface IDefaultProviderProps {
 export interface iPosts {
   id: number;
   companyId: number;
+  image: string;
   title: string;
   name: string;
   description: string;
@@ -16,12 +17,12 @@ export interface iPosts {
   city: string;
   state: string;
   type: string;
-  image: string;
 }
 
 export interface iFundraising {
   id: number;
   companyId: number;
+  image: string;
   title: string;
   name: string;
   description: string;
@@ -43,7 +44,7 @@ export interface IDonate {
   postId: number;
   role: string;
   participated: string;
-  post: iPosts;
+  post: iFundraising;
   user: IUser;
 }
 
@@ -55,10 +56,6 @@ export interface IDonateContext {
   search: any;
   setSearch: Dispatch<SetStateAction<any>>;
   donations: IDonate[];
-  selectedCard: any;
-  setSelectedCard: Dispatch<SetStateAction<any>>;
-  showModal: null | string;
-  setShowModal: Dispatch<SetStateAction<null | string>>;
   filter: string | boolean;
   setFilter: Dispatch<SetStateAction<string | boolean>>;
   setDonations: React.Dispatch<React.SetStateAction<IDonate[]>>;

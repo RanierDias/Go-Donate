@@ -6,12 +6,13 @@ import * as yup from "yup";
 import Form from "../style";
 import ButtonMain from "../../../styles/buttonMain";
 import { useContext } from "react";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { api } from "../../../services/api";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
 import { iFundraising } from "../../../providers/@types";
 import { VscEdit } from "react-icons/vsc";
+import { ModalContext } from "../../../providers/ModalContext";
 
 const schema = yup.object({
   title: yup.string().required("O nome da campanha é um campo obrigatório"),
@@ -29,14 +30,9 @@ const schema = yup.object({
 });
 
 const FormFundraising = () => {
-  const {
-    selectedCard,
-    fundraising,
-    setFundraising,
-    setShowModal,
-    search,
-    setSearch,
-  } = useContext(CompanyContext);
+  const { fundraising, setFundraising, search, setSearch } =
+    useContext(PostContext);
+  const { setShowModal, selectedCard } = useContext(ModalContext);
   const regExDate = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
 
   const {
@@ -138,7 +134,7 @@ const FormFundraising = () => {
         final_date: data.final_date.toJSON(),
       };
 
-      console.log(newData)
+      console.log(newData);
 
       const response = await api.post("fundraisings", newData, {
         headers: {
