@@ -3,15 +3,13 @@ import styled from "styled-components";
 export const EventUserContainer = styled.main`
   padding: 1rem;
   display: flex;
-
+  flex-direction: column;
   gap: 1rem;
 
   ul {
     gap: 1rem;
-
     display: flex;
-
-    padding: 81px;
+    flex-direction: column;
   }
 
   aside {
