@@ -4,12 +4,15 @@ import { isAxiosError } from "axios";
 import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
 import Navbar from "../../components/Header";
-import EventUserContainer, { ListCardsUser, SearchContainerUser } from "./style";
+import EventUserContainer, {
+  ListCardsUser,
+  SearchContainerUser,
+} from "./style";
 import { PostContext } from "../../providers/PostContext";
+import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
 
 const PageUser = () => {
-  const { fundraising, setFundraising, setDonations } =
-    useContext(PostContext);
+  const { fundraising, setFundraising, setDonations } = useContext(PostContext);
 
   useEffect(() => {
     async function getListPostsService() {
@@ -46,6 +49,8 @@ const PageUser = () => {
   return (
     <>
       <Navbar mode="private" />
+
+      <CardPerfilMobile type="user"/>
 
       <SearchContainerUser>
         <h1>Principais Campanhas</h1>

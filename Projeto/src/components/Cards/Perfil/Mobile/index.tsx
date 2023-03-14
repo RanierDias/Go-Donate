@@ -1,5 +1,6 @@
 import { Badge } from "@material-ui/core";
 import { useContext } from "react";
+import { BsFillBoxSeamFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {
   ContainerButtonCounter,
@@ -10,9 +11,9 @@ import { UserContext } from "../../../../providers/UserContext/UserContextInitia
 import {ContainerMobile} from "../container";
 import Div, { ContainerMobileCard } from "./style";
 
-const CardPerfilMobile = () => {
+const CardPerfilMobile = ({ type }: { type: string }) => {
   const { user } = useContext(UserContext);
-  const { fundraising, posts } = useContext(PostContext);
+  const { fundraising, posts, donations } = useContext(PostContext);
 
   return (
     <ContainerMobileCard>
@@ -29,12 +30,30 @@ const CardPerfilMobile = () => {
 
       <ContainerMobile>
         <ContainerButtonCounter>
-          <Badge badgeContent={fundraising.length} color="secondary">
-            <ButtonToSee to="/company/fundraising">Arrecadações</ButtonToSee>
+          <Badge
+            badgeContent={
+              type == "company" ? fundraising.length : donations.length
+            }
+            color="secondary"
+          >
+            <ButtonToSee
+              to={
+                type == "company"
+                  ? "/company/fundraising"
+                  : "/user/participation"
+              }
+            >
+              {type == "company" ? "Arrecadações" : "Participações"}{" "}
+              <BsFillBoxSeamFill />
+            </ButtonToSee>
           </Badge>
-          <Badge badgeContent={posts.length} color="primary">
-            <ButtonToSee to="/company/donation">Doacões</ButtonToSee>
-          </Badge>
+          {type == "company" && (
+            <Badge badgeContent={posts.length} color="primary">
+              <ButtonToSee to="/company/donation">
+                Doações <BsFillBoxSeamFill />
+              </ButtonToSee>
+            </Badge>
+          )}
         </ContainerButtonCounter>
       </ContainerMobile>
     </ContainerMobileCard>
