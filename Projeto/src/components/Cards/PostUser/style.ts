@@ -26,6 +26,10 @@ const StyleCardUser = styled.div`
     font-size: .77rem;
     font-weight: 300;
   }
+
+  @media (min-width: 769px) {
+    width: 290px;
+  }
 `
 
 export default StyleCardUser
