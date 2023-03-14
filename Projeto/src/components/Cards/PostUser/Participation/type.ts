@@ -1,8 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-// import { iParticipation } from "../../../../pages/Dashboard_User/types";
+import { iFundraising } from "../../../../providers/@types";
 
 export interface iCardParticipation {
-  post: iCardParticipation;
-  callback: Dispatch<SetStateAction<null | string>>;
-  setSelectedCard: React.Dispatch<React.SetStateAction<iCardParticipation>>;
+  post: iFundraising;
 }

@@ -1,22 +1,29 @@
+import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
-import ButtonMain from "../../../styles/buttonMain";
-import FormParticipation from "../../ModalForm/Participation";
-
+import { iFundraising } from "../../../providers/@types";
+import { ModalContext } from "../../../providers/ModalContext";
 import ModalBackground from "../style";
-import { iModalUser } from "./type";
 
-const ModalUser = ({ callback, selectedCard }: iModalUser) => {
+const ModalUser = () => {
+  const { setShowModal } = useContext(ModalContext);
+  const { selectedCard }: { selectedCard: iFundraising } =
+    useContext(ModalContext);
+
   return (
     <ModalBackground>
       <div>
         <div>
-          <h1>Teste</h1>
-          <button onClick={() => callback(null)}>
+          <h1>{selectedCard.title}</h1>
+          <button onClick={() => setShowModal(null)}>
             <IoClose />
           </button>
         </div>
 
-        <FormParticipation post={selectedCard} />
+        <div>
+          {" "}
+          // fazer um styled div aqui!
+          <p>{selectedCard.description}</p>
+        </div>
       </div>
     </ModalBackground>
   );

@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Header";
 import Select from "../../components/Select";
 import { iPosts } from "../../providers/@types";
-import { CompanyContext } from "../../providers/CompanyContext";
+import { PostContext } from "../../providers/PostContext";
 import { api } from "../../services/api";
 import { CardPublic, DateContainer, DonateSection, InfoEvent, ListCardContainer, MainContainer, SectionContainer, UserContainer } from "./style";
 
 const PagePublic = () => {
   const [filteredPost, setFilteredPost] = useState<iPosts[]>([])
-  const { posts, setPosts, search, setSearch } = useContext(CompanyContext)
+  const { posts, setPosts, search, setSearch } = useContext(PostContext)
   
   const filterState = (value: string) => {
     const postFiltered = posts.filter(post => post.state === value)

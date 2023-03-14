@@ -5,14 +5,14 @@ import {
   ContainerButtonCounter,
   ButtonToSee,
 } from "../../../pages/Dashboard_Company/style";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import { ContainerMain } from "./container";
 import Div, { InfoUser } from "./style";
 
 const CardPerfil = ({ type }: { type: string }) => {
   const { user } = useContext(UserContext);
-  const { fundraising, posts } = useContext(CompanyContext);
+  const { fundraising, posts, donations } = useContext(PostContext);
 
   return (
     <>
@@ -34,12 +34,25 @@ const CardPerfil = ({ type }: { type: string }) => {
 
       <ContainerMain>
         <ContainerButtonCounter>
-          <Badge badgeContent={fundraising.length} color="secondary">
-            <ButtonToSee to="/company/fundraising">Arrecadações <BsFillBoxSeamFill/></ButtonToSee>
+          <Badge badgeContent={type == "company" ? fundraising.length : donations.length} color="secondary">
+            <ButtonToSee
+              to={
+                type == "company"
+                  ? "/company/fundraising"
+                  : "/user/participation"
+              }
+            >
+              {type == "company" ? "Arrecadações" : "Participações"}{" "}
+              <BsFillBoxSeamFill />
+            </ButtonToSee>
           </Badge>
-          <Badge badgeContent={posts.length} color="primary">
-            <ButtonToSee to="/company/donation">Doações <BsFillBoxSeamFill/></ButtonToSee>
-          </Badge>
+          {type == "company" && (
+            <Badge badgeContent={posts.length} color="primary">
+              <ButtonToSee to="/company/donation">
+                Doações <BsFillBoxSeamFill />
+              </ButtonToSee>
+            </Badge>
+          )}
         </ContainerButtonCounter>
       </ContainerMain>
     </>

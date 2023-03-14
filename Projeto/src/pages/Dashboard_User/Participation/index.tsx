@@ -3,20 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import CardParticipation from "../../../components/Cards/PostUser/Participation";
 import { api } from "../../../services/api";
 import Navbar from "../../../components/Header";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import ModalUser from "../../../components/Modal/Participation";
+import { ModalContext } from "../../../providers/ModalContext";
 import { ContainerListParticipation, SectionParticipationContainer } from "./style";
 
 const PageParticipations = () => {
-  const {
-    donations,
-    setDonations,
-    selectedCard,
-    setSelectedCard,
-    showModal,
-    setShowModal,
-  } = useContext(CompanyContext);
+  const { donations, setDonations } = useContext(PostContext);
+  const { showModal } = useContext(ModalContext);
 
   useEffect(() => {
     async function getCardParticipants() {
@@ -37,11 +32,6 @@ const PageParticipations = () => {
     getCardParticipants();
   }, []);
 
-  // const handleCardClick = (card) => {
-  //   setSelectedCard(card);
-  //   setShowModal("close");
-  // };
-
   return (
     <>
       <Navbar mode="private" />
@@ -56,17 +46,13 @@ const PageParticipations = () => {
                 <CardParticipation
                   key={card.id}
                   post={card.post}
-                  callback={setShowModal}
-                  setSelectedCard={setSelectedCard}
                 />
               ))}
             </ContainerListParticipation>
           </section>
         </SectionParticipationContainer>
 
-      {showModal == "open" && (
-        <ModalUser callback={setShowModal} selectedCard={selectedCard} /> //refatorar tirando essas props do modal e usando o useContext!
-      )}
+      {showModal == "open" && <ModalUser />}
     </>
   );
 };

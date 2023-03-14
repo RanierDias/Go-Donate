@@ -1,22 +1,45 @@
-import { useContext } from "react";
-import CardPerfil from "../../../components/Cards/Perfil";
+import { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import CardPerfilParticipant from "../../../components/Cards/Perfil/Participant";
 import Navbar from "../../../components/Header";
 import Search from "../../../components/Search";
-import { iFundraising } from "../../../providers/@types";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { IDonate, iFundraising } from "../../../providers/@types";
+import { ModalContext } from "../../../providers/ModalContext";
+import { PostContext } from "../../../providers/PostContext";
 import { IUser } from "../../../providers/UserContext/@Types";
+import { api } from "../../../services/api";
 import ButtonSmall from "../../../styles/buttonSmall";
 import Main from "../Fundraising/style";
-
-interface iSelectedCard {
-  selectedCard: iFundraising;
-  search: IUser[];
-}
+import { iSelectedCard } from "./types";
 
 const PageParticipants = () => {
-  const { selectedCard, search }: iSelectedCard = useContext(CompanyContext);
-  const { donations } = useContext(CompanyContext);
+  const { search }: iSelectedCard = useContext(PostContext);
+  const { donations, setDonations } = useContext(PostContext);
+  const { selectedCard } = useContext(ModalContext);
+
+  // useEffect(() => {
+  //   async function getListDonations() {
+  //     try {
+  //       const token = localStorage.getItem("@TOKEN");
+  //       const id = localStorage.getItem("@UserId");
+
+  //       const response = await api.get<IDonate>(
+  //         `fundraisings/${id}?_embed=donation`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+
+  //       setDonations(response.data.user);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+
+  //   getListDonations();
+  // }, []);
 
   return (
     <>
@@ -35,8 +58,12 @@ const PageParticipants = () => {
         <section>
           <ul>
             {search.length > 0
-              ? search.map((user: IUser) => <CardPerfilParticipant user={user} />)
-              : donations.map((user) => <CardPerfilParticipant user={user.user}/>)}
+              ? search.map((user: IUser) => (
+                  <CardPerfilParticipant user={user} />
+                ))
+              : donations.map((donation) => (
+                  <CardPerfilParticipant user={donation.user} />
+                ))}
           </ul>
         </section>
       </Main>
@@ -52,4 +79,8 @@ const PageParticipants = () => {
   );
 };
 
-export default PageParticipants
+export default PageParticipants;
+
+function isAxiosError(error: unknown) {
+  throw new Error("Function not implemented.");
+}

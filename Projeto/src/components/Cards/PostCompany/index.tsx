@@ -6,16 +6,16 @@ import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
 import Div from "./style";
 import { iCardPostsCompany } from "./types";
 import ButtonMain from "../../../styles/buttonMain";
-import { useContext, useEffect } from "react";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { useContext } from "react";
 import { VscEdit } from "react-icons/vsc";
+import { ModalContext } from "../../../providers/ModalContext";
 
 const CardPostsCompany = ({ post, type }: iCardPostsCompany) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
   const date = post.date.replaceAll("-", "/").match(regExDate);
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
 
-  const { setSelectedCard, setShowModal } = useContext(CompanyContext);
+  const { setSelectedCard, setShowModal } = useContext(ModalContext);
 
   return (
     <Div>
