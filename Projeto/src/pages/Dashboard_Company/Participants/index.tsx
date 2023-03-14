@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import CardPerfilParticipant from "../../../components/Cards/Perfil/Participant";
 import Navbar from "../../../components/Header";
+import NothingHere from "../../../components/NothingHere";
 import Search from "../../../components/Search";
 import { iFundraising } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
@@ -84,7 +85,7 @@ const PageParticipants = () => {
                 <CardPerfilParticipant key={donation.id} user={donation.user} />
               ))
             ) : (
-              <h2>Nenhum participante ainda...</h2>
+              <NothingHere />
             )}
           </ul>
         </section>

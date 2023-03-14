@@ -55,7 +55,7 @@ export const FormLogin = styled.form`
 `;
 
 export const ButtonLogin = styled.button`
-  background-color: var(--button-initial);
+  background-color: var(--primary-color);
   padding: 16px 0;
   border-radius: 8px;
   color: white;
@@ -67,18 +67,29 @@ export const ButtonLogin = styled.button`
   transition: .4s ease;
 
   :hover {
-    background-color: var(--primary-color);
+    background-color: var(--button-initial);
   }
 `;
 
 export const LinkCreateAccount = styled(Link)`
+  background-color: var(--gray-20);
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  transition: .4s ease;
+  padding: 1rem;
+
+  border-radius: 8px;
+  color: white;
+
+  font-family: "Roboto Slab";
+  font-weight: 500;
+  font-size: .9rem;
+
+  transition: .3s ease;
 
   :hover {
-    color: var(--gray-20);
+    background-color: var(--button-initial);
   }
 `;

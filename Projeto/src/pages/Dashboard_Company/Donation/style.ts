@@ -72,6 +72,7 @@ export const DonateInputSearch = styled.div`
 
     h2 {
         font-size: 1.4rem;
+        color: var(--gray-20);
       }
   }
 `

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { VscAdd, VscEdit } from "react-icons/vsc";
 import Navbar from "../../../components/Header";
 import DonationModal from "../../../components/Modal/Donation";
+import NothingHere from "../../../components/NothingHere";
 import { ModalContext } from "../../../providers/ModalContext";
 import { PostContext } from "../../../providers/PostContext";
 import { api } from "../../../services/api";
@@ -70,7 +71,7 @@ const Donation = () => {
       <Navbar mode="private" />
       <MainDonationContainer>
         <DonateInputSearch>
-          <h2>Campanhas de doações</h2>
+          <h2>Campanhas de doaçõesss</h2>
           <div>
             <button
               onClick={() => {
@@ -95,25 +96,27 @@ const Donation = () => {
         </DonateInputSearch>
 
         <DonationList>
-          {posts.map((donation) => (
-            <DonationCart key={donation.id}>
-              <h3>{donation.title}</h3>
-              <span>
-                {donation.date.replaceAll("-", "/").match(regExDate)} -{" "}
-                {donation.time}
-              </span>
-              <p>{donation.description}</p>
-              <button
-                onClick={() => {
-                  setSelectedCard(donation);
-                  handleModal();
-                }}
-              >
-                <VscEdit />
-                Alterar Evento
-              </button>
-            </DonationCart>
-          ))}
+          { posts.length > 0 ?
+              posts.map((donation) => (
+              <DonationCart key={donation.id}>
+                <h3>{donation.title}</h3>
+                <span>
+                  {donation.date.replaceAll("-", "/").match(regExDate)} -{" "}
+                  {donation.time}
+                </span>
+                <p>{donation.description}</p>
+                <button
+                  onClick={() => {
+                    setSelectedCard(donation);
+                    handleModal();
+                  }}
+                >
+                  <VscEdit />
+                  Alterar Evento
+                </button>
+              </DonationCart>
+              )) : <NothingHere />
+        }
         </DonationList>
       </MainDonationContainer>
     </>

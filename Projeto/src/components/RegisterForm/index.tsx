@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FiImage, FiLock, FiMail, FiMapPin, FiUser } from "react-icons/fi";
 import { IRegisterFormValues } from "../../providers/UserContext/@Types";
@@ -9,6 +9,7 @@ import * as yup from "yup";
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import Charity from "../../assets/Charity-rafiki.svg";
+import Logo from "../../assets/Logo.svg"
 
 const schema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
@@ -70,7 +71,7 @@ const RegisterForm = () => {
   return (
     <S.MainContainerRegister>
       <section>
-        <img src="/src/assets/Logo.svg" />
+        <img src={Logo} />
         <img src={Charity} />
       </section>
       <S.ContainerSideForm>
@@ -149,7 +150,7 @@ const RegisterForm = () => {
 
           <S.ButtonCadastrar type="submit">Cadastrar</S.ButtonCadastrar>
 
-          <Link to="/login">Voltar para o login</Link>
+          <S.LinkButton to="/login">Login</S.LinkButton>
         </S.FormRegister>
       </S.ContainerSideForm>
     </S.MainContainerRegister>
