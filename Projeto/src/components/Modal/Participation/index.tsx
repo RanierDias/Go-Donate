@@ -1,7 +1,10 @@
+import axios from "axios";
 import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
-import { iFundraising } from "../../../providers/@types";
+import Donation from "../../../pages/Dashboard_Company/Donation";
+import { IDonate, iFundraising } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
+import { PostContext } from "../../../providers/PostContext";
 import ButtonMain from "../../../styles/buttonMain";
 import ModalBackground from "../style";
 import ModalParticpation from "./style";
@@ -10,6 +13,31 @@ const ModalUser = () => {
   const { setShowModal } = useContext(ModalContext);
   const { selectedCard }: { selectedCard: iFundraising } =
     useContext(ModalContext);
+
+  const { donations, setDonations } = useContext(PostContext);
+
+  const removeParticipation = async (fundraisingId: number) => {
+    try {
+      const response = await axios.delete(`donation/${fundraisingId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao remover participação: ", error);
+    }
+  };
+
+  const handleRemoveParticipation = async () => {
+    try {
+      const response = await removeParticipation(selectedCard.id);
+      const filterParticipation = donations.filter(
+        (donation) => donation.id != selectedCard.id
+      );
+
+      setDonations(filterParticipation);
+      setShowModal(null);
+    } catch (error) {
+      console.error("Erro ao remover participação: ", error);
+    }
+  };
 
   return (
     <ModalBackground>
@@ -41,7 +69,9 @@ const ModalUser = () => {
           </div>
           <h3>{selectedCard.description} </h3>
         </ModalParticpation>
-        <ButtonMain>Cancelar Participação</ButtonMain>
+        <ButtonMain onClick={handleRemoveParticipation}>
+          Cancelar Participação
+        </ButtonMain>
       </div>
     </ModalBackground>
   );
