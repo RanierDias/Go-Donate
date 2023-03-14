@@ -5,8 +5,6 @@ const ModalParticpation = styled.main`
   display: flex;
   flex-direction: column;
   background: beige;
-  align-items: center;
-  justify-content: center;
 
   width: 100%;
   height: 80%;
