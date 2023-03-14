@@ -4,7 +4,7 @@ import { isAxiosError } from "axios";
 import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
 import Navbar from "../../components/Header";
-import EventUserContainer, { SearchContainerUser } from "./style";
+import EventUserContainer, { ListCardsUser, SearchContainerUser } from "./style";
 import { PostContext } from "../../providers/PostContext";
 
 const PageUser = () => {
@@ -49,16 +49,15 @@ const PageUser = () => {
 
       <SearchContainerUser>
         <h1>Principais Campanhas</h1>
-        {/* <SearchForm /> */}
       </SearchContainerUser>
 
       <EventUserContainer>
         <section>
-          <ul>
+          <ListCardsUser>
             {fundraising.map((post) => {
               return <CardPostuser key={post.id} post={post} />;
             })}
-          </ul>
+          </ListCardsUser>
         </section>
 
         <aside>

@@ -7,6 +7,7 @@ import { PostContext } from "../../../providers/PostContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import ModalUser from "../../../components/Modal/Participation";
 import { ModalContext } from "../../../providers/ModalContext";
+import { ContainerListParticipation, SectionParticipationContainer } from "./style";
 
 const PageParticipations = () => {
   const { donations, setDonations } = useContext(PostContext);
@@ -34,19 +35,22 @@ const PageParticipations = () => {
   return (
     <>
       <Navbar mode="private" />
-      <main>
-        <div>
-          <h1>Campanhas em Participação</h1>
-        </div>
+        <SectionParticipationContainer>
+          <div>
+            <h1>Campanhas em Participação</h1>
+          </div>
 
-        <section>
-          <ul>
-            {donations.map((card) => (
-              <CardParticipation key={card.id} post={card.post} />
-            ))}
-          </ul>
-        </section>
-      </main>
+          <section>
+            <ContainerListParticipation>
+              {donations.map((card) => (
+                <CardParticipation
+                  key={card.id}
+                  post={card.post}
+                />
+              ))}
+            </ContainerListParticipation>
+          </section>
+        </SectionParticipationContainer>
 
       {showModal == "open" && <ModalUser />}
     </>
