@@ -1,4 +1,4 @@
-import { BiTimeFive } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
 import { BsTelephone } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
@@ -24,7 +24,7 @@ const CardFundraising = ({ post }: iCardFundraising) => {
       <h2>{post.title}</h2>
       <div className="description">
         <div>
-          <BiTimeFive />
+          <BiCalendar />
           <p>
             {date} - {dateFinal}
           </p>

@@ -17,29 +17,29 @@ const PageParticipants = () => {
   const { donations, setDonations } = useContext(PostContext);
   const { selectedCard } = useContext(ModalContext);
 
-  // useEffect(() => {
-  //   async function getListDonations() {
-  //     try {
-  //       const token = localStorage.getItem("@TOKEN");
-  //       const id = localStorage.getItem("@UserId");
+  useEffect(() => {
+    async function getListDonations() {
+      try {
+        const token = localStorage.getItem("@TOKEN");
+        const id = localStorage.getItem("@UserId");
 
-  //       const response = await api.get<IDonate>(
-  //         `fundraisings/${id}?_embed=donation`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
+        const response = await api.get(
+          `fundraisings/${id}?_embed=donation`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-  //       setDonations(response.data.user);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+        setDonations(response.data.user);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-  //   getListDonations();
-  // }, []);
+    getListDonations();
+  }, []);
 
   return (
     <>

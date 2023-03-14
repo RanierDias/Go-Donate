@@ -18,13 +18,14 @@ const Main = styled.main`
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
     }
   }
 
   > section {
     > ul {
       display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
       gap: 45px;
       width: 90%;
       margin: 0 auto;
@@ -32,7 +33,7 @@ const Main = styled.main`
     }
   }
   
-  @media (min-width: 1024px) {
+  @media (min-width: 870px) {
     padding: 0 12vw;
 
     > div:first-child {
@@ -97,8 +98,7 @@ export const ListOfCards = styled.ul`
   flex-direction: column;
   overflow-y: auto;
   gap: .6rem;
-
-  height: 100vh;
+  padding-bottom: 50px;
 
   @media (min-width: 769px) {
     flex-direction: row;
