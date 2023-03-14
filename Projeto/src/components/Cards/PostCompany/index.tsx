@@ -1,4 +1,4 @@
-import { BiTimeFive } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineHomeWork, MdOutlineDescription } from "react-icons/md";
@@ -22,7 +22,7 @@ const CardPostsCompany = ({ post, type }: iCardPostsCompany) => {
       <h2>{post.title}</h2>
       <div className="description">
         <div>
-          <BiTimeFive />
+          <BiCalendar />
           <p>
             {date} - {type == "donate" ? post.time : dateFinal}
           </p>

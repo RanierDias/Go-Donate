@@ -7,6 +7,7 @@ const Div = styled.div`
   justify-content: space-between;
   gap: 20px;
   width: 235px;
+  height: max-content;
   padding: 25px 20px;
   border-radius: 12px;
   background-color: var(--gray-80);
