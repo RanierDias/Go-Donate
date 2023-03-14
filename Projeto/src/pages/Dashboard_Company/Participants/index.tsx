@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 import CardPerfilParticipant from "../../../components/Cards/Perfil/Participant";
 import Navbar from "../../../components/Header";
 import Search from "../../../components/Search";
-import { IDonate, iFundraising } from "../../../providers/@types";
+import { iFundraising } from "../../../providers/@types";
 import { ModalContext } from "../../../providers/ModalContext";
 import { PostContext } from "../../../providers/PostContext";
-import { IUser } from "../../../providers/UserContext/@Types";
+import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import { api } from "../../../services/api";
 import ButtonSmall from "../../../styles/buttonSmall";
 import Main from "../Fundraising/style";
@@ -14,25 +14,47 @@ import { iSelectedCard } from "./types";
 
 const PageParticipants = () => {
   const { search }: iSelectedCard = useContext(PostContext);
-  const { donations, setDonations } = useContext(PostContext);
-  const { selectedCard } = useContext(ModalContext);
+  const { donations, setDonations, fundraising, setFundraising, setSearch } =
+    useContext(PostContext);
+  const { selectedCard, setShowModal } = useContext(ModalContext);
+  const { navigate } = useContext(UserContext);
+
+  const deletePost = async () => {
+    try {
+      const token = localStorage.getItem("@TOKEN");
+
+      api.delete<{}>(`fundraisings/${selectedCard.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const newFundraising = fundraising.filter(
+        (post) => post.id != selectedCard.id
+      );
+      const newSearch = search.filter((post) => post.id != selectedCard.id);
+
+      setSearch(newSearch);
+      setFundraising(newFundraising);
+      navigate('/company/fundraising');
+      toast.success("Evento deletado!");
+    } catch (error) {
+      toast.error("Ops, algo deu errado");
+    }
+  };
 
   useEffect(() => {
     async function getListDonations() {
       try {
         const token = localStorage.getItem("@TOKEN");
-        const id = localStorage.getItem("@UserId");
 
-        const response = await api.get(
-          `fundraisings/${id}?_embed=donation`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await api.get(`fundraisings/${selectedCard.id}?_embed=donation`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        setDonations(response.data.user);
+        setDonations(response.data.donation);
       } catch (error) {
         console.log(error);
       }
@@ -51,30 +73,22 @@ const PageParticipants = () => {
           <div>
             <Search callback={({ search }) => console.log(search)} />
 
-            <ButtonSmall>Cancelar Evento</ButtonSmall>
+            <ButtonSmall onClick={deletePost}>Cancelar Evento</ButtonSmall>
           </div>
         </div>
 
         <section>
           <ul>
-            {search.length > 0
-              ? search.map((user: IUser) => (
-                  <CardPerfilParticipant user={user} />
-                ))
-              : donations.map((donation) => (
-                  <CardPerfilParticipant user={donation.user} />
-                ))}
+            {donations.length > 0 ? (
+              donations.map((donation) => (
+                <CardPerfilParticipant key={donation.id} user={donation.user} />
+              ))
+            ) : (
+              <h2>Nenhum participante ainda...</h2>
+            )}
           </ul>
         </section>
       </Main>
-
-      {/* {showModal === "fundraising" ? (
-        <ModalCompany />
-      ) : showModal === "newFundraising" ? (
-        <ModalCompany />
-      ) : (
-        false
-      )} */}
     </>
   );
 };

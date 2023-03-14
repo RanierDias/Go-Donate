@@ -66,18 +66,22 @@ const ModalUser = () => {
             </div>
           </section>
           <div>
-            <h2>{selectedCard.post.title}</h2>
+            <h2>Campanha: {selectedCard.post.title}</h2>
             <span>{selectedCard.post.date}</span>
+            <p>Atendimentos:</p>
             <span>
-              {selectedCard.post.open_time} - {selectedCard.post.close_time}
+              {selectedCard.post.open_time}am ás {selectedCard.post.close_time}
+              pm
             </span>
+
+            <p>Contato:</p>
             <span>{selectedCard.post.phone}</span>
           </div>
           <h3>{selectedCard.post.description} </h3>
+          <ButtonMain onClick={handleRemoveParticipation}>
+            Cancelar Participação
+          </ButtonMain>
         </ModalParticpation>
-        <ButtonMain onClick={handleRemoveParticipation}>
-          Cancelar Participação
-        </ButtonMain>
       </div>
     </ModalBackground>
   );
