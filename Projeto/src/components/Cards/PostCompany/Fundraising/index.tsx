@@ -53,7 +53,10 @@ const CardFundraising = ({ post }: iCardFundraising) => {
         color="gray-60"
         background="white"
         hover={{ color: "white", background: "gray-60" }}
-        onClick={() => navigate("participants")}
+        onClick={() => {
+          setSelectedCard(post);
+          navigate("participants");
+        }}
       >
         Participantes
       </ButtonMain>
