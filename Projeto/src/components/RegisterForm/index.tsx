@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FiImage, FiLock, FiMail, FiMapPin, FiUser } from "react-icons/fi";
 import { IRegisterFormValues } from "../../providers/UserContext/@Types";

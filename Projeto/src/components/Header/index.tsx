@@ -1,6 +1,6 @@
 import { FaHome } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-
+import Logo from '../../assets/Logo.svg'
 import { iNavBar } from "./types";
 
 import Header from "./style";
@@ -17,7 +17,7 @@ const Navbar = ({ mode }: iNavBar) => {
   return (
     <Header>
       <img
-        src="/src/assets/Logo.svg"
+        src={Logo}
         alt="Logo da go.Donate com letras brancas e um ponto verde"
       />
       {mode === "private" ? (
