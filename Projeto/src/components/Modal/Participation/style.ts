@@ -2,36 +2,31 @@ import { Modal } from "@material-ui/core";
 import styled from "styled-components";
 
 const ModalParticpation = styled.main`
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  background: beige;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #21212150;
+  justify-content: center;
 
-  > div {
-    max-width: 900px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  width: 100%;
+  height: 80%;
+  padding: 22px;
+  gap: 30px;
+  background-color: gray;
+
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  > button {
-    position: absolute;
+  button {
+    float: right;
     top: 12px;
     right: 12px;
     color: var(--white);
     background-color: transparent;
-
-    > img {
-      height: 20px;
-      width: 20px;
-    }
   }
 `;
+
+export default ModalParticpation;

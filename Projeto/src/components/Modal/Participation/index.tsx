@@ -22,15 +22,17 @@ const ModalUser = () => {
         </div>
 
         <ModalParticpation>
-          <div>
+          <section>
             <img src={selectedCard.image} alt="Imagem Participação" />
-            <h2>{selectedCard.name}</h2>
-            <span>
-              {selectedCard.city} - {selectedCard.state}
-            </span>
-          </div>
-          <h2>{selectedCard.title}</h2>
+            <div>
+              <h2>{selectedCard.name}</h2>
+              <span>
+                {selectedCard.city} - {selectedCard.state}
+              </span>
+            </div>
+          </section>
           <div>
+            <h2>{selectedCard.title}</h2>
             <span>{selectedCard.date}</span>
             <span>
               {selectedCard.open_time} - {selectedCard.close_time}
@@ -39,8 +41,8 @@ const ModalUser = () => {
           </div>
           <h3>{selectedCard.description} </h3>
         </ModalParticpation>
+        <ButtonMain>Cancelar Participação</ButtonMain>
       </div>
-      <ButtonMain>Cancelar Participação</ButtonMain>
     </ModalBackground>
   );
 };
