@@ -5,24 +5,32 @@ import { VscAdd } from "react-icons/vsc";
 import { api } from "../../../services/api";
 import Navbar from "../../../components/Header";
 import ButtonSmall from "../../../styles/buttonSmall";
-import Main, { ContainerSearchAndButton, ListOfCards, SectionContainer } from "./style";
+import Main, {
+  ContainerSearchAndButton,
+  ListOfCards,
+  SectionContainer,
+} from "./style";
 import CardFundraising from "../../../components/Cards/PostCompany/Fundraising";
 import ModalCompany from "../../../components/Modal/Company";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { iResponseFundraising } from "../types";
 import Search from "../../../components/Search";
 import { iFundraising } from "../../../providers/@types";
+import { ModalContext } from "../../../providers/ModalContext";
 
 const PageFundraising = () => {
-  const {
-    fundraising,
-    setFundraising,
-    showModal,
-    setShowModal,
-    setSelectedCard,
-    search,
-    setSearch,
-  } = useContext(CompanyContext);
+  const { fundraising, setFundraising, search, setSearch } =
+    useContext(PostContext);
+
+  const { showModal, setShowModal, setSelectedCard } = useContext(ModalContext);
+
+  const searchPost = (search: string) => {
+    const postFound = fundraising.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    search === "" ? setSearch([]) : setSearch(postFound);
+  };
 
   const openModalCreateFundraising = () => {
     const formFundrainsigValue = {
@@ -40,14 +48,6 @@ const PageFundraising = () => {
 
     setSelectedCard(formFundrainsigValue);
     setShowModal("newFundraising");
-  };
-
-  const searchPost = (search: string) => {
-    const postFound = fundraising.filter((post) =>
-      post.title.toLowerCase().includes(search.toLowerCase())
-    );
-
-    search === "" ? setSearch([]) : setSearch(postFound);
   };
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const PageFundraising = () => {
             <Search callback={({ search }) => searchPost(search)} />
 
             <ButtonSmall onClick={openModalCreateFundraising}>
-            <VscAdd />
+              <VscAdd />
               Adcionar evento
             </ButtonSmall>
           </div>

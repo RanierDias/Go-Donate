@@ -7,16 +7,16 @@ import { iCardFundraising } from "./types";
 import Div from "../style";
 import ButtonMain from "../../../../styles/buttonMain";
 import { useContext } from "react";
-import { CompanyContext } from "../../../../providers/CompanyContext";
 import { VscEdit } from "react-icons/vsc";
 import { UserContext } from "../../../../providers/UserContext/UserContextInitial";
+import { ModalContext } from "../../../../providers/ModalContext";
 
 const CardFundraising = ({ post }: iCardFundraising) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
   const date = post.date.replaceAll("-", "/").match(regExDate);
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
 
-  const { setSelectedCard, setShowModal } = useContext(CompanyContext);
+  const { setSelectedCard, setShowModal } = useContext(ModalContext);
   const { navigate } = useContext(UserContext);
 
   return (

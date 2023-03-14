@@ -7,11 +7,11 @@ import Header from "./style";
 import ButtonSmall from "../../styles/buttonSmall";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
-import { CompanyContext } from "../../providers/CompanyContext";
+import { PostContext } from "../../providers/PostContext";
 
 const Navbar = ({ mode }: iNavBar) => {
   const { userLogout, navigate } = useContext(UserContext);
-  const { setSearch } = useContext(CompanyContext);
+  const { setSearch } = useContext(PostContext);
   const currentLocation = window.location.pathname;
 
   return (

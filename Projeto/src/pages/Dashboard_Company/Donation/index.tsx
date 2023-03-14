@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { VscAdd, VscEdit } from "react-icons/vsc";
 import Navbar from "../../../components/Header";
 import DonationModal from "../../../components/Modal/Donation";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { ModalContext } from "../../../providers/ModalContext";
+import { PostContext } from "../../../providers/PostContext";
 import { api } from "../../../services/api";
 import {
   DonateInputSearch,
@@ -12,22 +13,20 @@ import {
 } from "./style";
 
 const Donation = () => {
-  const { showModal, setShowModal, posts, setPosts, donations, setDonations, setSelectedCard } = useContext(CompanyContext);
-  const [search, setSearch] = useState('')
+  const { posts, setPosts, donations, setSearch } = useContext(PostContext);
+  const { showModal, setShowModal, setSelectedCard } = useContext(ModalContext);
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
-  // const [filteredDonations, setFilteredDonations] = useState<>([])
-  
-  
+
   useEffect(() => {
-      const loadDonations = async () => {
-      const id = localStorage.getItem('@UserId')
-      const token = localStorage.getItem('@TOKEN')
-      
+    const loadDonations = async () => {
+      const id = localStorage.getItem("@UserId");
+      const token = localStorage.getItem("@TOKEN");
+
       try {
         const res = await api.get(`/users/${id}?_embed=post`, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         setPosts(res.data.post);
@@ -40,7 +39,7 @@ const Donation = () => {
     loadDonations();
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("@userToken");
 
     const getDonations = async () => {
@@ -66,8 +65,8 @@ const Donation = () => {
   // }, [donations, search])
 
   const handleModal = () => {
-    showModal == "open" ? setShowModal("false") : setShowModal("open")
-  }
+    showModal == "open" ? setShowModal("false") : setShowModal("open");
+  };
 
   return (
     <>
@@ -77,7 +76,11 @@ const Donation = () => {
         <DonateInputSearch>
           <h2>Campanhas de doações</h2>
           <div>
-            <input type="text" placeholder="Pesquisar participantes" onChange={e => setSearch(e.target.value)}/>
+            <input
+              type="text"
+              placeholder="Pesquisar participantes"
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <button
               onClick={() => {
                 const cardValue = {
@@ -87,14 +90,14 @@ const Donation = () => {
                   city: "",
                   state: "",
                   description: "",
-                }
+                };
 
-                setSelectedCard(cardValue)
+                setSelectedCard(cardValue);
 
-                handleModal()
+                handleModal();
               }}
             >
-            <VscAdd />
+              <VscAdd />
               Adicionar evento
             </button>
           </div>
@@ -104,14 +107,20 @@ const Donation = () => {
           {posts.map((donation) => (
             <DonationCart key={donation.id}>
               <h3>{donation.title}</h3>
-              <span>{donation.date.replaceAll("-", "/").match(regExDate)} - {donation.time}</span>
+              <span>
+                {donation.date.replaceAll("-", "/").match(regExDate)} -{" "}
+                {donation.time}
+              </span>
               <p>{donation.description}</p>
-              <button onClick={() => {
-
-                  setSelectedCard(donation)
-                  handleModal()
-                }
-              }><VscEdit />Alterar Evento</button>
+              <button
+                onClick={() => {
+                  setSelectedCard(donation);
+                  handleModal();
+                }}
+              >
+                <VscEdit />
+                Alterar Evento
+              </button>
             </DonationCart>
           ))}
         </DonationList>

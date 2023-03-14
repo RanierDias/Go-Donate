@@ -4,7 +4,8 @@ import CardPerfilParticipant from "../../../components/Cards/Perfil/Participant"
 import Navbar from "../../../components/Header";
 import Search from "../../../components/Search";
 import { IDonate, iFundraising } from "../../../providers/@types";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { ModalContext } from "../../../providers/ModalContext";
+import { PostContext } from "../../../providers/PostContext";
 import { IUser } from "../../../providers/UserContext/@Types";
 import { api } from "../../../services/api";
 import ButtonSmall from "../../../styles/buttonSmall";
@@ -12,8 +13,9 @@ import Main from "../Fundraising/style";
 import { iSelectedCard } from "./types";
 
 const PageParticipants = () => {
-  const { selectedCard, search }: iSelectedCard = useContext(CompanyContext);
-  const { donations, setDonations } = useContext(CompanyContext);
+  const { search }: iSelectedCard = useContext(PostContext);
+  const { donations, setDonations } = useContext(PostContext);
+  const { selectedCard } = useContext(ModalContext);
 
   // useEffect(() => {
   //   async function getListDonations() {

@@ -1,15 +1,15 @@
+import { useContext } from "react";
+import { ModalContext } from "../../../../providers/ModalContext";
 import ButtonMain from "../../../../styles/buttonMain";
 import StyleCardParticipation from "./style";
 import { iCardParticipation } from "./type";
 
-const CardParticipation = ({
-  post,
-  callback,
-  setSelectedCard,
-}: iCardParticipation) => {
+const CardParticipation = ({ post }: iCardParticipation) => {
   const regExDate = /[0-9]{4}\/[0-9]{2}\/[0-9]{2}/;
   const date = post.date.replaceAll("-", "/").match(regExDate);
   const dateFinal = post.final_date?.replaceAll("-", "/").match(regExDate);
+
+  const { setShowModal, setSelectedCard } = useContext(ModalContext);
 
   return (
     <>
@@ -45,7 +45,7 @@ const CardParticipation = ({
 
           <ButtonMain
             onClick={() => {
-              callback("participation");
+              setShowModal("open");
               setSelectedCard(post);
             }}
           >

@@ -1,20 +1,15 @@
 import CardPerfil from "../../components/Cards/Perfil";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { isAxiosError } from "axios";
 import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
-import SearchForm from "../../components/Search";
 import Navbar from "../../components/Header";
 import EventUserContainer, { SearchContainerUser } from "./style";
-import { iPosts } from "../Dashboard_Company/types";
-import { CompanyContext } from "../../providers/CompanyContext";
-import { UserContext } from "../../providers/UserContext/UserContextInitial";
+import { PostContext } from "../../providers/PostContext";
 
 const PageUser = () => {
   const { fundraising, setFundraising, setDonations } =
-    useContext(CompanyContext);
-
-  const { user } = useContext(UserContext);
+    useContext(PostContext);
 
   useEffect(() => {
     async function getListPostsService() {
