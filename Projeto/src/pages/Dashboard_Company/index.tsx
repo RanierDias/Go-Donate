@@ -77,7 +77,7 @@ const PageCompany = () => {
     <>
       <Navbar mode="private" />
 
-      <CardPerfilMobile />
+      <CardPerfilMobile type="company" />
 
       <Main>
         <h1>Campanhas em andamento</h1>
