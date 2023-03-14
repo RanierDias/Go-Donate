@@ -39,7 +39,7 @@ const LoginForm = () => {
 
           <S.ButtonLogin type="submit">Login</S.ButtonLogin>
 
-          <S.LinkCreateAccount to="/register">Criar Conta</S.LinkCreateAccount>
+          <S.LinkCreateAccount to="/register">Cadastro</S.LinkCreateAccount>
         </S.FormLogin>
       </S.ContainerSideForm>
     </S.MainContainerLogin>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainContainerRegister = styled.main`
@@ -75,18 +76,41 @@ export const FormRegister = styled.form`
 `;
 
 export const ButtonCadastrar = styled.button`
-  background-color: var(--button-initial);
+  background-color: var(--gray-20);
   padding: 16px 0;
   border-radius: 8px;
   color: white;
 
   font-family: "Roboto Slab";
   font-weight: 500;
-  font-size: 16px;
+  font-size: .9rem;
 
   transition: .3s ease;
 
   :hover {
     background-color: var(--primary-color);
   }
-`;
+`
+
+export const LinkButton = styled(Link)`
+  background-color: var(--primary-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+
+  border-radius: 8px;
+  color: white;
+
+  font-family: "Roboto Slab";
+  font-weight: 500;
+  font-size: .9rem;
+
+  transition: .3s ease;
+
+  :hover {
+    background-color: var(--button-initial);
+  }
+`

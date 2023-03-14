@@ -150,7 +150,7 @@ const RegisterForm = () => {
 
           <S.ButtonCadastrar type="submit">Cadastrar</S.ButtonCadastrar>
 
-          <Link to="/login">Voltar para o login</Link>
+          <S.LinkButton to="/login">Login</S.LinkButton>
         </S.FormRegister>
       </S.ContainerSideForm>
     </S.MainContainerRegister>
