@@ -6,6 +6,7 @@ import Navbar from "../../../components/Header";
 import { CompanyContext } from "../../../providers/CompanyContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import ModalUser from "../../../components/Modal/Participation";
+import { ContainerListParticipation, SectionParticipationContainer } from "./style";
 
 const PageParticipations = () => {
   const {
@@ -44,24 +45,24 @@ const PageParticipations = () => {
   return (
     <>
       <Navbar mode="private" />
-      <main>
-        <div>
-          <h1>Campanhas em Participação</h1>
-        </div>
+        <SectionParticipationContainer>
+          <div>
+            <h1>Campanhas em Participação</h1>
+          </div>
 
-        <section>
-          <ul>
-            {donations.map((card) => (
-              <CardParticipation
-                key={card.id}
-                post={card.post}
-                callback={setShowModal}
-                setSelectedCard={setSelectedCard}
-              />
-            ))}
-          </ul>
-        </section>
-      </main>
+          <section>
+            <ContainerListParticipation>
+              {donations.map((card) => (
+                <CardParticipation
+                  key={card.id}
+                  post={card.post}
+                  callback={setShowModal}
+                  setSelectedCard={setSelectedCard}
+                />
+              ))}
+            </ContainerListParticipation>
+          </section>
+        </SectionParticipationContainer>
 
       {showModal == "open" && (
         <ModalUser callback={setShowModal} selectedCard={selectedCard} /> //refatorar tirando essas props do modal e usando o useContext!

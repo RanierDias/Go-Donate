@@ -1,38 +1,15 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const EventUserContainer = styled.main`
-  padding: 1rem;
-  display: flex;
+   padding: 1rem;
 
-  gap: 1rem;
-
-  ul {
-    gap: 1rem;
-
+   @media (min-width: 769px) {
     display: flex;
+    justify-content: space-between;
 
-    padding: 81px;
-  }
-
-  aside {
-    display: flex;
-    flex-direction: column;
-    gap: 70px;
-  }
-
-  @media (min-width: 700px) {
-    flex-direction: row;
-    padding: 1rem 4rem;
-
-    button {
-      width: 30%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    padding: 1rem 10.5vw;
-  }
-`;
+    padding: 1rem 8.4rem;
+   }
+`
 
 export const SearchContainerUser = styled.div`
   display: flex;
@@ -59,6 +36,19 @@ export const SearchContainerUser = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`;
+`
 
-export default EventUserContainer;
+export const ListCardsUser = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 1rem 2rem;
+  }
+`
+
+export default EventUserContainer

@@ -3,10 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { api } from "../../services/api";
 import { CardPostuser } from "../../components/Cards/PostUser";
-import SearchForm from "../../components/Search";
 import Navbar from "../../components/Header";
-import EventUserContainer, { SearchContainerUser } from "./style";
-import { iPosts } from "../Dashboard_Company/types";
+import EventUserContainer, { ListCardsUser, SearchContainerUser } from "./style";
 import { CompanyContext } from "../../providers/CompanyContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 
@@ -54,16 +52,15 @@ const PageUser = () => {
 
       <SearchContainerUser>
         <h1>Principais Campanhas</h1>
-        {/* <SearchForm /> */}
       </SearchContainerUser>
 
       <EventUserContainer>
         <section>
-          <ul>
+          <ListCardsUser>
             {fundraising.map((post) => {
               return <CardPostuser key={post.id} post={post} />;
             })}
-          </ul>
+          </ListCardsUser>
         </section>
 
         <aside>
