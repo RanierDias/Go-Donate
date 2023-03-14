@@ -7,22 +7,17 @@ import ModalCompany from "../../components/Modal/Company";
 import Select from "../../components/Select";
 import { api } from "../../services/api";
 import Main from "./style";
-import { CompanyContext } from "../../providers/CompanyContext";
+import { PostContext } from "../../providers/PostContext";
 import { UserContext } from "../../providers/UserContext/UserContextInitial";
 import { iResponseFundraising, iResponsePost } from "./types";
 import CardPerfilMobile from "../../components/Cards/Perfil/Mobile";
 import DonationModal from "../../components/Modal/Donation";
+import { ModalContext } from "../../providers/ModalContext";
 
 const PageCompany = () => {
-  const {
-    fundraising,
-    setFundraising,
-    posts,
-    setPosts,
-    showModal,
-    filter,
-    setFilter,
-  } = useContext(CompanyContext);
+  const { fundraising, setFundraising, posts, setPosts, filter, setFilter } =
+    useContext(PostContext);
+  const { showModal } = useContext(ModalContext);
 
   const { user } = useContext(UserContext);
 

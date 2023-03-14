@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
-import { CompanyContext } from '../../../providers/CompanyContext'
+import { ModalContext } from '../../../providers/ModalContext'
 import DonationForm from '../../ModalForm/DonationForm'
 import ModalBackground from '../style'
 
 function DonationModal() {
-  const { setShowModal, selectedCard } = useContext(CompanyContext);
+  const { setShowModal, selectedCard } = useContext(ModalContext);
 
   return (
     <ModalBackground>

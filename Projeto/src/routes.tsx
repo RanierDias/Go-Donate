@@ -4,12 +4,14 @@ import ProtectRoute from "./components/ProtectRoute";
 import PageCompany from "./pages/Dashboard_Company";
 import Donation from "./pages/Dashboard_Company/Donation";
 import PageFundraising from "./pages/Dashboard_Company/Fundraising";
+import PageParticipants from "./pages/Dashboard_Company/Participants";
 import PageUser from "./pages/Dashboard_User";
 import PageParticipations from "./pages/Dashboard_User/Participation";
 import PagePublic from "./pages/PagePublic";
 import Home from "./pages/PagePublic/Home";
 import RegisterPage from "./pages/Register_User";
-import { CompanyProvider } from "./providers/CompanyContext";
+import { PostProvider } from "./providers/PostContext";
+import ModalProvider from "./providers/ModalContext";
 import { UserProvider } from "./providers/UserContext/UserContextInitial";
 
 const MainRoutes = () => {
@@ -20,9 +22,11 @@ const MainRoutes = () => {
       <Route
         path="/public"
         element={
-          <CompanyProvider>
-            <PagePublic />
-          </CompanyProvider>
+          <PostProvider>
+            <ModalProvider>
+              <PagePublic />
+            </ModalProvider>
+          </PostProvider>
         }
       />
       <Route path="*" element={<Home />} />
@@ -31,45 +35,73 @@ const MainRoutes = () => {
         <Route
           path="/user"
           element={
-            <CompanyProvider>
-              <PageUser />
-            </CompanyProvider>
+            <PostProvider>
+              <UserProvider>
+                <ModalProvider>
+                  <PageUser />
+                </ModalProvider>
+              </UserProvider>
+            </PostProvider>
           }
         />
         <Route
           path="/user/participation"
           element={
-            <CompanyProvider>
-              <PageParticipations />
-            </CompanyProvider>
+            <PostProvider>
+              <UserProvider>
+                <ModalProvider>
+                  <PageParticipations />
+                </ModalProvider>
+              </UserProvider>
+            </PostProvider>
           }
         />
         <Route
           path="/company"
           element={
-            <CompanyProvider>
+            <PostProvider>
               <UserProvider>
-                <PageCompany />
+                <ModalProvider>
+                  <PageCompany />
+                </ModalProvider>
               </UserProvider>
-            </CompanyProvider>
+            </PostProvider>
           }
         />
         <Route
           path="/company/fundraising"
           element={
-            <CompanyProvider>
+            <PostProvider>
               <UserProvider>
-                <PageFundraising />
+                <ModalProvider>
+                  <PageFundraising />
+                </ModalProvider>
               </UserProvider>
-            </CompanyProvider>
+            </PostProvider>
+          }
+        />
+        <Route
+          path="/company/fundraising/participants"
+          element={
+            <PostProvider>
+              <UserProvider>
+                <ModalProvider>
+                  <PageParticipants />
+                </ModalProvider>
+              </UserProvider>
+            </PostProvider>
           }
         />
         <Route
           path="/company/donation"
           element={
-            <CompanyProvider>
-              <Donation />
-            </CompanyProvider>
+            <PostProvider>
+              <UserProvider>
+                <ModalProvider>
+                  <Donation />
+                </ModalProvider>
+              </UserProvider>
+            </PostProvider>
           }
         />
       </Route>

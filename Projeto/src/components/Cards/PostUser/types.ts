@@ -1,6 +1,5 @@
-
-import { iPostsService } from "../../../pages/Dashboard_User/types";
+import { iFundraising } from "../../../providers/@types";
 
 export interface iCardPostsUser {
-  post: iPostsService
+  post: iFundraising;
 }

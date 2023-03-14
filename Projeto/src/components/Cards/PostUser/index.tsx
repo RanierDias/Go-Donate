@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
-import { CompanyContext } from "../../../providers/CompanyContext";
+import { PostContext } from "../../../providers/PostContext";
 import { UserContext } from "../../../providers/UserContext/UserContextInitial";
 import { api } from "../../../services/api";
 import ButtonMain from "../../../styles/buttonMain";
@@ -8,8 +8,7 @@ import StyleCardUser from "./style";
 import { iCardPostsUser } from "./types";
 
 export const CardPostuser = ({ post }: iCardPostsUser) => {
-  const { selectedCard, setSelectedCard, donations, setDonations } =
-    useContext(CompanyContext);
+  const { donations, setDonations } = useContext(PostContext);
   const { user } = useContext(UserContext);
 
   const addFundraisingUser = async () => {
